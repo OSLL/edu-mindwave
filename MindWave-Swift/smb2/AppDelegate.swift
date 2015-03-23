@@ -10,72 +10,16 @@ import Cocoa
 
 @NSApplicationMain
 
-class AppDelegate: NSObject, NSApplicationDelegate, ThinkGearDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     
-    var thinkGear: ThinkGearObjC?
-    var devicePortName: NSString?
-    var deviceNameToSearch: NSString?
+    var thinkGear: ThinkGear?
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        
-        thinkGear = ThinkGearObjC()
-        thinkGear!.delegate = self
-       
-        println(self)
-        
-        devicePortName = ""
-        deviceNameToSearch = "MindWaveMobile"
-        
-        var found = false
-        
-        var devContents: NSArray? = NSFileManager.defaultManager().contentsOfDirectoryAtPath("/dev", error: nil);
-        var ttyPredicate: NSPredicate? = NSPredicate(format: "SELF beginswith 'tty.'")
-        var deviceList: NSArray? = devContents?.filteredArrayUsingPredicate(ttyPredicate!);
-        
-        for device in deviceList! {
-            var temp = device as! String
-            NSLog("device: %@", temp)
-            if temp.rangeOfString((deviceNameToSearch as! String)) != nil {
-                NSLog("found in %@", temp)
-                found = true
-                devicePortName = "/dev/" + temp
-                break
-            }
-        }
-        
-        if found && devicePortName != "" {
-            thinkGear!.ConnectTo(devicePortName as! String)
-        }
-    }
-    
-    func dataReceived(data: [NSObject : AnyObject]!) {
-        var x = 2;
-        /*if let poorSignal = data.objectForKey("poorSignal") as? Int {
-            NSLog("poorSignal: @%", poorSignal)
-        }
-        
-        if let eSenseMeditation = data.objectForKey("eSenseMeditation") as? Int {
-            NSLog("eSenseMeditation: @%", eSenseMeditation)
-        }
-        
-        if let eSenseAttention = data.objectForKey("eSenseAttention") as? Int {
-            NSLog("eSenseAttention: @%", eSenseAttention)
-        }*/
-    }
-    
-    func accessoryDidConnect(portName: String!) {
-        NSLog("Connected to %@", portName as String)
-    }
-    
-    func accessoryDidDisconnect() {
-        NSLog("Disconnected from device.")
-    }
-    
-    func accessoryError(errorCode: Int32) {
-        NSLog("Error from device.");
+        thinkGear = ThinkGear()
+        thinkGear?.Connect()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {

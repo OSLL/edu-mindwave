@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "smb2.ThinkGear.Connect (smb2.ThinkGear)() -&gt; ():ThinkGear.swift">
+      </ContextState>
+      <ContextState
+         contextName = "smb2.AppDelegate.dataReceived (smb2.AppDelegate)(Swift.ImplicitlyUnwrappedOptional&lt;Swift.Dictionary&lt;ObjectiveC.NSObject, Swift.AnyObject&gt;&gt;) -&gt; ():AppDelegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "smb2.ThinkGear.dataReceived (smb2.ThinkGear)(Swift.ImplicitlyUnwrappedOptional&lt;Swift.Dictionary&lt;ObjectiveC.NSObject, Swift.AnyObject&gt;&gt;) -&gt; ():ThinkGear.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "data as NSDictionary">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

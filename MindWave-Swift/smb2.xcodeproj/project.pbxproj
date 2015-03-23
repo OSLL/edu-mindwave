@@ -14,6 +14,7 @@
 		886044631AC0421F00E0AC6D /* ThinkGear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886044621AC0421F00E0AC6D /* ThinkGear.framework */; };
 		886044641AC0421F00E0AC6D /* ThinkGear.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 886044621AC0421F00E0AC6D /* ThinkGear.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		886044671AC0422A00E0AC6D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886044661AC0422A00E0AC6D /* Cocoa.framework */; };
+		888517A21AC0751600FAE9A7 /* ThinkGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888517A11AC0751600FAE9A7 /* ThinkGear.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		886044621AC0421F00E0AC6D /* ThinkGear.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ThinkGear.framework; sourceTree = "<group>"; };
 		886044661AC0422A00E0AC6D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		886044681AC0424900E0AC6D /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		888517A11AC0751600FAE9A7 /* ThinkGear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinkGear.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				8860444B1AC041F700E0AC6D /* MainMenu.xib */,
 				886044451AC041F600E0AC6D /* Supporting Files */,
 				886044681AC0424900E0AC6D /* Swift-Bridging-Header.h */,
+				888517A11AC0751600FAE9A7 /* ThinkGear.swift */,
 			);
 			path = smb2;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				886044481AC041F600E0AC6D /* AppDelegate.swift in Sources */,
+				888517A21AC0751600FAE9A7 /* ThinkGear.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +436,7 @@
 				8860445E1AC041F700E0AC6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8860445F1AC041F700E0AC6D /* Build configuration list for PBXNativeTarget "smb2Tests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +445,7 @@
 				886044611AC041F700E0AC6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
