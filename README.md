@@ -1,16 +1,6 @@
-# edu-mindwave
+# Mind Wave
 
-<table>
-  <tr>
-    <td width = 300 align = center>File</td>
-    <td width = 500 align = center>Description</td></tr>
-  <tr>
-    <td width = 300 align = center>MindWave-Objective-C</td>
-    <td width = 500 align = center >Mind Wave connector implementation using Objective-C</td>
-  </tr>
-  <tr>
-    <td width = 300 align = center>MindWave-Swift</td>
-    <td width = 500 align = center >Mind Wave connector implementation using Swift</td>
-  </tr>
-</table>
-
+| File | Description |
+| ---- | ----------- |
+| MindWave-Objective-C | Mind Wave connector implementation using Objective-C |
+| MindWave-Swift | Mind Wave connector implementation using Swift |
