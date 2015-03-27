@@ -9,13 +9,13 @@
 import Foundation
 
 class ThinkGear: ThinkGearDelegate {
-    private var thinkGear: ThinkGearObjC?
+    private var thinkGear: ThinkGearObjC
     private var devicePortName: NSString?
     private var deviceNameToSearch: NSString? = "MindWaveMobile"
     
     init() {
         thinkGear = ThinkGearObjC()
-        thinkGear!.delegate = self
+        thinkGear.delegate = self
     }
     
     var blinkStrength = 0
@@ -32,13 +32,13 @@ class ThinkGear: ThinkGearDelegate {
     var eegHighAlpha = 0
     
     var connected: Bool {
-        return thinkGear?.connected ?? false
+        return thinkGear.connected
     }
     
-    func Connect() {
-        if thinkGear?.connected == true {
+    func Connect() -> Bool {
+        if thinkGear.connected == true {
             NSLog("Device already connected!")
-            return
+            return true
         }
         
         devicePortName = ""
@@ -58,8 +58,10 @@ class ThinkGear: ThinkGearDelegate {
         }
         
         if found && devicePortName != "" {
-            thinkGear!.ConnectTo(devicePortName as! String)
+            thinkGear.ConnectTo(devicePortName as! String)
+            return true
         }
+        return false
     }
     
     @objc func dataReceived(data: [NSObject : AnyObject]!) {

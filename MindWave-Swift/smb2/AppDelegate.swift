@@ -16,6 +16,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var thinkGear: ThinkGear?
     
+    func foo() {
+        NSLog("LOG");
+        foo();
+    }
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         thinkGear = ThinkGear()
