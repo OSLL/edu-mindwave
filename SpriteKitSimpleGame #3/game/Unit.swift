@@ -42,11 +42,11 @@ class Unit: SKSpriteNode {
 }
 
 class Wall: SKSpriteNode {
-    static func createWall(LDCorner: CGPoint) -> Wall {
+    static func createWall(mid: CGPoint, size: CGPoint) -> Wall {
         let sprite = Wall(imageNamed: "Wall")
-        sprite.position = LDCorner;
-        sprite.xScale = 0.2
-        sprite.yScale = 0.2
+        sprite.position = mid;
+        sprite.xScale = size.x
+        sprite.yScale = size.y
         sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "Wall"), size: sprite.size)
         if let physics = sprite.physicsBody {
             physics.affectedByGravity = false

@@ -15,15 +15,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var force: Double = 70.0
     var enemyUnit: Unit?
     
-    func createWall(corner : CGPoint, size : CGPoint) {
-        for i in 1...Int(size.x) {
-            for j in 1...Int(size.y) {
-                let wall = Wall.createWall(CGPoint(x : (Int(corner.x) + (i - 1) * 40), y : (Int(corner.y) + (j - 1) * 40)))
-                self.addChild(wall)
-            }
-        }
-    }
-    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         physicsWorld.contactDelegate = self
@@ -33,11 +24,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(unit!)
         enemyUnit = Unit.createUnit(CGPoint(x : 250, y : 500));
         self.addChild(enemyUnit!)
-        self.createWall(CGPoint(x : 0, y : 10), size: CGPoint(x : 30, y : 2))
-        self.createWall(CGPoint(x : 200, y : 190), size: CGPoint(x : 10, y : 1))
-        self.createWall(CGPoint(x : 10, y : 0), size: CGPoint(x : 1, y : 20))
-        self.createWall(CGPoint(x : 1000, y : 0), size: CGPoint(x : 1, y : 20))
-        self.createWall(CGPoint(x : 400, y : 330), size: CGPoint(x : 10, y : 1))
+        let wall1 = Wall.createWall(CGPoint(x : 512, y : 20), size : CGPoint(x : 5, y : 0.1))
+        self.addChild(wall1)
+        let wall2 = Wall.createWall(CGPoint(x : 20, y : 384), size : CGPoint(x : 0.1, y : 3.2))
+        self.addChild(wall2)
+        let wall3 = Wall.createWall(CGPoint(x : 1004, y : 384), size : CGPoint(x : 0.1, y : 3.2))
+        self.addChild(wall3)
+        let wall4 = Wall.createWall(CGPoint(x : 300, y : 200), size : CGPoint(x : 1.5, y : 0.1))
+        self.addChild(wall4)
+        let wall5 = Wall.createWall(CGPoint(x : 800, y : 300), size : CGPoint(x : 1.5, y : 0.1))
+        self.addChild(wall5)
+        let wall6 = Wall.createWall(CGPoint(x : 300, y : 400), size : CGPoint(x : 1.5, y : 0.1))
+        self.addChild(wall6)
     }
     
     override func mouseDown(theEvent: NSEvent) {
