@@ -13,6 +13,7 @@
 		889CCD6E1AC4CBF800C17291 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889CCD6C1AC4CBF800C17291 /* MainMenu.xib */; };
 		889CCD7A1AC4CBF900C17291 /* gameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CCD791AC4CBF900C17291 /* gameTests.swift */; };
 		889CCD841AC53AF400C17291 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CCD831AC53AF400C17291 /* Unit.swift */; };
+		EB1EC0601ADC043A006C73EC /* level.lv in Resources */ = {isa = PBXBuildFile; fileRef = EB1EC05F1ADC043A006C73EC /* level.lv */; };
 		EB8692481AC9EEE6002E3F99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8692471AC9EEE6002E3F99 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		889CCD781AC4CBF900C17291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		889CCD791AC4CBF900C17291 /* gameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameTests.swift; sourceTree = "<group>"; };
 		889CCD831AC53AF400C17291 /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		EB1EC05F1ADC043A006C73EC /* level.lv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level.lv; sourceTree = "<group>"; };
 		EB8692471AC9EEE6002E3F99 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = game/Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +63,7 @@
 		889CCD561AC4CBF800C17291 = {
 			isa = PBXGroup;
 			children = (
+				EB1EC05F1ADC043A006C73EC /* level.lv */,
 				EB8692471AC9EEE6002E3F99 /* Images.xcassets */,
 				889CCD611AC4CBF800C17291 /* game */,
 				889CCD761AC4CBF800C17291 /* gameTests */,
@@ -195,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1EC0601ADC043A006C73EC /* level.lv in Resources */,
 				EB8692481AC9EEE6002E3F99 /* Images.xcassets in Resources */,
 				889CCD691AC4CBF800C17291 /* GameScene.sks in Resources */,
 				889CCD6E1AC4CBF800C17291 /* MainMenu.xib in Resources */,
