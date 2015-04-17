@@ -20,22 +20,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         self.backgroundColor = NSColor(red: 0.95, green: 0.95, blue: 1, alpha: 1.0)
         self.physicsWorld.gravity = CGVectorMake(0.0, -4.9)
-        unit = Unit.createUnit(CGPoint(x : 100, y : 100));
-        self.addChild(unit!)
-        enemyUnit = Unit.createUnit(CGPoint(x : 250, y : 500));
-        self.addChild(enemyUnit!)
-        let wall1 = Wall.createWall(CGPoint(x : 512, y : 20), size : CGPoint(x : 5, y : 0.1))
-        self.addChild(wall1)
-        let wall2 = Wall.createWall(CGPoint(x : 20, y : 384), size : CGPoint(x : 0.1, y : 3.2))
-        self.addChild(wall2)
-        let wall3 = Wall.createWall(CGPoint(x : 1004, y : 384), size : CGPoint(x : 0.1, y : 3.2))
-        self.addChild(wall3)
-        let wall4 = Wall.createWall(CGPoint(x : 300, y : 200), size : CGPoint(x : 1.5, y : 0.1))
-        self.addChild(wall4)
-        let wall5 = Wall.createWall(CGPoint(x : 800, y : 300), size : CGPoint(x : 1.5, y : 0.1))
-        self.addChild(wall5)
-        let wall6 = Wall.createWall(CGPoint(x : 300, y : 400), size : CGPoint(x : 1.5, y : 0.1))
-        self.addChild(wall6)
+        //let text = "lol"
+        //text.writeToFile("level1.lv", atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+        let message = String(contentsOfFile: "/Users/urijkravcenko/edu-mindwave/SpriteKitSimpleGame #3/level.lv", encoding: NSUTF8StringEncoding, error: nil)
+        let arr = message!.componentsSeparatedByString("\n")
+        for next in arr {
+            let newType = next.componentsSeparatedByString(" ")
+            if newType[0] == "wall" {
+                let wall = Wall.createWall(CGPoint(x : newType[1].toInt()!, y : newType[2].toInt()!), size : CGPoint(x : (newType[3] as NSString).doubleValue, y : (newType[4] as NSString).doubleValue))
+                self.addChild(wall)
+            }
+            else if newType[0] == "unit" {
+                unit = Unit.createUnit(CGPoint(x : newType[1].toInt()!, y : newType[2].toInt()!));
+                self.addChild(unit!)
+            }
+            else if newType[0] == "enemyUnit" {
+                enemyUnit = Unit.createUnit(CGPoint(x : newType[1].toInt()!, y : newType[2].toInt()!));
+                self.addChild(enemyUnit!)
+            }
+        }
     }
     
     override func mouseDown(theEvent: NSEvent) {
