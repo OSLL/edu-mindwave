@@ -22,20 +22,7 @@ class GameScene: SKScene {
         if world != nil {
             world!.name = "world"
             // setup camera
-            camera = YGCamera()
-            if camera != nil {
-                world!.addChild(camera!)
-            }
-            
-            unit = YGUnit()
-            if unit != nil {
-                world!.addChild(unit!)
-            }
-        
-            unit?.position = CGPoint(x: 720, y: 100)
-            camera?.position = CGPoint(x: 720, y: 450)
-            
-            createLevel(world!)
+            createLevel(world!, path: "/Users/urijkravcenko/edu-mindwave/Game/level0.lv")
             self.addChild(world!)
             camera?.apply()
         }
@@ -74,11 +61,11 @@ class GameScene: SKScene {
     }
     
     // create level
-    private func createWall(width: CGFloat, height: CGFloat) -> SKNode {
-        var wall = SKShapeNode(rect: CGRect(x: 0, y: 0, width: width, height: height))
+    private func createWall(size: CGPoint) -> SKNode {
+        var wall = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.x, height: size.y))
         wall.fillColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
-        wall.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: width, height: height),
-            center: CGPoint(x: width / 2, y: height / 2))
+        wall.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.x, height: size.y),
+            center: CGPoint(x: size.x / 2, y: size.y / 2))
         
         if var physicsBody = wall.physicsBody {
             physicsBody.dynamic = false
@@ -88,39 +75,30 @@ class GameScene: SKScene {
         
         return wall
     }
-    
-    private func createLevel(world: SKNode) {
-        camera?.worldSize = CGSize(width: 3000, height: 3000)
-        
-        var leftWall = createWall(10, height: 3000)
-        
-        var rightWall = createWall(10, height: 3000)
-        rightWall.position.x = 3000 - 10
-        
-        var bottomWall = createWall(3000, height: 10)
-        
-        var ceilingWall = createWall(3000, height: 10)
-        ceilingWall.position.y = 3000 - 10
-
-        world.addChild(leftWall)
-        world.addChild(rightWall)
-        world.addChild(bottomWall)
-        world.addChild(ceilingWall)
-        
-        for var i = 1; i <= 12; ++i {
-            var block = createWall(150, height: 20)
-            block.position.x = 80 * CGFloat(i) + 150 * CGFloat(i - 1)
-            block.position.y = 120 * CGFloat(i)
-            world.addChild(block)
+    private func createLevel(world: SKNode, path : String) {
+        let level = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
+        let lines = level!.componentsSeparatedByString("\n")
+        for line in lines {
+            let words = line.componentsSeparatedByString(" ")
+            switch words[0] {
+            case "size":
+                camera?.worldSize = CGSize(width: (words[1] as NSString).integerValue, height: (words[2] as NSString).integerValue)
+            case "wall":
+                var block = createWall(CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue ))
+                block.position.x = CGFloat((words[3] as NSString).integerValue)
+                block.position.y = CGFloat((words[4] as NSString).integerValue)
+                world.addChild(block)
+            case "camera":
+                camera = YGCamera()
+                camera?.position = CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue)
+                world.addChild(camera!)
+            case "unit":
+                unit = YGUnit()
+                unit?.position = CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue)
+                world.addChild(unit!)
+            default :
+                var nothing = 0
+            }
         }
-        
-        for var i = 1; i <= 12; ++i {
-            var block = createWall(150, height: 20)
-            block.position.x = 3000 - (80 * CGFloat(i) + 150 * CGFloat(i + 1))
-            block.position.y = 120 * CGFloat(i + 12)
-            world.addChild(block)
-        }
-        
     }
-    
-}
+};

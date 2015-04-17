@@ -15,6 +15,7 @@
 		882E55911AD2EEA40026EFEC /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E55901AD2EEA40026EFEC /* GameTests.swift */; };
 		882E559B1AD2F1910026EFEC /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559A1AD2F1910026EFEC /* Camera.swift */; };
 		882E559D1AD2FC350026EFEC /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559C1AD2FC350026EFEC /* Unit.swift */; };
+		EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */ = {isa = PBXBuildFile; fileRef = EB94B2DA1AE12D27001DF788 /* Level0.lv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		882E55901AD2EEA40026EFEC /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		882E559A1AD2F1910026EFEC /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		882E559C1AD2FC350026EFEC /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		EB94B2DA1AE12D27001DF788 /* Level0.lv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level0.lv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		882E556D1AD2EEA40026EFEC = {
 			isa = PBXGroup;
 			children = (
+				EB94B2D91AE12D02001DF788 /* Levels */,
 				882E55781AD2EEA40026EFEC /* Game */,
 				882E558D1AD2EEA40026EFEC /* GameTests */,
 				882E55771AD2EEA40026EFEC /* Products */,
@@ -116,6 +119,14 @@
 				882E558F1AD2EEA40026EFEC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB94B2D91AE12D02001DF788 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				EB94B2DA1AE12D27001DF788 /* Level0.lv */,
+			);
+			name = Levels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */,
+				EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */,
 				882E55821AD2EEA40026EFEC /* Images.xcassets in Resources */,
 				882E55851AD2EEA40026EFEC /* MainMenu.xib in Resources */,
 			);
@@ -412,6 +424,7 @@
 				882E55961AD2EEA40026EFEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		882E55971AD2EEA40026EFEC /* Build configuration list for PBXNativeTarget "GameTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +433,7 @@
 				882E55991AD2EEA40026EFEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
