@@ -8,15 +8,15 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     private var world: SKNode?
     private var camera: YGCamera?
-    private var unit: YGUnit?
+    private var unit: Unit?
 
     override func didMoveToView(view: SKView) {
         // set anchorPoint
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
+        physicsWorld.contactDelegate = self
         // setup world
         world = SKNode()
         if world != nil {
@@ -93,12 +93,15 @@ class GameScene: SKScene {
                 camera?.position = CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue)
                 world.addChild(camera!)
             case "unit":
-                unit = YGUnit()
+                unit = Unit()
                 unit?.position = CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue)
                 world.addChild(unit!)
             default :
                 var nothing = 0
             }
         }
+    }
+    func didBeginContact(contact: SKPhysicsContact) {
+        self.backgroundColor = NSColor(red: CGFloat(rand() % 2), green: CGFloat(rand() % 2), blue: CGFloat(rand() % 2), alpha: 1.0)
     }
 };
