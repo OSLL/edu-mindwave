@@ -11,10 +11,36 @@ import SpriteKit
 
 
 struct CollisionCategoryBitmask {
-    static let Null : UInt32 = 0
-    static let Collision : UInt32 = 3
-    static let Wall: UInt32 = 2
-    static let Unit: UInt32 = 1
+    static let Null : UInt32 = 0x0
+    static let Collision : UInt32 = (0x1 << 6) - 1
+    static let Wall: UInt32 = 0x1 << 2
+    static let Unit: UInt32 = 0x1 << 1
+    static let GravityBall: UInt32 = 0x1 << 4
+    static let Saw: UInt32 = 0x1 << 5
+}
+
+class Saw: SKSpriteNode {
+    override init() {
+        let texture = SKTexture(imageNamed: "Saw")
+        super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
+        
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "Saw"), size: texture.size())
+        self.xScale = 0.3
+        self.yScale = 0.3
+        
+        if let physics = self.physicsBody {
+            physics.affectedByGravity = false
+            physics.allowsRotation = false
+            physics.dynamic = false
+            physics.usesPreciseCollisionDetection = true
+            physics.categoryBitMask = CollisionCategoryBitmask.Saw
+            physics.collisionBitMask = CollisionCategoryBitmask.Unit
+            physics.contactTestBitMask = CollisionCategoryBitmask.Saw
+        }
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }
 
 class Unit: SKSpriteNode {
@@ -24,7 +50,7 @@ class Unit: SKSpriteNode {
     
     let force = 80.0
     
-    init() {
+    override init() {
         let texture = SKTexture(imageNamed: "Unit")
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
@@ -43,6 +69,7 @@ class Unit: SKSpriteNode {
             physics.usesPreciseCollisionDetection = true
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
             physics.collisionBitMask = CollisionCategoryBitmask.Collision
+            physics.fieldBitMask = CollisionCategoryBitmask.GravityBall
             physics.contactTestBitMask = CollisionCategoryBitmask.Unit
         }
     }
@@ -65,6 +92,7 @@ class Unit: SKSpriteNode {
         }
     }
 }
+
 
 class Wall: SKShapeNode {
     init(size: CGPoint) {
