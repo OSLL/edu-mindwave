@@ -61,39 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         camera?.apply()
     }
-    
-    // create level
-    private func createWall(size: CGPoint) -> SKNode {
-        var wall = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.x, height: size.y))
-        wall.fillColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
-        wall.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.x, height: size.y),
-            center: CGPoint(x: size.x / 2, y: size.y / 2))
-        
-        if var physicsBody = wall.physicsBody {
-            physicsBody.dynamic = false
-            physicsBody.affectedByGravity = false
-            physicsBody.allowsRotation = false
-        }
-        
-        return wall
-    }
-    
-    // create level
-    private func createSpringBlock(size: CGPoint) -> SKNode {
-        var block = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.x, height: size.y))
-        block.fillColor = NSColor(red: 100/255, green: 100/255, blue: 200/255, alpha: 255/255)
-        block.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.x, height: size.y),
-            center: CGPoint(x: size.x / 2, y: size.y / 2))
-        
-        if var physicsBody = block.physicsBody {
-            physicsBody.dynamic = true
-            physicsBody.affectedByGravity = false
-            physicsBody.allowsRotation = false
-        }
-        
-        return block
-    }
-  
+
     private func createLevel(world: SKNode, path : String) {
         let level = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
         let lines = level!.componentsSeparatedByString("\n")
@@ -104,9 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "size":
                 camera?.worldSize = CGSize(width: (words[1] as NSString).integerValue, height: (words[2] as NSString).integerValue)
             case "wall":
-                var block = createWall(CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue ))
-                block.position.x = CGFloat((words[3] as NSString).integerValue)
-                block.position.y = CGFloat((words[4] as NSString).integerValue)
+                var block = Wall(size: CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue), position : CGPoint(x : (words[3] as NSString).integerValue, y : (words[4] as NSString).integerValue))
                 world.addChild(block)
             case "camera":
                 camera = YGCamera()
@@ -144,6 +110,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     func didBeginContact(contact: SKPhysicsContact) {
-        self.backgroundColor = NSColor(red: CGFloat(rand() % 2), green: CGFloat(rand() % 2), blue: CGFloat(rand() % 2), alpha: 1.0)
+        if let a = (((contact.bodyA.node) as? Object)) {
+            a.beginContact(contact.bodyB.node!.physicsBody!.categoryBitMask)
+        }
+        if let b = (((contact.bodyB.node) as? Object)) {
+            b.beginContact(contact.bodyA.node!.physicsBody!.categoryBitMask)
+        }
+    }
+    func didEndContact(contact: SKPhysicsContact) {
+        if let a = (((contact.bodyA.node) as? Object)) {
+            a.endContact(contact.bodyB.node!.physicsBody!.categoryBitMask)
+        }
+        if let b = (((contact.bodyB.node) as? Object)) {
+            b.endContact(contact.bodyA.node!.physicsBody!.categoryBitMask)
+        }
     }
 };

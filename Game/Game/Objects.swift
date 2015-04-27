@@ -43,7 +43,12 @@ class Saw: SKSpriteNode {
     }
 }
 
-class Unit: SKSpriteNode {
+protocol Object {
+    func beginContact(UInt32)
+    func endContact(UInt32)
+}
+
+class Unit: SKSpriteNode, Object {
     var moveLeft = false
     var moveRight = false
     var jump = false
@@ -68,9 +73,8 @@ class Unit: SKSpriteNode {
             physics.friction = 0.5
             physics.usesPreciseCollisionDetection = true
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
-            physics.collisionBitMask = CollisionCategoryBitmask.Collision
-            physics.fieldBitMask = CollisionCategoryBitmask.GravityBall
-            physics.contactTestBitMask = CollisionCategoryBitmask.Unit
+            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
+            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
         }
     }
     required init?(coder aDecoder: NSCoder) {
@@ -91,26 +95,38 @@ class Unit: SKSpriteNode {
             jump = false
         }
     }
+    func beginContact(CollisionObject : UInt32) {
+        NSLog("Unit contact")
+    }
+    func endContact(CollisionObject : UInt32) {
+        
+    }
 }
 
-
-class Wall: SKShapeNode {
-    init(size: CGPoint) {
+class Wall: SKShapeNode, Object {
+    init(size: CGPoint, position: CGPoint) {
         super.init()
-        self.path = CGPathCreateWithRect(CGRect(x: 0.0, y: 0, width: size.x, height: size.y), nil)
+        self.path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size.x, height: size.y), nil)
         self.fillColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.x, height: size.y),
             center: CGPoint(x: size.x / 2, y: size.y / 2))
-        
-        if var physicsBody = self.physicsBody {
-            physicsBody.dynamic = false
-            physicsBody.affectedByGravity = false
-            physicsBody.allowsRotation = false
-            physicsBody.usesPreciseCollisionDetection = true
-            physicsBody.categoryBitMask = CollisionCategoryBitmask.Wall
-            physicsBody.collisionBitMask = CollisionCategoryBitmask.Collision
-            physicsBody.contactTestBitMask = CollisionCategoryBitmask.Null
+        self.position = position
+        if var physics = self.physicsBody {
+            physics.dynamic = false
+            physics.affectedByGravity = false
+            physics.allowsRotation = false
+            physics.usesPreciseCollisionDetection = true
+            physics.categoryBitMask = CollisionCategoryBitmask.Wall
+            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
+            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
         }
+    }
+    func beginContact(CollisionObject : UInt32) {
+        NSLog("Wall contact")
+        self.fillColor = NSColor(red: CGFloat(rand() % 2), green: CGFloat(rand() % 2), blue: CGFloat(rand() % 2), alpha: 1.0)
+    }
+    func endContact(CollisionObject : UInt32) {
+        
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
