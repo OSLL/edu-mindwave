@@ -19,14 +19,15 @@ struct CollisionCategoryBitmask {
     static let Saw: UInt32 = 0x1 << 5
 }
 
-class Saw: SKSpriteNode {
-    override init() {
+class Saw: SKSpriteNode, Object {
+    init(size: CGSize, position: CGPoint, action: SKAction? = nil) {
         let texture = SKTexture(imageNamed: "Saw")
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
-        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "Saw"), size: texture.size())
-        self.xScale = 0.3
-        self.yScale = 0.3
+        self.size = size
+        self.position = position
+        
+        self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.0 - 20.0, center: CGPoint(x: 10.0, y: 10.0))
         
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
@@ -37,9 +38,24 @@ class Saw: SKSpriteNode {
             physics.collisionBitMask = CollisionCategoryBitmask.Unit
             physics.contactTestBitMask = CollisionCategoryBitmask.Saw
         }
+        
+        var rotAction = SKAction.repeatActionForever(SKAction.rotateByAngle(0.04, duration: 0.005))
+        self.runAction(rotAction)
+        
+        if action != nil {
+            self.runAction(action!)
+        }
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func beginContact(CollisionObject : UInt32) {
+        NSLog("Saw contact")
+    }
+    
+    func endContact(CollisionObject : UInt32) {
+        
     }
 }
 
@@ -73,7 +89,7 @@ class Unit: SKSpriteNode, Object {
             physics.friction = 0.5
             physics.usesPreciseCollisionDetection = true
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
-            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
+            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Saw
             physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
         }
     }
@@ -103,8 +119,8 @@ class Unit: SKSpriteNode, Object {
     }
 }
 
-class Wall: SKShapeNode, Object {
-    init(size: CGPoint, position: CGPoint) {
+class Block: SKShapeNode, Object {
+    init(size: CGPoint, position: CGPoint, action: SKAction? = nil) {
         super.init()
         self.path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size.x, height: size.y), nil)
         self.fillColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
@@ -120,9 +136,12 @@ class Wall: SKShapeNode, Object {
             physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
             physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
         }
+        if action != nil {
+            self.runAction(action!)
+        }
     }
     func beginContact(CollisionObject : UInt32) {
-        NSLog("Wall contact")
+        NSLog("Block contact")
         self.fillColor = NSColor(red: CGFloat(rand() % 2), green: CGFloat(rand() % 2), blue: CGFloat(rand() % 2), alpha: 1.0)
     }
     func endContact(CollisionObject : UInt32) {

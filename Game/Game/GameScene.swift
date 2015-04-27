@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
+        scene?.backgroundColor = NSColor(calibratedRed: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         // setup world
         world = SKNode()
         //world.physicsWorld = SKPhysicsWorld()
@@ -62,6 +63,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         camera?.apply()
     }
 
+    private func getInt(value: String) -> Int {
+        return (value as NSString).integerValue
+    }
+    
     private func createLevel(world: SKNode, path : String) {
         let level = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
         let lines = level!.componentsSeparatedByString("\n")
@@ -70,25 +75,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let words = line.componentsSeparatedByString(" ")
             switch words[0] {
             case "size":
-                camera?.worldSize = CGSize(width: (words[1] as NSString).integerValue, height: (words[2] as NSString).integerValue)
-            case "wall":
-                var block = Wall(size: CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue), position : CGPoint(x : (words[3] as NSString).integerValue, y : (words[4] as NSString).integerValue))
+                camera?.worldSize = CGSize(width: getInt(words[1]), height: getInt(words[2]))
+            case "block":
+                var block = Block(size: CGPoint(x: getInt(words[1]), y: getInt(words[2])), position : CGPoint(x: getInt(words[3]), y : getInt(words[4])))
                 world.addChild(block)
             case "camera":
                 camera = YGCamera()
-                camera?.position = CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue)
+                camera?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
                 world.addChild(camera!)
             case "unit":
                 unit = Unit()
-                unit?.position = CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue)
+                unit?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
                 world.addChild(unit!)
             case "saw":
-                var saw = Saw()
-                saw.position = CGPoint(x : (words[1] as NSString).integerValue, y : (words[2] as NSString).integerValue)
-                var rot = SKAction.rotateByAngle(0.04, duration: 0.005)
-                var action = SKAction.repeatActionForever(rot)
-                saw.runAction(action)
+                var saw = Saw(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position: CGPoint(x: getInt(words[3]), y: getInt(words[4])))
                 world.addChild(saw)
+            case "movingSaw":
+                var action1 = SKAction.moveBy(CGVector(dx: 150, dy: 80), duration: 1)
+                var action2 = SKAction.moveBy(CGVector(dx: -150, dy: -80), duration: 1)
+                var actions = SKAction.sequence([action1, action2])
+                var action = SKAction.repeatActionForever(actions)
+                var saw = Saw(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position: CGPoint(x: getInt(words[3]), y: getInt(words[4])), action: action)
+                world.addChild(saw)
+                
             default :
                 var nothing = 0
             }
