@@ -19,6 +19,11 @@ struct CollisionCategoryBitmask {
     static let Saw: UInt32 = 0x1 << 5
 }
 
+protocol Object {
+    func beginContact(UInt32)
+    func endContact(UInt32)
+}
+
 class Saw: SKSpriteNode, Object {
     init(size: CGSize, position: CGPoint, action: SKAction? = nil) {
         let texture = SKTexture(imageNamed: "Saw")
@@ -51,17 +56,12 @@ class Saw: SKSpriteNode, Object {
     }
     
     func beginContact(CollisionObject : UInt32) {
-        NSLog("Saw contact")
+        //NSLog("Saw contact")
     }
     
     func endContact(CollisionObject : UInt32) {
         
     }
-}
-
-protocol Object {
-    func beginContact(UInt32)
-    func endContact(UInt32)
 }
 
 class Unit: SKSpriteNode, Object {
@@ -71,7 +71,7 @@ class Unit: SKSpriteNode, Object {
     
     let force = 80.0
     
-    override init() {
+    init() {
         let texture = SKTexture(imageNamed: "Unit")
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
@@ -90,7 +90,7 @@ class Unit: SKSpriteNode, Object {
             physics.usesPreciseCollisionDetection = true
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
             physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Saw
-            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
+            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Saw
         }
     }
     required init?(coder aDecoder: NSCoder) {
@@ -112,7 +112,15 @@ class Unit: SKSpriteNode, Object {
         }
     }
     func beginContact(CollisionObject : UInt32) {
-        NSLog("Unit contact")
+        NSLog("Больно!")
+        if (CollisionObject == CollisionCategoryBitmask.Saw) {
+            NSLog("Ай,пила!")
+            let winner = SKLabelNode(text: "You win!")
+            winner.fontSize = 65
+            winner.fontColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
+            winner.position = CGPoint(x: 500, y: 500)
+            (self.scene! as! GameScene).world!.addChild(winner)
+        }
     }
     func endContact(CollisionObject : UInt32) {
         
@@ -141,7 +149,7 @@ class Block: SKShapeNode, Object {
         }
     }
     func beginContact(CollisionObject : UInt32) {
-        NSLog("Block contact")
+        //NSLog("Block contact")
         self.fillColor = NSColor(red: CGFloat(rand() % 2), green: CGFloat(rand() % 2), blue: CGFloat(rand() % 2), alpha: 1.0)
     }
     func endContact(CollisionObject : UInt32) {

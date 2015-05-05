@@ -9,7 +9,7 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    private var world: SKNode?
+    var world: SKNode?
     private var camera: YGCamera?
     private var unit: Unit?
 
@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if world != nil {
             world!.name = "world"
             // setup camera
-            createLevel(world!, path: "/Users/rebryk/Google Drive/edu-mindwave/Game/level0.lv")
+            createLevel(world!, path: "/Users/urijkravcenko/edu-mindwave/Game/level0.lv")
             self.addChild(world!)
             camera?.apply()
         }
