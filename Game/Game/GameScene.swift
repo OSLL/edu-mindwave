@@ -25,7 +25,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if world != nil {
             world!.name = "world"
             // setup camera
-            createLevel(world!, path: "/Users/urijkravcenko/edu-mindwave/Game/level0.lv")
             self.addChild(world!)
             camera?.apply()
         }
@@ -67,7 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return (value as NSString).integerValue
     }
     
-    private func createLevel(world: SKNode, path : String) {
+    func createLevel(path : String) {
         let level = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
         let lines = level!.componentsSeparatedByString("\n")
         
@@ -78,25 +77,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 camera?.worldSize = CGSize(width: getInt(words[1]), height: getInt(words[2]))
             case "block":
                 var block = Block(size: CGPoint(x: getInt(words[1]), y: getInt(words[2])), position : CGPoint(x: getInt(words[3]), y : getInt(words[4])))
-                world.addChild(block)
+                world!.addChild(block)
             case "camera":
                 camera = YGCamera()
                 camera?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
-                world.addChild(camera!)
+                world!.addChild(camera!)
             case "unit":
                 unit = Unit()
                 unit?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
-                world.addChild(unit!)
+                world!.addChild(unit!)
             case "saw":
                 var saw = Saw(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position: CGPoint(x: getInt(words[3]), y: getInt(words[4])))
-                world.addChild(saw)
+                world!.addChild(saw)
             case "movingSaw":
                 var action1 = SKAction.moveBy(CGVector(dx: 150, dy: 80), duration: 1)
                 var action2 = SKAction.moveBy(CGVector(dx: -150, dy: -80), duration: 1)
                 var actions = SKAction.sequence([action1, action2])
                 var action = SKAction.repeatActionForever(actions)
                 var saw = Saw(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position: CGPoint(x: getInt(words[3]), y: getInt(words[4])), action: action)
-                world.addChild(saw)
+                world!.addChild(saw)
                 
             default :
                 var nothing = 0

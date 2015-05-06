@@ -11,7 +11,20 @@ import Cocoa
 import SpriteKit
 
 extension SKNode {
-    class func unarchiveFromFile(file : String) -> SKNode? {
+    class func unarchiveFromFile1(file : String) -> SKNode? {
+        if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
+            var sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
+            var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
+            
+            archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
+            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! Menu
+            archiver.finishDecoding()
+            return scene
+        } else {
+            return nil
+        }
+    }
+    class func unarchiveFromFile2(file : String) -> SKNode? {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
             var sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
             var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
@@ -34,17 +47,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         /* Pick a size for the scene */
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+        if let menu = Menu.unarchiveFromFile1("Menu") as? Menu {
+            menu.scaleMode = SKSceneScaleMode.ResizeFill
+            menu.appDel = self
+            self.skView!.presentScene(menu)
+            self.skView!.ignoresSiblingOrder = true
+        }
+        /*if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = SKSceneScaleMode.ResizeFill
-            
             self.skView!.presentScene(scene)
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             self.skView!.ignoresSiblingOrder = true
+        }*/
+    }
+    
+    func loadLevel(path: NSString) {
+        if let scene = GameScene.unarchiveFromFile2("GameScene") as? GameScene {
+            /* Set the scale mode to scale to fit the window */
+            scene.scaleMode = SKSceneScaleMode.ResizeFill
+            self.skView!.presentScene(scene)
+            scene.createLevel(path as String)
             
-            self.skView!.showsFPS = true
-            self.skView!.showsNodeCount = true
+        
+            /* Sprite Kit applies additional optimizations to improve rendering performance */
+            self.skView!.ignoresSiblingOrder = true
         }
     }
     

@@ -16,6 +16,8 @@
 		882E559B1AD2F1910026EFEC /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559A1AD2F1910026EFEC /* Camera.swift */; };
 		882E559D1AD2FC350026EFEC /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559C1AD2FC350026EFEC /* Objects.swift */; };
 		EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */ = {isa = PBXBuildFile; fileRef = EB94B2DA1AE12D27001DF788 /* Level0.lv */; };
+		EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */; };
+		EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		882E559A1AD2F1910026EFEC /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		882E559C1AD2FC350026EFEC /* Objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
 		EB94B2DA1AE12D27001DF788 /* Level0.lv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level0.lv; sourceTree = "<group>"; };
+		EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +89,10 @@
 			isa = PBXGroup;
 			children = (
 				882E557B1AD2EEA40026EFEC /* AppDelegate.swift */,
+				EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */,
 				882E557D1AD2EEA40026EFEC /* GameScene.swift */,
 				882E557F1AD2EEA40026EFEC /* GameScene.sks */,
+				EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */,
 				882E55811AD2EEA40026EFEC /* Images.xcassets */,
 				882E55831AD2EEA40026EFEC /* MainMenu.xib */,
 				882E55791AD2EEA40026EFEC /* Supporting Files */,
@@ -212,6 +218,7 @@
 				882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */,
 				EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */,
 				882E55821AD2EEA40026EFEC /* Images.xcassets in Resources */,
+				EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */,
 				882E55851AD2EEA40026EFEC /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +241,7 @@
 				882E559D1AD2FC350026EFEC /* Objects.swift in Sources */,
 				882E557C1AD2EEA40026EFEC /* AppDelegate.swift in Sources */,
 				882E559B1AD2F1910026EFEC /* Camera.swift in Sources */,
+				EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
