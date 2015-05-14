@@ -54,14 +54,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.skView!.presentScene(menu)
             self.skView!.ignoresSiblingOrder = true
         }
-        /*if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = SKSceneScaleMode.ResizeFill
-            self.skView!.presentScene(scene)
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            self.skView!.ignoresSiblingOrder = true
-        }*/
     }
     
     func loadLevel(path: NSString) {

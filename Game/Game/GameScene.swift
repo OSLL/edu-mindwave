@@ -7,37 +7,30 @@
 //
 
 import SpriteKit
+import Cocoa
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var world: SKNode?
+    
+    private var thinkGear: ThinkGear?
     private var camera: YGCamera?
     private var unit: Unit?
+    private var info: InfoDisplay?
     
-    var thinkGear: ThinkGear?
-    var labelMeditation: SKLabelNode?
-    var labelAttention: SKLabelNode?
-    var labelWin: SKLabelNode?
+    let useMindWave = false
+    var lastTime: NSTimeInterval?
     
-    private func setLabels() {
-        labelWin = SKLabelNode()
-        if let label = labelWin {
-            label.text = "You win!"
-            label.fontSize = 160
-            label.fontColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
-            label.position = CGPoint(x: CGRectGetMidX(self.view!.bounds) / 2, y: CGRectGetMidY(self.view!.bounds) / 2);
-            //label.hidden = true
-            label.zPosition = 1
-            self.addChild(label)
-        }
-    }
+    var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
+    var ended = false
     
     override func didMoveToView(view: SKView) {
-        /*if thinkGear == nil {
-            thinkGear = ThinkGear()
+        if useMindWave == true {
+            if thinkGear == nil {
+                thinkGear = ThinkGear()
+            }
+            thinkGear?.Connect()
         }
-        thinkGear?.Connect()
-        */
-        
+    
         // set anchorPoint
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
@@ -48,13 +41,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         world = SKNode()
         if world != nil {
             world!.name = "world"
-        
             // setup camera
             self.addChild(world!)
             camera?.apply()
         }
         
-        setLabels()
     }
     
     override func keyDown(theEvent: NSEvent) {
@@ -82,27 +73,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: CFTimeInterval) {
-        if let data = thinkGear {
-            if let label = labelMeditation {
-                label.text = toString(data.eSenseMeditation)
-            }
-            if let label = labelAttention {
-                label.text = toString(data.eSenseAttention)
-            }
+        if self.ended == true {
+            return;
         }
         
+        // update timer
+        if self.lastTime == nil {
+            self.lastTime = NSTimeInterval(currentTime)
+        }
+        self.info?.setTime(currentTime - self.lastTime!)
+        
+        // update data
+        if let data = thinkGear {
+            self.info?.setMeditation(Int(data.eSenseMeditation))
+            self.info?.setAttention(Int(data.eSenseAttention))
+        }
+        
+        // move camera
         if unit != nil {
             unit!.move()
             camera?.move(unit!.position)
         }
         camera?.apply()
+        
+        // check win/lose
+        if checkColors() {
+            self.info?.setText("YOU WIN")
+            self.ended = true
+        } else if unit?.killed == true {
+            self.info?.setText("YOU LOSE")
+            self.ended = true
+        }
     }
 
     private func getInt(value: String) -> Int {
         return (value as NSString).integerValue
     }
     
+    func checkColors() -> Bool {
+        var zeroCount = 0
+        for x in colorsCount {
+            if x == 0 {
+                ++zeroCount
+            }
+        }
+        return zeroCount == count(colorsCount) - 1 ? true : false
+    }
+    
     func createLevel(path : String) {
+        self.ended = false
+        self.info = InfoDisplay(world: self)
+        
         let level = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
         let lines = level!.componentsSeparatedByString("\n")
         
@@ -114,6 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "block":
                 var block = Block(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position : CGPoint(x: getInt(words[3]), y : getInt(words[4])))
                 world?.addChild(block)
+                block.setColor()
             case "camera":
                 camera = YGCamera()
                 camera?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
@@ -132,14 +154,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var action = SKAction.repeatActionForever(actions)
                 var saw = Saw(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position: CGPoint(x: getInt(words[3]), y: getInt(words[4])), action: action)
                 world!.addChild(saw)
-                
             default :
                 var nothing = 0
             }
         }
-        
-        var door = Door(radius: 100, position: CGPoint(x: 100, y: 100), action: nil)
-        world?.addChild(door)
         
         /*
         self.position.x = 100
@@ -151,10 +169,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(obj2)
         var spring = SKPhysicsJointSpring.jointWithBodyA(obj1.physicsBody!, bodyB: obj2.physicsBody!, anchorA: obj1.position, anchorB: obj2.position)
         scene?.physicsWorld.addJoint(spring)
+    
+        world.physicsWorld.addJoint(spring)
         */
-
-        //world.physicsWorld.addJoint(spring)
-
     }
     func didBeginContact(contact: SKPhysicsContact) {
         if let a = (((contact.bodyA.node) as? Object)) {
