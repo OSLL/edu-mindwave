@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     
     var thinkGear: ThinkGear?
-    
+
     func foo() {
         NSLog("LOG");
         foo();

@@ -12,22 +12,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var world: SKNode?
     private var camera: YGCamera?
     private var unit: Unit?
-
+    
+    var thinkGear: ThinkGear?
+    var labelMeditation: SKLabelNode?
+    var labelAttention: SKLabelNode?
+    var labelWin: SKLabelNode?
+    
+    private func setLabels() {
+        labelWin = SKLabelNode()
+        if let label = labelWin {
+            label.text = "You win!"
+            label.fontSize = 160
+            label.fontColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
+            label.position = CGPoint(x: CGRectGetMidX(self.view!.bounds) / 2, y: CGRectGetMidY(self.view!.bounds) / 2);
+            //label.hidden = true
+            label.zPosition = 1
+            self.addChild(label)
+        }
+    }
+    
     override func didMoveToView(view: SKView) {
+        /*if thinkGear == nil {
+            thinkGear = ThinkGear()
+        }
+        thinkGear?.Connect()
+        */
+        
         // set anchorPoint
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
         scene?.backgroundColor = NSColor(calibratedRed: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        
         // setup world
         world = SKNode()
-        //world.physicsWorld = SKPhysicsWorld()
         if world != nil {
             world!.name = "world"
+        
             // setup camera
             self.addChild(world!)
             camera?.apply()
         }
+        
+        setLabels()
     }
     
     override func keyDown(theEvent: NSEvent) {
@@ -55,6 +82,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: CFTimeInterval) {
+        if let data = thinkGear {
+            if let label = labelMeditation {
+                label.text = toString(data.eSenseMeditation)
+            }
+            if let label = labelAttention {
+                label.text = toString(data.eSenseAttention)
+            }
+        }
+        
         if unit != nil {
             unit!.move()
             camera?.move(unit!.position)
@@ -76,8 +112,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "size":
                 camera?.worldSize = CGSize(width: getInt(words[1]), height: getInt(words[2]))
             case "block":
-                var block = Block(size: CGPoint(x: getInt(words[1]), y: getInt(words[2])), position : CGPoint(x: getInt(words[3]), y : getInt(words[4])))
-                world!.addChild(block)
+                var block = Block(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position : CGPoint(x: getInt(words[3]), y : getInt(words[4])))
+                world?.addChild(block)
             case "camera":
                 camera = YGCamera()
                 camera?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
@@ -101,6 +137,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var nothing = 0
             }
         }
+        
+        var door = Door(radius: 100, position: CGPoint(x: 100, y: 100), action: nil)
+        world?.addChild(door)
         
         /*
         self.position.x = 100

@@ -21,6 +21,6 @@ class Menu: SKScene {
     
     override func mouseDown(theEvent: NSEvent) {
         /* Called when a mouse click occurs */
-        self.appDel!.loadLevel("/Users/urijkravcenko/edu-mindwave/Game/level0.lv")
+        self.appDel!.loadLevel("/Users/rebryk/Google Drive/edu-mindwave/Game/level0.lv")
     }
 };

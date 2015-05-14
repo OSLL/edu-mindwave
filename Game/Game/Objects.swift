@@ -12,11 +12,12 @@ import SpriteKit
 
 struct CollisionCategoryBitmask {
     static let Null : UInt32 = 0x0
-    static let Collision : UInt32 = (0x1 << 6) - 1
+    static let Collision : UInt32 = (0x1 << 7) - 1
     static let Wall: UInt32 = 0x1 << 2
     static let Unit: UInt32 = 0x1 << 1
     static let GravityBall: UInt32 = 0x1 << 4
     static let Saw: UInt32 = 0x1 << 5
+    static let Door: UInt32 = 0x1 << 6
 }
 
 protocol Object {
@@ -71,7 +72,7 @@ class Unit: SKSpriteNode, Object {
     
     let force = 80.0
     
-    init() {
+    override init() {
         let texture = SKTexture(imageNamed: "Unit")
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
@@ -112,14 +113,8 @@ class Unit: SKSpriteNode, Object {
         }
     }
     func beginContact(CollisionObject : UInt32) {
-        NSLog("Больно!")
         if (CollisionObject == CollisionCategoryBitmask.Saw) {
-            NSLog("Ай,пила!")
-            let winner = SKLabelNode(text: "You win!")
-            winner.fontSize = 65
-            winner.fontColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
-            winner.position = CGPoint(x: 500, y: 500)
-            (self.scene! as! GameScene).world!.addChild(winner)
+            NSLog("Saw!")
         }
     }
     func endContact(CollisionObject : UInt32) {
@@ -127,13 +122,48 @@ class Unit: SKSpriteNode, Object {
     }
 }
 
-class Block: SKShapeNode, Object {
-    init(size: CGPoint, position: CGPoint, action: SKAction? = nil) {
+class Door: SKShapeNode, Object {
+    init(radius: CGFloat, position: CGPoint, action: SKAction? = nil) {
         super.init()
-        self.path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size.x, height: size.y), nil)
+        self.path = CGPathCreateWithEllipseInRect(CGRect(x: 0, y: 0, width: 2 * radius, height: 2 * radius), nil)
+        self.fillColor = NSColor(red: 100/255, green: 200/255, blue: 100/255, alpha: 255/255)
+        self.position = position
+        self.zPosition = -1
+        self.physicsBody = SKPhysicsBody(circleOfRadius: radius, center: CGPoint(x: radius, y: radius))
+        
+        if var physics = self.physicsBody {
+            physics.dynamic = false
+            physics.affectedByGravity = false
+            physics.allowsRotation = false
+            physics.usesPreciseCollisionDetection = true
+            physics.categoryBitMask = CollisionCategoryBitmask.Door
+            physics.collisionBitMask = CollisionCategoryBitmask.Door | CollisionCategoryBitmask.Unit
+            physics.contactTestBitMask = CollisionCategoryBitmask.Door | CollisionCategoryBitmask.Unit
+        }
+        if action != nil {
+            self.runAction(action!)
+        }
+    }
+    func beginContact(CollisionObject : UInt32) {
+        if let label = (self.scene! as! GameScene).labelWin {
+            //label.hidden = false
+        }
+    }
+    func endContact(CollisionObject : UInt32) {
+        
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+class Block: SKShapeNode, Object {
+    init(size: CGSize, position: CGPoint, action: SKAction? = nil) {
+        super.init()
+        self.path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size.width, height: size.height), nil)
         self.fillColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.x, height: size.y),
-            center: CGPoint(x: size.x / 2, y: size.y / 2))
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.width, height: size.height),
+            center: CGPoint(x: size.width / 2, y: size.height / 2))
         self.position = position
         if var physics = self.physicsBody {
             physics.dynamic = false
@@ -149,7 +179,6 @@ class Block: SKShapeNode, Object {
         }
     }
     func beginContact(CollisionObject : UInt32) {
-        //NSLog("Block contact")
         self.fillColor = NSColor(red: CGFloat(rand() % 2), green: CGFloat(rand() % 2), blue: CGFloat(rand() % 2), alpha: 1.0)
     }
     func endContact(CollisionObject : UInt32) {

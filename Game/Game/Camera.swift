@@ -34,6 +34,8 @@ class YGCamera: SKNode {
         if worldSize == nil || self.scene == nil {
             return
         }
+        //self.position = position
+        
         let sceneSize = self.scene!.size
         if position.y < self.position.y {
             self.position.y = position.y

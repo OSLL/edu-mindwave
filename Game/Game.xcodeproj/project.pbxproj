@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880BE21C1AFA7A3D005E26F4 /* ThinkGear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21B1AFA7A3D005E26F4 /* ThinkGear.framework */; };
+		880BE21D1AFA7A3D005E26F4 /* ThinkGear.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21B1AFA7A3D005E26F4 /* ThinkGear.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		880BE2201AFA7A46005E26F4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21F1AFA7A46005E26F4 /* Cocoa.framework */; };
+		880BE2251AFA7A76005E26F4 /* ThinkGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880BE2241AFA7A76005E26F4 /* ThinkGear.swift */; };
 		882E557C1AD2EEA40026EFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E557B1AD2EEA40026EFEC /* AppDelegate.swift */; };
 		882E557E1AD2EEA40026EFEC /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E557D1AD2EEA40026EFEC /* GameScene.swift */; };
 		882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 882E557F1AD2EEA40026EFEC /* GameScene.sks */; };
@@ -30,7 +34,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		880BE21E1AFA7A3E005E26F4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				880BE21D1AFA7A3D005E26F4 /* ThinkGear.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		880BE21B1AFA7A3D005E26F4 /* ThinkGear.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ThinkGear.framework; path = Game/ThinkGear.framework; sourceTree = "<group>"; };
+		880BE21F1AFA7A46005E26F4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		880BE2211AFA7A5B005E26F4 /* Game-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game-Bridging-Header.h"; sourceTree = "<group>"; };
+		880BE2241AFA7A76005E26F4 /* ThinkGear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinkGear.swift; sourceTree = "<group>"; };
+		880BE2261AFA7A7B005E26F4 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		882E55761AD2EEA40026EFEC /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		882E557A1AD2EEA40026EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		882E557B1AD2EEA40026EFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880BE2201AFA7A46005E26F4 /* Cocoa.framework in Frameworks */,
+				880BE21C1AFA7A3D005E26F4 /* ThinkGear.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,10 +94,13 @@
 		882E556D1AD2EEA40026EFEC = {
 			isa = PBXGroup;
 			children = (
+				880BE21F1AFA7A46005E26F4 /* Cocoa.framework */,
+				880BE21B1AFA7A3D005E26F4 /* ThinkGear.framework */,
 				EB94B2D91AE12D02001DF788 /* Levels */,
 				882E55781AD2EEA40026EFEC /* Game */,
 				882E558D1AD2EEA40026EFEC /* GameTests */,
 				882E55771AD2EEA40026EFEC /* Products */,
+				880BE2211AFA7A5B005E26F4 /* Game-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +116,8 @@
 		882E55781AD2EEA40026EFEC /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				880BE2261AFA7A7B005E26F4 /* Swift-Bridging-Header.h */,
+				880BE2241AFA7A76005E26F4 /* ThinkGear.swift */,
 				882E557B1AD2EEA40026EFEC /* AppDelegate.swift */,
 				EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */,
 				882E557D1AD2EEA40026EFEC /* GameScene.swift */,
@@ -96,8 +126,6 @@
 				882E55811AD2EEA40026EFEC /* Images.xcassets */,
 				882E55831AD2EEA40026EFEC /* MainMenu.xib */,
 				882E55791AD2EEA40026EFEC /* Supporting Files */,
-				882E559A1AD2F1910026EFEC /* Camera.swift */,
-				882E559C1AD2FC350026EFEC /* Objects.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -105,6 +133,8 @@
 		882E55791AD2EEA40026EFEC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				882E559A1AD2F1910026EFEC /* Camera.swift */,
+				882E559C1AD2FC350026EFEC /* Objects.swift */,
 				882E557A1AD2EEA40026EFEC /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -145,6 +175,7 @@
 				882E55721AD2EEA40026EFEC /* Sources */,
 				882E55731AD2EEA40026EFEC /* Frameworks */,
 				882E55741AD2EEA40026EFEC /* Resources */,
+				880BE21E1AFA7A3E005E26F4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,6 +271,7 @@
 				882E557E1AD2EEA40026EFEC /* GameScene.swift in Sources */,
 				882E559D1AD2FC350026EFEC /* Objects.swift in Sources */,
 				882E557C1AD2EEA40026EFEC /* AppDelegate.swift in Sources */,
+				880BE2251AFA7A76005E26F4 /* ThinkGear.swift in Sources */,
 				882E559B1AD2F1910026EFEC /* Camera.swift in Sources */,
 				EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */,
 			);
@@ -359,10 +391,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+				);
 				INFOPLIST_FILE = Game/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Game/Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -370,10 +409,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+				);
 				INFOPLIST_FILE = Game/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Game/Swift-Bridging-Header.h";
 			};
 			name = Release;
 		};

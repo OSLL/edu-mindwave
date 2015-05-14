@@ -46,6 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var skView: SKView!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+
         /* Pick a size for the scene */
         if let menu = Menu.unarchiveFromFile1("Menu") as? Menu {
             menu.scaleMode = SKSceneScaleMode.ResizeFill
