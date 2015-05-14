@@ -138,14 +138,10 @@
 		882E55781AD2EEA40026EFEC /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				88776A051B05476F009BB35B /* Scenes */,
+				88776A041B054752009BB35B /* ThinkGear */,
 				8826587D1B054361007DA190 /* Objects */,
-				880BE2261AFA7A7B005E26F4 /* Swift-Bridging-Header.h */,
-				880BE2241AFA7A76005E26F4 /* ThinkGear.swift */,
 				882E557B1AD2EEA40026EFEC /* AppDelegate.swift */,
-				EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */,
-				882E557D1AD2EEA40026EFEC /* GameScene.swift */,
-				882E557F1AD2EEA40026EFEC /* GameScene.sks */,
-				EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */,
 				882E55811AD2EEA40026EFEC /* Images.xcassets */,
 				882E55831AD2EEA40026EFEC /* MainMenu.xib */,
 				882E55791AD2EEA40026EFEC /* Supporting Files */,
@@ -176,6 +172,26 @@
 				882E558F1AD2EEA40026EFEC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88776A041B054752009BB35B /* ThinkGear */ = {
+			isa = PBXGroup;
+			children = (
+				880BE2261AFA7A7B005E26F4 /* Swift-Bridging-Header.h */,
+				880BE2241AFA7A76005E26F4 /* ThinkGear.swift */,
+			);
+			name = ThinkGear;
+			sourceTree = "<group>";
+		};
+		88776A051B05476F009BB35B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */,
+				882E557D1AD2EEA40026EFEC /* GameScene.swift */,
+				882E557F1AD2EEA40026EFEC /* GameScene.sks */,
+				EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 		EB94B2D91AE12D02001DF788 /* Levels */ = {
