@@ -25,6 +25,15 @@
 		882E559B1AD2F1910026EFEC /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559A1AD2F1910026EFEC /* Camera.swift */; };
 		882E559D1AD2FC350026EFEC /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559C1AD2FC350026EFEC /* Structures.swift */; };
 		88776A081B054AFE009BB35B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88776A071B054AFE009BB35B /* Button.swift */; };
+		EB5157481B055425004A6CC0 /* Level.info in Resources */ = {isa = PBXBuildFile; fileRef = EB5157471B055425004A6CC0 /* Level.info */; };
+		EB51574A1B05548F004A6CC0 /* LevelLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5157491B05548F004A6CC0 /* LevelLibrary.swift */; };
+		EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB51574B1B055508004A6CC0 /* LevelLibrary.sks */; };
+		EB51574E1B05598E004A6CC0 /* level in Resources */ = {isa = PBXBuildFile; fileRef = EB51574D1B05598E004A6CC0 /* level */; };
+		EB5157501B0559A0004A6CC0 /* another level in Resources */ = {isa = PBXBuildFile; fileRef = EB51574F1B0559A0004A6CC0 /* another level */; };
+		EB5157521B0559B3004A6CC0 /* simple level in Resources */ = {isa = PBXBuildFile; fileRef = EB5157511B0559B3004A6CC0 /* simple level */; };
+		EB5157541B0559C7004A6CC0 /* hard level in Resources */ = {isa = PBXBuildFile; fileRef = EB5157531B0559C7004A6CC0 /* hard level */; };
+		EB5157561B0559D3004A6CC0 /* level 2 in Resources */ = {isa = PBXBuildFile; fileRef = EB5157551B0559D3004A6CC0 /* level 2 */; };
+		EB5157581B0559DE004A6CC0 /* boss level in Resources */ = {isa = PBXBuildFile; fileRef = EB5157571B0559DE004A6CC0 /* boss level */; };
 		EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */ = {isa = PBXBuildFile; fileRef = EB94B2DA1AE12D27001DF788 /* Level0.lv */; };
 		EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */; };
 		EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */; };
@@ -77,6 +86,15 @@
 		882E559A1AD2F1910026EFEC /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		882E559C1AD2FC350026EFEC /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		88776A071B054AFE009BB35B /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		EB5157471B055425004A6CC0 /* Level.info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level.info; sourceTree = "<group>"; };
+		EB5157491B05548F004A6CC0 /* LevelLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelLibrary.swift; sourceTree = "<group>"; };
+		EB51574B1B055508004A6CC0 /* LevelLibrary.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelLibrary.sks; sourceTree = "<group>"; };
+		EB51574D1B05598E004A6CC0 /* level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level; sourceTree = "<group>"; };
+		EB51574F1B0559A0004A6CC0 /* another level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "another level"; sourceTree = "<group>"; };
+		EB5157511B0559B3004A6CC0 /* simple level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "simple level"; sourceTree = "<group>"; };
+		EB5157531B0559C7004A6CC0 /* hard level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hard level"; sourceTree = "<group>"; };
+		EB5157551B0559D3004A6CC0 /* level 2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "level 2"; sourceTree = "<group>"; };
+		EB5157571B0559DE004A6CC0 /* boss level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "boss level"; sourceTree = "<group>"; };
 		EB94B2DA1AE12D27001DF788 /* Level0.lv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level0.lv; sourceTree = "<group>"; };
 		EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
@@ -190,9 +208,11 @@
 			isa = PBXGroup;
 			children = (
 				EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */,
+				EB5157491B05548F004A6CC0 /* LevelLibrary.swift */,
 				882E557D1AD2EEA40026EFEC /* GameScene.swift */,
 				882E557F1AD2EEA40026EFEC /* GameScene.sks */,
 				EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */,
+				EB51574B1B055508004A6CC0 /* LevelLibrary.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -209,6 +229,13 @@
 			isa = PBXGroup;
 			children = (
 				EB94B2DA1AE12D27001DF788 /* Level0.lv */,
+				EB5157471B055425004A6CC0 /* Level.info */,
+				EB5157511B0559B3004A6CC0 /* simple level */,
+				EB5157531B0559C7004A6CC0 /* hard level */,
+				EB5157571B0559DE004A6CC0 /* boss level */,
+				EB5157551B0559D3004A6CC0 /* level 2 */,
+				EB51574D1B05598E004A6CC0 /* level */,
+				EB51574F1B0559A0004A6CC0 /* another level */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -294,10 +321,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB5157541B0559C7004A6CC0 /* hard level in Resources */,
 				882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */,
 				EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */,
+				EB5157581B0559DE004A6CC0 /* boss level in Resources */,
+				EB5157521B0559B3004A6CC0 /* simple level in Resources */,
+				EB5157481B055425004A6CC0 /* Level.info in Resources */,
 				882E55821AD2EEA40026EFEC /* Images.xcassets in Resources */,
 				EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */,
+				EB51574E1B05598E004A6CC0 /* level in Resources */,
+				EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */,
+				EB5157561B0559D3004A6CC0 /* level 2 in Resources */,
+				EB5157501B0559A0004A6CC0 /* another level in Resources */,
 				882E55851AD2EEA40026EFEC /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +361,7 @@
 				88776A081B054AFE009BB35B /* Button.swift in Sources */,
 				EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */,
 				8826587C1B05433F007DA190 /* Block.swift in Sources */,
+				EB51574A1B05548F004A6CC0 /* LevelLibrary.swift in Sources */,
 				882658781B0542E2007DA190 /* Saw.swift in Sources */,
 				8826587A1B05430F007DA190 /* Unit.swift in Sources */,
 			);

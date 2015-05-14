@@ -17,7 +17,7 @@ class Unit: SKSpriteNode, Object {
     
     let force = 80.0
     
-    override init() {
+    init() {
         let texture = SKTexture(imageNamed: "Unit")
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
