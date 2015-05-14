@@ -12,15 +12,10 @@ class Menu: SKScene {
     var appDel: AppDelegate?
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let winner = SKLabelNode(text: "Push mouse down to start")
-        winner.fontSize = 65
-        winner.fontColor = NSColor(red: 200/255, green: 100/255, blue: 100/255, alpha: 255/255)
-        winner.position = CGPoint(x: 500, y: 500)
-        self.addChild(winner)
-    }
-    
-    override func mouseDown(theEvent: NSEvent) {
-        /* Called when a mouse click occurs */
-        self.appDel!.loadLevel("/Users/rebryk/Google Drive/edu-mindwave/Game/level0.lv")
+        let button = Button {
+            self.appDel!.loadLevel("/Users/rebryk/Google Drive/edu-mindwave/Game/level0.lv")
+        }
+        button.position = CGPoint(x: 300, y: 300)
+        addChild(button)
     }
 };
