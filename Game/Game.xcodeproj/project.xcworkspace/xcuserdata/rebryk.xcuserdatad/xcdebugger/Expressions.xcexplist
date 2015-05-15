@@ -11,6 +11,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Game.Menu.didMoveToView (Game.Menu)(ObjectiveC.SKView) -&gt; ():Menu.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "startButton.frame.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Game.YGCamera.move (Game.YGCamera)(C.CGPoint) -&gt; ():Camera.swift">
          <PersistentStrings>
             <PersistentString
@@ -29,6 +37,9 @@
          <PersistentStrings>
             <PersistentString
                value = "fileManager.currentDirectoryPath">
+            </PersistentString>
+            <PersistentString
+               value = "button.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

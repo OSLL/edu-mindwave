@@ -29,6 +29,8 @@
 		88D2113C1B05604100F05F77 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2113B1B05604100F05F77 /* Wall.swift */; };
 		88D2113E1B056D4D00F05F77 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = 88D2113D1B056D4D00F05F77 /* Levels */; };
 		88D211401B056E2D00F05F77 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2113F1B056E2D00F05F77 /* Reader.swift */; };
+		88D211421B061F0F00F05F77 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211411B061F0F00F05F77 /* Timer.swift */; };
+		88D211441B062B3900F05F77 /* LevelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211431B062B3900F05F77 /* LevelButton.swift */; };
 		EB51574A1B05548F004A6CC0 /* LevelLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5157491B05548F004A6CC0 /* LevelLibrary.swift */; };
 		EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB51574B1B055508004A6CC0 /* LevelLibrary.sks */; };
 		EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */; };
@@ -86,6 +88,8 @@
 		88D2113B1B05604100F05F77 /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		88D2113D1B056D4D00F05F77 /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = SOURCE_ROOT; };
 		88D2113F1B056E2D00F05F77 /* Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
+		88D211411B061F0F00F05F77 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		88D211431B062B3900F05F77 /* LevelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelButton.swift; sourceTree = "<group>"; };
 		EB5157491B05548F004A6CC0 /* LevelLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelLibrary.swift; sourceTree = "<group>"; };
 		EB51574B1B055508004A6CC0 /* LevelLibrary.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelLibrary.sks; sourceTree = "<group>"; };
 		EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				88776A071B054AFE009BB35B /* Button.swift */,
+				88D211411B061F0F00F05F77 /* Timer.swift */,
+				88D211431B062B3900F05F77 /* LevelButton.swift */,
 			);
 			name = "Menu Objects";
 			sourceTree = "<group>";
@@ -340,6 +346,8 @@
 				EB51574A1B05548F004A6CC0 /* LevelLibrary.swift in Sources */,
 				882658781B0542E2007DA190 /* BlackHole.swift in Sources */,
 				8826587A1B05430F007DA190 /* Unit.swift in Sources */,
+				88D211441B062B3900F05F77 /* LevelButton.swift in Sources */,
+				88D211421B061F0F00F05F77 /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

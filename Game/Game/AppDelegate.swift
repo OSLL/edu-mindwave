@@ -33,8 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var skView: SKView!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-
-        /* Pick a size for the scene */
+        loadMenu()
+    }
+    
+    func loadMenu() {
         if let menu = Menu.unarchiveFromFile("Menu") as? Menu {
             menu.scaleMode = SKSceneScaleMode.ResizeFill
             menu.appDel = self
@@ -43,10 +45,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func loadLevelLibrary() {
+        if let library = LevelLibrary.unarchiveFromFile("LevelLibrary") as? LevelLibrary {
+            library.scaleMode = SKSceneScaleMode.ResizeFill
+            library.appDel = self
+            self.skView!.presentScene(library)
+            self.skView!.ignoresSiblingOrder = true
+        }
+    }
+    
     func loadLevel(path: NSString) {
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = SKSceneScaleMode.ResizeFill
+            scene.appDel = self
             self.skView!.presentScene(scene)
             scene.createLevel(path as String)
             

@@ -17,8 +17,7 @@ class Block: SKShapeNode, Object, ColorObject {
         path = SKShapeNode(rect: CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width, height: size.height), cornerRadius: 5).path
         self.colorIndex = colorIndex
         fillColor = ColorData.colors[colorIndex]
-        strokeColor = NSColor.blackColor()
-        //physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.width, height: size.height), center: CGPoint(x: size.width / 2, y: size.height / 2))
+        strokeColor = Colors.black
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.width, height: size.height), center: CGPoint(x: 0, y: 0))
         
         self.position = position
@@ -33,7 +32,7 @@ class Block: SKShapeNode, Object, ColorObject {
     }
     
     func beginContact(CollisionObject : UInt32) {
-        if (scene as! GameScene).ended == false {
+        if (scene as! GameScene).isEnded() == false {
             var color = ColorData.changeColor(&colorIndex, scene: scene)
             fillColor = color
         }

@@ -9,19 +9,25 @@
 import Foundation
 import SpriteKit
 
-class InfoDisplay {
+class InfoDisplay: SKNode {
+    private let size: CGSize
+    
     private var meditation: SKLabelNode?
     private var meditationValue: SKLabelNode?
-    
     private var attention: SKLabelNode?
     private var attentionValue: SKLabelNode?
-    
     private var time: SKLabelNode?
     private var timeValue: SKLabelNode?
-    
     private var textValue: SKLabelNode?
     
-    private func timeToString(var time: Double) -> String {
+    private let meditationPosition: CGPoint
+    private let meditationValuePosition: CGPoint
+    private let attentionPosition: CGPoint
+    private let attentionValuePosition: CGPoint
+    private let timePosition: CGPoint
+    private let timeValuePosition: CGPoint
+    
+    private func timeToString(time: Double) -> String {
         var minutes = floor(time / 60)
         var seconds = round(time - 60 * minutes)
         
@@ -38,47 +44,42 @@ class InfoDisplay {
         return minutesStr + ":" + secondsStr
     }
     
-    private func setStyle(var label: SKLabelNode?) {
+    private func setStyle(label: SKLabelNode?) {
         label?.fontSize = 28
         label?.fontName = "Chalkboard"
         label?.fontColor = NSColor(red: 200/255, green: 70/255, blue: 70/255, alpha: 255/255)
+        attention?.zPosition = 1
     }
     
     private func setupMeditation() {
         meditation = SKLabelNode(text: "Meditation:")
         setStyle(meditation)
-        meditation?.position = CGPoint(x: -640, y: 380)
-        meditation?.zPosition = 1
+        setLabelPosition(meditation, position: meditationPosition)
         
-        meditationValue = SKLabelNode(text: "100")
+        meditationValue = SKLabelNode()
         setStyle(meditationValue)
-        meditationValue?.position = CGPoint(x: -540, y: 380)
-        meditationValue?.zPosition = 1
+        setMeditation(83)
     }
     
     private func setupAttention() {
         attention = SKLabelNode(text: "Attention:")
         setStyle(attention)
-        attention?.position = CGPoint(x: -650, y: 410)
-        attention?.zPosition = 1
+        setLabelPosition(attention, position: attentionPosition)
         
-        attentionValue = SKLabelNode(text: "100")
+        attentionValue = SKLabelNode()
         setStyle(attentionValue)
-        attentionValue?.position = CGPoint(x: -540, y: 410)
-        attentionValue?.zPosition = 1
+        setAttention(100)
     }
     
     private func setupTime() {
         time = SKLabelNode(text: "Time:")
-        setStyle(time!)
-        time?.position = CGPoint(x: 465, y: 400)
-        time?.zPosition = 1
+        setStyle(time)
         time?.fontSize = 50
+        setLabelPosition(time, position: timePosition)
+        
         
         timeValue = SKLabelNode()
         setStyle(timeValue)
-        timeValue?.position = CGPoint(x: 620, y: 400)
-        timeValue?.zPosition = 1
         timeValue?.fontSize = 50
     }
     
@@ -90,34 +91,62 @@ class InfoDisplay {
         textValue?.zPosition = 1
     }
     
-    func setMeditation(var value: Int) {
+    func setLabelPosition(labelNode: SKLabelNode?, position: CGPoint, left: Bool = true) {
+        if let label = labelNode {
+            if left == true {
+                label.position = CGPoint(x: position.x + label.frame.width / 2, y: position.y)
+            } else {
+                label.position = CGPoint(x: 0, y: position.y)
+            }
+        }
+    }
+    
+    func setMeditation(value: Int) {
         meditationValue?.text = toString(value)
+        setLabelPosition(meditationValue, position: meditationValuePosition)
     }
     
-    func setAttention(var value: Int) {
+    func setAttention(value: Int) {
         attentionValue?.text = toString(value)
+        setLabelPosition(attentionValue, position: attentionValuePosition)
     }
     
-    func setTime(var time: Double) {
+    func setTime(time: Double) {
         timeValue?.text = timeToString(time)
+        setLabelPosition(timeValue, position: timeValuePosition)
     }
     
-    func setText(var text: String) {
+    func setText(text: String) {
         textValue?.text = text
     }
     
-    init(var world: SKNode) {
+    init(size: CGSize) {
+        self.size = size
+        attentionPosition = CGPoint(x: -size.width / 2 + 15, y: size.height / 2 - 40)
+        attentionValuePosition = CGPoint(x: -size.width / 2 + 170, y: size.height / 2 - 40)
+        meditationPosition = CGPoint(x: -size.width / 2 + 15, y: size.height / 2 - 75)
+        meditationValuePosition = CGPoint(x: -size.width / 2 + 170, y: size.height / 2 - 75)
+        timePosition = CGPoint(x: size.width / 2 - 285, y: size.height / 2 - 57)
+        timeValuePosition = CGPoint(x: size.width / 2 - 150, y: size.height / 2 - 57)
+        
+        super.init()
+        
         setupMeditation()
         setupAttention()
         setupTime()
         setupText()
         
-        world.addChild(meditation!)
-        world.addChild(meditationValue!)
-        world.addChild(attention!)
-        world.addChild(attentionValue!)
-        world.addChild(time!)
-        world.addChild(timeValue!)
-        world.addChild(textValue!)
+        addChild(meditation!)
+        addChild(meditationValue!)
+        addChild(attention!)
+        addChild(attentionValue!)
+        addChild(time!)
+        addChild(timeValue!)
+        addChild(textValue!)
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }

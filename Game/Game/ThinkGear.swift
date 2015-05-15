@@ -35,6 +35,10 @@ class ThinkGear: ThinkGearDelegate {
         return thinkGear.connected
     }
     
+    func Disconnect() {
+        thinkGear.Disconnect()
+    }
+    
     func Connect() -> Bool {
         if thinkGear.connected == true {
             NSLog("Device already connected!")

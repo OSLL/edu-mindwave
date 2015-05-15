@@ -17,13 +17,26 @@ struct CollisionCategoryBitmask {
     static let Trap: UInt32 = 0x1 << 3
 }
 
+struct Colors {
+    static let white = NSColor.whiteColor()
+    static let gray = NSColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
+    static let lightGray = NSColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
+    static let black = NSColor.blackColor()
+    static let lightGreen = NSColor(SRGBRed: 0.5, green: 1, blue: 0.5, alpha: 1)
+    static let green = NSColor(SRGBRed: 0, green: 1, blue: 0, alpha: 1)
+    static let blue = NSColor.blueColor()
+    static let red = NSColor.redColor()
+    static let orange = NSColor.orangeColor()
+    static let lightGreenColor = NSColor(red: 0.5, green: 0.9, blue: 0.5, alpha: 1)
+}
+
 struct ColorData {
-    static let colors = [NSColor.redColor(), NSColor.greenColor(), NSColor.blueColor()]
+    static let colors = [Colors.red, Colors.green, Colors.blue]
     
     static func changeColor(inout color: Int, var scene: SKScene?) -> NSColor {
-        --(scene as! GameScene).colorsCount[color]
+        (scene as! GameScene).decColorCount(color)
         color = (color + 1) % count(ColorData.colors)
-        ++(scene as! GameScene).colorsCount[color]
+        (scene as! GameScene).incColorCount(color)
         return ColorData.colors[color]
     }
 }

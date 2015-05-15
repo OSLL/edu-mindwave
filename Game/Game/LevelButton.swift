@@ -1,5 +1,5 @@
 //
-//  Button.swift
+//  LevelButton.swift
 //  Game
 //
 //  Created by Yuriy Rebryk on 15/05/15.
@@ -9,24 +9,23 @@
 import Foundation
 import SpriteKit
 
-class Button: SKNode {
+class LevelButton: SKNode {
+    static let size = CGSize(width: 100, height: 100)
+    
     var background: SKShapeNode
     var label: SKLabelNode
     var action: () -> ()
-    var size: CGSize
     
-    init(text: String, size: CGSize, fontSize: CGFloat, buttonAction: ()->()) {
-        self.size = size
-        
+    init(text: String, buttonAction: ()->()) {
         label = SKLabelNode(fontNamed: "Chalkboard")
         label.text = text
-        label.fontSize = fontSize
-        label.fontColor = Colors.black
-        label.position = CGPoint(x: size.width / 2, y: (size.height - label.frame.height) / 2 + 2)
+        label.fontSize = 60
+        label.fontColor = NSColor.blackColor()
+        label.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height - label.frame.height) / 2 + 2)
         
-        background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: 5)
-        background.fillColor = Colors.white
-        background.strokeColor = Colors.black
+        background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelButton.size.width, height: LevelButton.size.height), cornerRadius: 5)
+        background.fillColor = SKColor.whiteColor()
+        background.strokeColor = NSColor.blackColor()
         background.addChild(label)
         
         action = buttonAction
@@ -42,9 +41,9 @@ class Button: SKNode {
     }
     
     override func mouseDown(theEvent: NSEvent) {
-        background.fillColor = Colors.lightGreen
+        background.fillColor = Colors.lightGreenColor
     }
-
+    
     override func mouseUp(theEvent: NSEvent) {
         action()
         background.fillColor = Colors.white

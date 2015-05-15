@@ -10,6 +10,8 @@ import SpriteKit
 import Cocoa
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    var appDel: AppDelegate?
+    
     var world: SKNode?
     
     private var thinkGear: ThinkGear?
@@ -17,11 +19,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var unit: Unit?
     private var info: InfoDisplay?
     
-    let useMindWave = false
-    var lastTime: NSTimeInterval?
+    private let useMindWave = false
+    private var time: Timer?
+    private var waitTimer: Timer?
+    private let waitingTime = 2.0
     
-    var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
-    var ended = false
+    private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
+    private var ended = false
     
     override func didMoveToView(view: SKView) {
         if useMindWave == true {
@@ -35,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-        scene?.backgroundColor = NSColor(calibratedRed: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        scene?.backgroundColor = Colors.white
         
         // setup world
         world = SKNode()
@@ -90,14 +94,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if ended == true {
+            if waitTimer == nil {
+                waitTimer = Timer(startTime: NSTimeInterval(currentTime))
+            }
+            waitTimer?.update(NSTimeInterval(currentTime))
+            if waitTimer!.seconds > waitingTime {
+                thinkGear?.Disconnect()
+                appDel!.loadLevelLibrary()
+            }
             return;
         }
         
         // update timer
-        if lastTime == nil {
-            lastTime = NSTimeInterval(currentTime)
+        if time == nil {
+            time = Timer(startTime: NSTimeInterval(currentTime))
         }
-        info?.setTime(currentTime - lastTime!)
+        time?.update(NSTimeInterval(currentTime))
+        info?.setTime(time!.seconds)
         
         // update data
         if let data = thinkGear {
@@ -124,7 +137,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createLevel(path: String) {
         ended = false
-        info = InfoDisplay(world: self)
+        info = InfoDisplay(size: CGSize(width: 1440, height: 900))
+        addChild(info!)
         
         let reader = Reader(path: path)
     
@@ -169,6 +183,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         world.physicsWorld.addJoint(spring)
         */
     }
+    
+    func incColorCount(index: Int) {
+        ++colorsCount[index]
+    }
+    
+    func decColorCount(index: Int) {
+        --colorsCount[index]
+    }
+    
+    func isEnded() -> Bool {
+        return ended
+    }
+    
     func didBeginContact(contact: SKPhysicsContact) {
         if let a = (((contact.bodyA.node) as? Object)) {
             a.beginContact(contact.bodyB.node!.physicsBody!.categoryBitMask)
@@ -177,6 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             b.beginContact(contact.bodyA.node!.physicsBody!.categoryBitMask)
         }
     }
+    
     func didEndContact(contact: SKPhysicsContact) {
         if let a = (((contact.bodyA.node) as? Object)) {
             a.endContact(contact.bodyB.node!.physicsBody!.categoryBitMask)

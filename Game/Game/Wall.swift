@@ -13,8 +13,8 @@ class Wall: SKShapeNode, Object {
     init(size: CGSize, position: CGPoint) {
         super.init()
         path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size.width, height: size.height), nil)
-        fillColor = NSColor.blackColor()
-        strokeColor = NSColor.blackColor()
+        fillColor = Colors.black
+        strokeColor = Colors.black
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.width, height: size.height),
             center: CGPoint(x: size.width / 2, y: size.height / 2))
         self.position = position

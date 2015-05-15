@@ -17,24 +17,23 @@ class BlackSquare: SKShapeNode, Object {
         super.init()
         
         path = SKShapeNode(rect: CGRect(origin: CGPoint(x: -size / 2, y: -size / 2), size: CGSize(width: size, height: size)), cornerRadius: 3).path
-        fillColor = NSColor.blackColor()
-        strokeColor = NSColor.darkGrayColor()
+        fillColor = Colors.black
+        strokeColor = Colors.black
         
         self.position = position
-        physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size - offset, height: size - offset), center: CGPoint(x: 0, y: 0))
-        
+        physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(size / 4))
+    
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.dynamic = false
             physics.categoryBitMask = CollisionCategoryBitmask.Trap
-            physics.collisionBitMask = CollisionCategoryBitmask.Unit
             physics.contactTestBitMask = CollisionCategoryBitmask.Trap
         }
         
         if action != nil {
             self.runAction(action!)
-        }
+         }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +49,7 @@ class BlackSquare: SKShapeNode, Object {
 
 class BlackHole: SKShapeNode {
     let minCount = 2
-    let maxCount = 3
+    let maxCount = 4
     let minInterval = 4000
     let maxInterval = 6000
     
@@ -62,16 +61,14 @@ class BlackHole: SKShapeNode {
         
         var count = Int(minCount + rand() % (maxCount - minCount + 1))
         for var i = 0; i < count; ++i {
-            var x = CGFloat(rand() % Int32(size) - size / 2)
-            var y = CGFloat(rand() % Int32(size) - size / 2)
-            
-            var radius = CGFloat(rand() % Int32(size / 2))
+            var radius = size / 3
             var interval = minInterval + rand() % (maxInterval - minInterval + 1)
             
-            var circle = CGPathCreateWithEllipseInRect(CGRect(x: -radius, y: -radius, width: 2 * radius, height: 2 * radius), nil)
-            
-            var action = SKAction.repeatActionForever(SKAction.followPath(circle, asOffset: false, orientToPath: false, duration: Double(interval) / 1000.0))
-            var square = BlackSquare(size: size, position: CGPoint(x: x, y: y), action: action)
+            var track = CGPathCreateWithEllipseInRect(CGRect(x: -radius, y: -radius, width: 2 * radius, height: 2 * radius), nil)
+            //var track = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size / 2, height: size / 2), nil)
+            var action = SKAction.followPath(track, asOffset: false, orientToPath: false, duration: Double(interval) / 1000.0)
+            action = SKAction.repeatActionForever(action)
+            var square = BlackSquare(size: size, position: CGPoint(x: 0, y: 0), action: action)
             addChild(square)
         }
         

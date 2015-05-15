@@ -19,16 +19,15 @@ class Unit: SKShapeNode, Object {
     let size = 60
     
     init(position: CGPoint) {
-        
-        
         super.init()
         self.position = position
-        self.path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size, height: size), nil)
-        self.fillColor = NSColor.yellowColor()
-        self.strokeColor = NSColor.blackColor()
+        zPosition = -1
+        path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size, height: size), nil)
+        fillColor = Colors.orange
+        strokeColor = Colors.black
         
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size + 2, height: size + 2), center: CGPoint(x: size / 2, y: size / 2))
-        if let physics = self.physicsBody {
+        if let physics = physicsBody {
             physics.affectedByGravity = true
             physics.allowsRotation = false
             physics.dynamic = true
@@ -37,7 +36,7 @@ class Unit: SKShapeNode, Object {
             physics.angularDamping = 0
             physics.friction = 0.5
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
-            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Trap
+            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
             physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Trap
         }
     }
