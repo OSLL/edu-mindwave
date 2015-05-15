@@ -26,18 +26,16 @@ class Unit: SKShapeNode, Object {
         fillColor = Colors.orange
         strokeColor = Colors.black
         
-        physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size + 2, height: size + 2), center: CGPoint(x: size / 2, y: size / 2))
+        physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size, height: size), center: CGPoint(x: size / 2, y: size / 2))
         if let physics = physicsBody {
             physics.affectedByGravity = true
             physics.allowsRotation = false
             physics.dynamic = true
             physics.mass = 0.1
-            physics.linearDamping = 0
-            physics.angularDamping = 0
-            physics.friction = 0.5
+            physics.friction = 0.15
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
-            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
-            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Trap
+            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Block
+            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Trap | CollisionCategoryBitmask.Block
         }
     }
     

@@ -15,8 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var world: SKNode?
     
     private var thinkGear: ThinkGear?
-    private var camera: Camera?
-    private var unit: Unit?
+    var camera: Camera?
+    var unit: Unit?
     private var info: InfoDisplay?
     
     private let useMindWave = false
@@ -148,13 +148,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let size = reader.readSize()
                 camera?.worldSize = size
                 LevelBuilder.buildWalls(world!, size: size)
-            case "Block":
-                var block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
-                ++colorsCount[block.colorIndex]
-                while let action = reader.readAction() {
-                    block.runAction(action)
+            case "Fixed", "Dynamic":
+                var shape = reader.readWord()!
+                var block: Block? = nil
+                switch shape {
+                    case "Block":
+                        if type == "Fixed" {
+                            block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                        } else {
+                            block = ActiveBlock(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                        }
+                    case "Circle":
+                        if type == "Fixed" {
+                            block = Block(radius: CGFloat(reader.readDouble()), position: reader.readPosition(), colorIndex: reader.readInt())
+                        } else {
+                            block = ActiveBlock(radius: CGFloat(reader.readDouble()), position: reader.readPosition(), colorIndex: reader.readInt())
+                        }
+                    default:
+                        break
                 }
-                world?.addChild(block)
+                ++colorsCount[block!.colorIndex]
+                while let action = reader.readAction() {
+                    block!.runAction(action)
+                }
+                world?.addChild(block!)
             case "Camera":
                 camera = Camera(position: reader.readPosition())
                 world!.addChild(camera!)
@@ -165,7 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var blackHole = BlackHole(size: reader.readInt(), position: reader.readPosition())
                 world!.addChild(blackHole)
             default :
-                var nothing = 0
+                break
             }
         }
         
