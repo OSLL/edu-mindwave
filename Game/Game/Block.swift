@@ -12,33 +12,30 @@ import SpriteKit
 class Block: SKShapeNode, Object, ColorObject {
     var colorIndex = 0
     
-    init(size: CGSize, position: CGPoint, action: SKAction? = nil) {
+    init(size: CGSize, position: CGPoint, colorIndex: Int) {
         super.init()
-        self.path = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size.width, height: size.height), nil)
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.width, height: size.height),
-            center: CGPoint(x: size.width / 2, y: size.height / 2))
+        path = SKShapeNode(rect: CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width, height: size.height), cornerRadius: 5).path
+        self.colorIndex = colorIndex
+        fillColor = ColorData.colors[colorIndex]
+        strokeColor = NSColor.blackColor()
+        //physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.width, height: size.height), center: CGPoint(x: size.width / 2, y: size.height / 2))
+        physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size.width, height: size.height), center: CGPoint(x: 0, y: 0))
+        
         self.position = position
-        if var physics = self.physicsBody {
+        if var physics = physicsBody {
             physics.dynamic = false
             physics.affectedByGravity = false
             physics.allowsRotation = false
-            physics.usesPreciseCollisionDetection = true
             physics.categoryBitMask = CollisionCategoryBitmask.Wall
             physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
             physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
         }
-        if action != nil {
-            self.runAction(action!)
-        }
-    }
-    
-    func setColor() {
-        self.fillColor = ColorData.setColor(&self.colorIndex, scene: self.scene)
     }
     
     func beginContact(CollisionObject : UInt32) {
-        if (self.scene as! GameScene).ended == false {
-            self.fillColor = ColorData.changeColor(&self.colorIndex, scene: self.scene)
+        if (scene as! GameScene).ended == false {
+            var color = ColorData.changeColor(&colorIndex, scene: scene)
+            fillColor = color
         }
     }
     

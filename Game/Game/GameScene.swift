@@ -13,7 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var world: SKNode?
     
     private var thinkGear: ThinkGear?
-    private var camera: YGCamera?
+    private var camera: Camera?
     private var unit: Unit?
     private var info: InfoDisplay?
     
@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     
         // set anchorPoint
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
         scene?.backgroundColor = NSColor(calibratedRed: 245/255, green: 245/255, blue: 245/255, alpha: 1)
@@ -42,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if world != nil {
             world!.name = "world"
             // setup camera
-            self.addChild(world!)
+            addChild(world!)
             camera?.apply()
         }
         
@@ -73,43 +73,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: CFTimeInterval) {
-        if self.ended == true {
+        // move camera
+        camera?.apply()
+        
+        // check win/lose
+        if checkColors() && ended == false {
+            info?.setText("YOU WIN")
+            ended = true
+        } else if unit?.killed == true {
+            if ended == false {
+                info?.setText("YOU LOSE")
+                ended = true
+            }
+            unit?.hidden = true
+            unit?.physicsBody?.dynamic = false
+        }
+        
+        if ended == true {
             return;
         }
         
         // update timer
-        if self.lastTime == nil {
-            self.lastTime = NSTimeInterval(currentTime)
+        if lastTime == nil {
+            lastTime = NSTimeInterval(currentTime)
         }
-        self.info?.setTime(currentTime - self.lastTime!)
+        info?.setTime(currentTime - lastTime!)
         
         // update data
         if let data = thinkGear {
-            self.info?.setMeditation(Int(data.eSenseMeditation))
-            self.info?.setAttention(Int(data.eSenseAttention))
+            info?.setMeditation(Int(data.eSenseMeditation))
+            info?.setAttention(Int(data.eSenseAttention))
         }
         
-        // move camera
         if unit != nil {
             unit!.move()
             camera?.move(unit!.position)
-        }
-        camera?.apply()
-        
-        // check win/lose
-        if checkColors() {
-            self.info?.setText("YOU WIN")
-            self.ended = true
-        } else if unit?.killed == true {
-            self.info?.setText("YOU LOSE")
-            self.ended = true
+            camera?.apply()
         }
     }
 
-    private func getInt(value: String) -> Int {
-        return (value as NSString).integerValue
-    }
-    
     func checkColors() -> Bool {
         var zeroCount = 0
         for x in colorsCount {
@@ -120,40 +122,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return zeroCount == count(colorsCount) - 1 ? true : false
     }
     
-    func createLevel(path : String) {
-        self.ended = false
-        self.info = InfoDisplay(world: self)
+    func createLevel(path: String) {
+        ended = false
+        info = InfoDisplay(world: self)
         
-        let level = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
-        let lines = level!.componentsSeparatedByString("\n")
-        
-        for line in lines {
-            let words = line.componentsSeparatedByString(" ")
-            switch words[0] {
-            case "size":
-                camera?.worldSize = CGSize(width: getInt(words[1]), height: getInt(words[2]))
-            case "block":
-                var block = Block(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position : CGPoint(x: getInt(words[3]), y : getInt(words[4])))
+        let reader = Reader(path: path)
+    
+        while let type = reader.readWord() {
+            switch type {
+            case "World":
+                let size = reader.readSize()
+                camera?.worldSize = size
+                LevelBuilder.buildWalls(world!, size: size)
+            case "Block":
+                var block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                ++colorsCount[block.colorIndex]
+                while let action = reader.readAction() {
+                    block.runAction(action)
+                }
                 world?.addChild(block)
-                block.setColor()
-            case "camera":
-                camera = YGCamera()
-                camera?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
+            case "Camera":
+                camera = Camera(position: reader.readPosition())
                 world!.addChild(camera!)
-            case "unit":
-                unit = Unit()
-                unit?.position = CGPoint(x: getInt(words[1]), y: getInt(words[2]))
+            case "Unit":
+                unit = Unit(position: reader.readPosition())
                 world!.addChild(unit!)
-            case "saw":
-                var saw = Saw(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position: CGPoint(x: getInt(words[3]), y: getInt(words[4])))
-                world!.addChild(saw)
-            case "movingSaw":
-                var action1 = SKAction.moveBy(CGVector(dx: 150, dy: 80), duration: 1)
-                var action2 = SKAction.moveBy(CGVector(dx: -150, dy: -80), duration: 1)
-                var actions = SKAction.sequence([action1, action2])
-                var action = SKAction.repeatActionForever(actions)
-                var saw = Saw(size: CGSize(width: getInt(words[1]), height: getInt(words[2])), position: CGPoint(x: getInt(words[3]), y: getInt(words[4])), action: action)
-                world!.addChild(saw)
+            case "BlackHole":
+                var blackHole = BlackHole(size: reader.readInt(), position: reader.readPosition())
+                world!.addChild(blackHole)
             default :
                 var nothing = 0
             }

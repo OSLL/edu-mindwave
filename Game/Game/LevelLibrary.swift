@@ -12,11 +12,13 @@ class LevelLibrary: SKScene {
     var appDel: AppDelegate?
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let levels = (String(contentsOfFile: "/Users/urijkravcenko/edu-mindwave/Game/Level.info", encoding: NSUTF8StringEncoding, error: nil))!.componentsSeparatedByString("\n")
+        let fileManager = NSFileManager.defaultManager()
+        let enumerator = fileManager.enumeratorAtPath(fileManager.currentDirectoryPath + "/Levels/")
+        
         var i = 0, j = 0
-        for level in levels {
-            let button = Button {
-                self.appDel!.loadLevel("/Users/urijkravcenko/edu-mindwave/Game/" + level)
+        while let fileName = enumerator?.nextObject() as? String {
+            let button = Button(text: fileName) {
+                self.appDel!.loadLevel(fileManager.currentDirectoryPath + "/Levels/" + fileName)
             }
             button.position = CGPoint(x: 100 + 300 * i, y: 600 - 100 * j)
             addChild(button)

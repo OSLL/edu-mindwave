@@ -12,7 +12,7 @@
 		880BE2201AFA7A46005E26F4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21F1AFA7A46005E26F4 /* Cocoa.framework */; };
 		880BE2251AFA7A76005E26F4 /* ThinkGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880BE2241AFA7A76005E26F4 /* ThinkGear.swift */; };
 		882658761B053BF5007DA190 /* InfoDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658751B053BF5007DA190 /* InfoDisplay.swift */; };
-		882658781B0542E2007DA190 /* Saw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658771B0542E2007DA190 /* Saw.swift */; };
+		882658781B0542E2007DA190 /* BlackHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658771B0542E2007DA190 /* BlackHole.swift */; };
 		8826587A1B05430F007DA190 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658791B05430F007DA190 /* Unit.swift */; };
 		8826587C1B05433F007DA190 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8826587B1B05433F007DA190 /* Block.swift */; };
 		8826587F1B05438E007DA190 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8826587E1B05438E007DA190 /* Protocols.swift */; };
@@ -25,16 +25,12 @@
 		882E559B1AD2F1910026EFEC /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559A1AD2F1910026EFEC /* Camera.swift */; };
 		882E559D1AD2FC350026EFEC /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E559C1AD2FC350026EFEC /* Structures.swift */; };
 		88776A081B054AFE009BB35B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88776A071B054AFE009BB35B /* Button.swift */; };
-		EB5157481B055425004A6CC0 /* Level.info in Resources */ = {isa = PBXBuildFile; fileRef = EB5157471B055425004A6CC0 /* Level.info */; };
+		88D2113A1B055F8700F05F77 /* LevelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211391B055F8700F05F77 /* LevelBuilder.swift */; };
+		88D2113C1B05604100F05F77 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2113B1B05604100F05F77 /* Wall.swift */; };
+		88D2113E1B056D4D00F05F77 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = 88D2113D1B056D4D00F05F77 /* Levels */; };
+		88D211401B056E2D00F05F77 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2113F1B056E2D00F05F77 /* Reader.swift */; };
 		EB51574A1B05548F004A6CC0 /* LevelLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5157491B05548F004A6CC0 /* LevelLibrary.swift */; };
 		EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB51574B1B055508004A6CC0 /* LevelLibrary.sks */; };
-		EB51574E1B05598E004A6CC0 /* level in Resources */ = {isa = PBXBuildFile; fileRef = EB51574D1B05598E004A6CC0 /* level */; };
-		EB5157501B0559A0004A6CC0 /* another level in Resources */ = {isa = PBXBuildFile; fileRef = EB51574F1B0559A0004A6CC0 /* another level */; };
-		EB5157521B0559B3004A6CC0 /* simple level in Resources */ = {isa = PBXBuildFile; fileRef = EB5157511B0559B3004A6CC0 /* simple level */; };
-		EB5157541B0559C7004A6CC0 /* hard level in Resources */ = {isa = PBXBuildFile; fileRef = EB5157531B0559C7004A6CC0 /* hard level */; };
-		EB5157561B0559D3004A6CC0 /* level 2 in Resources */ = {isa = PBXBuildFile; fileRef = EB5157551B0559D3004A6CC0 /* level 2 */; };
-		EB5157581B0559DE004A6CC0 /* boss level in Resources */ = {isa = PBXBuildFile; fileRef = EB5157571B0559DE004A6CC0 /* boss level */; };
-		EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */ = {isa = PBXBuildFile; fileRef = EB94B2DA1AE12D27001DF788 /* Level0.lv */; };
 		EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */; };
 		EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */; };
 /* End PBXBuildFile section */
@@ -69,7 +65,7 @@
 		880BE2241AFA7A76005E26F4 /* ThinkGear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinkGear.swift; sourceTree = "<group>"; };
 		880BE2261AFA7A7B005E26F4 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		882658751B053BF5007DA190 /* InfoDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDisplay.swift; sourceTree = "<group>"; };
-		882658771B0542E2007DA190 /* Saw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Saw.swift; sourceTree = "<group>"; };
+		882658771B0542E2007DA190 /* BlackHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHole.swift; sourceTree = "<group>"; };
 		882658791B05430F007DA190 /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		8826587B1B05433F007DA190 /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		8826587E1B05438E007DA190 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -86,16 +82,12 @@
 		882E559A1AD2F1910026EFEC /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		882E559C1AD2FC350026EFEC /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		88776A071B054AFE009BB35B /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		EB5157471B055425004A6CC0 /* Level.info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level.info; sourceTree = "<group>"; };
+		88D211391B055F8700F05F77 /* LevelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBuilder.swift; sourceTree = "<group>"; };
+		88D2113B1B05604100F05F77 /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		88D2113D1B056D4D00F05F77 /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = SOURCE_ROOT; };
+		88D2113F1B056E2D00F05F77 /* Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		EB5157491B05548F004A6CC0 /* LevelLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelLibrary.swift; sourceTree = "<group>"; };
 		EB51574B1B055508004A6CC0 /* LevelLibrary.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelLibrary.sks; sourceTree = "<group>"; };
-		EB51574D1B05598E004A6CC0 /* level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level; sourceTree = "<group>"; };
-		EB51574F1B0559A0004A6CC0 /* another level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "another level"; sourceTree = "<group>"; };
-		EB5157511B0559B3004A6CC0 /* simple level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "simple level"; sourceTree = "<group>"; };
-		EB5157531B0559C7004A6CC0 /* hard level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hard level"; sourceTree = "<group>"; };
-		EB5157551B0559D3004A6CC0 /* level 2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "level 2"; sourceTree = "<group>"; };
-		EB5157571B0559DE004A6CC0 /* boss level */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "boss level"; sourceTree = "<group>"; };
-		EB94B2DA1AE12D27001DF788 /* Level0.lv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level0.lv; sourceTree = "<group>"; };
 		EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,13 +115,16 @@
 		8826587D1B054361007DA190 /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
-				882658771B0542E2007DA190 /* Saw.swift */,
+				882658771B0542E2007DA190 /* BlackHole.swift */,
 				882658791B05430F007DA190 /* Unit.swift */,
 				8826587B1B05433F007DA190 /* Block.swift */,
 				882658751B053BF5007DA190 /* InfoDisplay.swift */,
 				882E559A1AD2F1910026EFEC /* Camera.swift */,
 				882E559C1AD2FC350026EFEC /* Structures.swift */,
 				8826587E1B05438E007DA190 /* Protocols.swift */,
+				88D211391B055F8700F05F77 /* LevelBuilder.swift */,
+				88D2113B1B05604100F05F77 /* Wall.swift */,
+				88D2113F1B056E2D00F05F77 /* Reader.swift */,
 			);
 			name = "Game Objects";
 			sourceTree = "<group>";
@@ -139,7 +134,6 @@
 			children = (
 				880BE21F1AFA7A46005E26F4 /* Cocoa.framework */,
 				880BE21B1AFA7A3D005E26F4 /* ThinkGear.framework */,
-				EB94B2D91AE12D02001DF788 /* Levels */,
 				882E55781AD2EEA40026EFEC /* Game */,
 				882E558D1AD2EEA40026EFEC /* GameTests */,
 				882E55771AD2EEA40026EFEC /* Products */,
@@ -158,6 +152,7 @@
 		882E55781AD2EEA40026EFEC /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				88D2113D1B056D4D00F05F77 /* Levels */,
 				88776A061B054AEA009BB35B /* Menu Objects */,
 				88776A051B05476F009BB35B /* Scenes */,
 				88776A041B054752009BB35B /* ThinkGear */,
@@ -223,21 +218,6 @@
 				88776A071B054AFE009BB35B /* Button.swift */,
 			);
 			name = "Menu Objects";
-			sourceTree = "<group>";
-		};
-		EB94B2D91AE12D02001DF788 /* Levels */ = {
-			isa = PBXGroup;
-			children = (
-				EB94B2DA1AE12D27001DF788 /* Level0.lv */,
-				EB5157471B055425004A6CC0 /* Level.info */,
-				EB5157511B0559B3004A6CC0 /* simple level */,
-				EB5157531B0559C7004A6CC0 /* hard level */,
-				EB5157571B0559DE004A6CC0 /* boss level */,
-				EB5157551B0559D3004A6CC0 /* level 2 */,
-				EB51574D1B05598E004A6CC0 /* level */,
-				EB51574F1B0559A0004A6CC0 /* another level */,
-			);
-			name = Levels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,18 +301,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB5157541B0559C7004A6CC0 /* hard level in Resources */,
 				882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */,
-				EB94B2DB1AE12D27001DF788 /* Level0.lv in Resources */,
-				EB5157581B0559DE004A6CC0 /* boss level in Resources */,
-				EB5157521B0559B3004A6CC0 /* simple level in Resources */,
-				EB5157481B055425004A6CC0 /* Level.info in Resources */,
 				882E55821AD2EEA40026EFEC /* Images.xcassets in Resources */,
 				EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */,
-				EB51574E1B05598E004A6CC0 /* level in Resources */,
+				88D2113E1B056D4D00F05F77 /* Levels in Resources */,
 				EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */,
-				EB5157561B0559D3004A6CC0 /* level 2 in Resources */,
-				EB5157501B0559A0004A6CC0 /* another level in Resources */,
 				882E55851AD2EEA40026EFEC /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,12 +330,15 @@
 				8826587F1B05438E007DA190 /* Protocols.swift in Sources */,
 				882E557C1AD2EEA40026EFEC /* AppDelegate.swift in Sources */,
 				880BE2251AFA7A76005E26F4 /* ThinkGear.swift in Sources */,
+				88D2113A1B055F8700F05F77 /* LevelBuilder.swift in Sources */,
+				88D2113C1B05604100F05F77 /* Wall.swift in Sources */,
 				882E559B1AD2F1910026EFEC /* Camera.swift in Sources */,
 				88776A081B054AFE009BB35B /* Button.swift in Sources */,
+				88D211401B056E2D00F05F77 /* Reader.swift in Sources */,
 				EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */,
 				8826587C1B05433F007DA190 /* Block.swift in Sources */,
 				EB51574A1B05548F004A6CC0 /* LevelLibrary.swift in Sources */,
-				882658781B0542E2007DA190 /* Saw.swift in Sources */,
+				882658781B0542E2007DA190 /* BlackHole.swift in Sources */,
 				8826587A1B05430F007DA190 /* Unit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +391,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CONFIGURATION_BUILD_DIR = /Users/rebryk/RGB/Debug/;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -459,6 +436,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CONFIGURATION_BUILD_DIR = "/Users/rebryk//RGB/Release/";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

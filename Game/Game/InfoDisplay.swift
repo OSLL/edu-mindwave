@@ -38,55 +38,56 @@ class InfoDisplay {
         return minutesStr + ":" + secondsStr
     }
     
-    private func setStyle(var label: SKLabelNode) {
-        label.fontSize = 30
-        label.fontColor = NSColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 255/255)
+    private func setStyle(var label: SKLabelNode?) {
+        label?.fontSize = 28
+        label?.fontName = "Chalkboard"
+        label?.fontColor = NSColor(red: 200/255, green: 70/255, blue: 70/255, alpha: 255/255)
     }
     
     private func setupMeditation() {
         meditation = SKLabelNode(text: "Meditation:")
-        setStyle(meditation!)
-        meditation!.position = CGPoint(x: -640, y: 380)
-        meditation!.zPosition = 1
+        setStyle(meditation)
+        meditation?.position = CGPoint(x: -640, y: 380)
+        meditation?.zPosition = 1
         
         meditationValue = SKLabelNode(text: "100")
-        setStyle(meditationValue!)
-        meditationValue!.position = CGPoint(x: -540, y: 380)
-        meditationValue!.zPosition = 1
+        setStyle(meditationValue)
+        meditationValue?.position = CGPoint(x: -540, y: 380)
+        meditationValue?.zPosition = 1
     }
     
     private func setupAttention() {
         attention = SKLabelNode(text: "Attention:")
-        setStyle(attention!)
-        attention!.position = CGPoint(x: -650, y: 410)
-        attention!.zPosition = 1
+        setStyle(attention)
+        attention?.position = CGPoint(x: -650, y: 410)
+        attention?.zPosition = 1
         
         attentionValue = SKLabelNode(text: "100")
-        setStyle(attentionValue!)
-        attentionValue!.position = CGPoint(x: -540, y: 410)
-        attentionValue!.zPosition = 1
+        setStyle(attentionValue)
+        attentionValue?.position = CGPoint(x: -540, y: 410)
+        attentionValue?.zPosition = 1
     }
     
     private func setupTime() {
         time = SKLabelNode(text: "Time:")
         setStyle(time!)
-        time!.position = CGPoint(x: 465, y: 400)
-        time!.zPosition = 1
-        time!.fontSize = 50
+        time?.position = CGPoint(x: 465, y: 400)
+        time?.zPosition = 1
+        time?.fontSize = 50
         
         timeValue = SKLabelNode()
-        setStyle(timeValue!)
-        timeValue!.position = CGPoint(x: 620, y: 400)
-        timeValue!.zPosition = 1
-        timeValue!.fontSize = 50
+        setStyle(timeValue)
+        timeValue?.position = CGPoint(x: 620, y: 400)
+        timeValue?.zPosition = 1
+        timeValue?.fontSize = 50
     }
     
     private func setupText() {
-        textValue = SKLabelNode()
-        setStyle(textValue!)
-        textValue!.position = CGPoint(x: 0, y: 0)
-        textValue!.zPosition = 1
-        textValue!.fontSize = 130
+        textValue = SKLabelNode(fontNamed: "Chalkboard")
+        textValue?.fontSize = 130
+        textValue?.fontColor = NSColor(red: 240/255, green: 30/255, blue: 30/255, alpha: 255/255)
+        textValue?.position = CGPoint(x: 0, y: 0)
+        textValue?.zPosition = 1
     }
     
     func setMeditation(var value: Int) {

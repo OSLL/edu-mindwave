@@ -1,0 +1,13 @@
+World size: 1440 900
+Camera position: 720 450
+Unit position: 720 100
+Block size: 150 20 position: 80 120 color: 0 action: nil
+Block size: 150 20 position: 310 240 color: 1 action: nil
+Block size: 150 20 position: 540 360 color: 2 action: nil
+Block size: 150 20 position: 770 480 color: 0 action: nil
+
+Block size: 150 20 position: 300 120 color: 1
+action: rotateByAngle radians: 3 duration: 1 count: -1
+action: nil
+
+BlackHole size: 80 position: 100 100

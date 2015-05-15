@@ -9,13 +9,14 @@
 import Foundation
 import SpriteKit
 
-class YGCamera: SKNode {
+class Camera: SKNode {
     private let FocusRadius: CGFloat = 300.0
     var worldSize: CGSize?
     
-    override init() {
+    init(position: CGPoint) {
         super.init()
-        self.name = "camera"
+        name = "camera"
+        self.position = position
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,20 +24,20 @@ class YGCamera: SKNode {
     }
     
     func apply() {
-        if self.scene != nil || self.parent != nil {
-            let cameraPositionInScene = self.scene!.convertPoint(self.position, fromNode: self.parent!)
-            self.parent!.position.x -= cameraPositionInScene.x
-            self.parent!.position.y -= cameraPositionInScene.y
+        if scene != nil || parent != nil {
+            let cameraPositionInScene = scene!.convertPoint(position, fromNode: parent!)
+            parent!.position.x -= cameraPositionInScene.x
+            parent!.position.y -= cameraPositionInScene.y
         }
     }
     
     func move(position: CGPoint) {
-        if worldSize == nil || self.scene == nil {
+        if worldSize == nil || scene == nil {
             return
         }
         //self.position = position
         
-        let sceneSize = self.scene!.size
+        let sceneSize = scene!.size
         if position.y < self.position.y {
             self.position.y = position.y
         }
