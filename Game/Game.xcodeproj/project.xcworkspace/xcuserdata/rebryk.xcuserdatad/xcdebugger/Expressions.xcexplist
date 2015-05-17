@@ -3,6 +3,25 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Game.Menu.makeGradientBackground (Game.Menu)() -&gt; ():Menu.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.appDel!.skView!.frame.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.LevelLibrary.didMoveToView (Game.LevelLibrary)(ObjectiveC.SKView) -&gt; ():LevelLibrary.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileManager.currentDirectoryPath">
+            </PersistentString>
+            <PersistentString
+               value = "button.frame.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Game.GameScene.update (Game.GameScene)(Swift.Double) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,7 +33,21 @@
          contextName = "Game.Menu.didMoveToView (Game.Menu)(ObjectiveC.SKView) -&gt; ():Menu.swift">
          <PersistentStrings>
             <PersistentString
+               value = "background.frame">
+            </PersistentString>
+            <PersistentString
                value = "startButton.frame.width">
+            </PersistentString>
+            <PersistentString
+               value = "self.view!.layer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.Reader.readAction (Game.Reader)() -&gt; Swift.Optional&lt;ObjectiveC.SKAction&gt;:Reader.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -30,26 +63,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Game.GameScene.didMoveToView (Game.GameScene)(ObjectiveC.SKView) -&gt; ():GameScene.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Game.LevelLibrary.didMoveToView (Game.LevelLibrary)(ObjectiveC.SKView) -&gt; ():LevelLibrary.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "fileManager.currentDirectoryPath">
-            </PersistentString>
-            <PersistentString
-               value = "button.frame.width">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Game.Reader.readAction (Game.Reader)() -&gt; Swift.Optional&lt;ObjectiveC.SKAction&gt;:Reader.swift">
+         contextName = "Game.GameScene.makeGradientBackground (Game.GameScene)() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
                value = "">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.GameScene.didMoveToView (Game.GameScene)(ObjectiveC.SKView) -&gt; ():GameScene.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

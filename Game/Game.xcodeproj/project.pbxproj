@@ -11,6 +11,7 @@
 		880BE21D1AFA7A3D005E26F4 /* ThinkGear.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21B1AFA7A3D005E26F4 /* ThinkGear.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		880BE2201AFA7A46005E26F4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21F1AFA7A46005E26F4 /* Cocoa.framework */; };
 		880BE2251AFA7A76005E26F4 /* ThinkGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880BE2241AFA7A76005E26F4 /* ThinkGear.swift */; };
+		88170A181B06C84E00BD77B4 /* TheShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88170A171B06C84E00BD77B4 /* TheShader.fsh */; };
 		882658761B053BF5007DA190 /* InfoDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658751B053BF5007DA190 /* InfoDisplay.swift */; };
 		882658781B0542E2007DA190 /* BlackHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658771B0542E2007DA190 /* BlackHole.swift */; };
 		8826587A1B05430F007DA190 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658791B05430F007DA190 /* Unit.swift */; };
@@ -67,6 +68,7 @@
 		880BE21F1AFA7A46005E26F4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		880BE2241AFA7A76005E26F4 /* ThinkGear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinkGear.swift; sourceTree = "<group>"; };
 		880BE2261AFA7A7B005E26F4 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		88170A171B06C84E00BD77B4 /* TheShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TheShader.fsh; sourceTree = "<group>"; };
 		882658751B053BF5007DA190 /* InfoDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDisplay.swift; sourceTree = "<group>"; };
 		882658771B0542E2007DA190 /* BlackHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHole.swift; sourceTree = "<group>"; };
 		882658791B05430F007DA190 /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				8826587D1B054361007DA190 /* Game Objects */,
 				882E55831AD2EEA40026EFEC /* MainMenu.xib */,
 				882E55791AD2EEA40026EFEC /* Supporting Files */,
+				88170A171B06C84E00BD77B4 /* TheShader.fsh */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			files = (
 				882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */,
 				EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */,
+				88170A181B06C84E00BD77B4 /* TheShader.fsh in Resources */,
 				88D2113E1B056D4D00F05F77 /* Levels in Resources */,
 				88FE40461B063BDB00E93C00 /* Images.xcassets in Resources */,
 				EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */,

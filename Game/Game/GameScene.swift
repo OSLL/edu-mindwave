@@ -27,6 +27,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
     private var ended = false
     
+    func toGLKVector4(color: NSColor) -> GLKVector4 {
+        //return GLKVector4Make(Float(color.redComponent), Float(color.greenComponent), Float(color.blueComponent), Float(color.alphaComponent))
+        return GLKVector4Make(0.5, 0.5, 0.5, 1.0)
+    }
+    
+    func makeGradientBackground(topColor: NSColor, bottomColor: NSColor) {
+        var size = appDel!.skView!.frame.size
+        
+        let myShader = SKShader(fileNamed: "TheShader")
+        
+        let color1 = toGLKVector4(NSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0))
+        //let color2 =  toGLKVector4(NSColor(red: 0, green: 0, blue: 0, alpha: 1))
+        var topColorUniform = SKUniform(name: "topColor", floatVector4: color1)
+        //let bottomColorUniform = SKUniform(name: "bottomColor", floatVector4: color2)
+        myShader.addUniform(topColorUniform)
+        //myShader.addUniform(bottomColorUniform)
+        
+        let effectNode = SKEffectNode()
+        effectNode.shader = myShader
+        effectNode.shouldEnableEffects = true
+        effectNode.zPosition = -3
+        addChild(effectNode)
+        
+        var background = SKSpriteNode(color: Colors.blue, size: CGSize(width: size.width, height: size.height))
+        
+        effectNode.addChild(background)
+    }
+    
     override func didMoveToView(view: SKView) {
         if useMindWave == true {
             if thinkGear == nil {
@@ -39,7 +67,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-        scene?.backgroundColor = Colors.white
+        //scene?.backgroundColor = Colors.white
+        let topColor = Colors.blue
+        let bottomColor = Colors.green
+        makeGradientBackground(topColor, bottomColor: bottomColor)
         
         // setup world
         world = SKNode()
