@@ -21,7 +21,11 @@ class Reader {
             let lines = text!.componentsSeparatedByString("\n")
             for line in lines {
                 let words = line.componentsSeparatedByString(" ")
-                data += words
+                for word in words {
+                    if count(word) > 0 {
+                        data += [word]
+                    }
+                }
             }
         }
         wordsCount = count(data)

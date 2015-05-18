@@ -10,23 +10,29 @@ import Foundation
 import SpriteKit
 
 class LevelButton: SKNode {
-    static let size = CGSize(width: 100, height: 100)
+    static let size = CGSize(width: 100, height: 150)
     
     var background: SKShapeNode
-    var label: SKLabelNode
+    var numLabel: SKLabelNode
+    var scoreLabel: SKLabelNode
     var action: () -> ()
     
-    init(text: String, buttonAction: ()->()) {
-        label = SKLabelNode(fontNamed: "Chalkboard")
-        label.text = text
-        label.fontSize = 60
-        label.fontColor = NSColor.blackColor()
-        label.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height - label.frame.height) / 2 + 2)
-        
+    init(text: String, score: String, buttonAction: ()->()) {
+        numLabel = SKLabelNode(fontNamed: "Chalkboard")
+        numLabel.text = text
+        numLabel.fontSize = 60
+        numLabel.fontColor = NSColor.blackColor()
+        numLabel.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height + 50 - numLabel.frame.height) / 2 + 2)
+        scoreLabel = SKLabelNode(fontNamed: "Chalkboard")
+        scoreLabel.text = score
+        scoreLabel.fontSize = 20
+        scoreLabel.fontColor = NSColor.blackColor()
+        scoreLabel.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height - 100 - scoreLabel.frame.height) / 2 + 2)
         background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelButton.size.width, height: LevelButton.size.height), cornerRadius: 5)
         background.fillColor = SKColor.whiteColor()
         background.strokeColor = NSColor.blackColor()
-        background.addChild(label)
+        background.addChild(numLabel)
+        background.addChild(scoreLabel)
         
         action = buttonAction
         

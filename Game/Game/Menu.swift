@@ -21,11 +21,6 @@ class Menu: SKScene {
         self.appDel!.loadLevelLibrary()
     }
     
-    func terminate() {
-        self.appDel!.disconnectMindWave()
-        NSApplication.sharedApplication().terminate(self)
-    }
-    
     func addButtons() {
         // button "New Game"
         let x = (1440 -  280) / 2
@@ -35,7 +30,7 @@ class Menu: SKScene {
         addChild(startButton)
         
         // button "Exit"
-        let exitButton = Button(text: "Exit", size: CGSize(width: 280, height: 80), fontSize: 50, buttonAction: terminate)
+        let exitButton = Button(text: "Exit", size: CGSize(width: 280, height: 80), fontSize: 50, buttonAction: appDel!.terminate)
         exitButton.position = CGPoint(x: x, y: 500)
         addChild(exitButton)
     }
