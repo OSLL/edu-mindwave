@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             waitTimer?.update(NSTimeInterval(currentTime))
             if waitTimer!.seconds > waitingTime {
-                //appDel!.loadLevelLibrary()
+                appDel!.loadLevelLibrary()
             }
             return;
         }
