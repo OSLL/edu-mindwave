@@ -11,15 +11,14 @@ import Cocoa
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var appDel: AppDelegate?
+    var thinkGear: ThinkGear?
     
     var world: SKNode?
     
-    private var thinkGear: ThinkGear?
     var camera: Camera?
     var unit: Unit?
     private var info: InfoDisplay?
     
-    private let useMindWave = false
     private var time: Timer?
     private var waitTimer: Timer?
     private let waitingTime = 2.0
@@ -27,22 +26,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
     private var ended = false
     
-    func toGLKVector4(color: NSColor) -> GLKVector4 {
-        //return GLKVector4Make(Float(color.redComponent), Float(color.greenComponent), Float(color.blueComponent), Float(color.alphaComponent))
-        return GLKVector4Make(0.5, 0.5, 0.5, 1.0)
-    }
-    
-    func makeGradientBackground(topColor: NSColor, bottomColor: NSColor) {
-        var size = appDel!.skView!.frame.size
-        
-        let myShader = SKShader(fileNamed: "TheShader")
-        
-        let color1 = toGLKVector4(NSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0))
-        //let color2 =  toGLKVector4(NSColor(red: 0, green: 0, blue: 0, alpha: 1))
-        var topColorUniform = SKUniform(name: "topColor", floatVector4: color1)
-        //let bottomColorUniform = SKUniform(name: "bottomColor", floatVector4: color2)
-        myShader.addUniform(topColorUniform)
-        //myShader.addUniform(bottomColorUniform)
+    func makeGradientBackground() {
+        var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
+        self.addChild(Graphics.makeGradient(background, shaderType: Shader.Sky))
+        /*let myShader = SKShader(fileNamed: "TheShader")
         
         let effectNode = SKEffectNode()
         effectNode.shader = myShader
@@ -50,27 +37,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         effectNode.zPosition = -3
         addChild(effectNode)
         
-        var background = SKSpriteNode(color: Colors.blue, size: CGSize(width: size.width, height: size.height))
+        var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
         
-        effectNode.addChild(background)
+        effectNode.addChild(background)*/
     }
     
     override func didMoveToView(view: SKView) {
-        if useMindWave == true {
-            if thinkGear == nil {
-                thinkGear = ThinkGear()
-            }
-            thinkGear?.Connect()
-        }
-    
         // set anchorPoint
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
-        physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-        //scene?.backgroundColor = Colors.white
-        let topColor = Colors.blue
-        let bottomColor = Colors.green
-        makeGradientBackground(topColor, bottomColor: bottomColor)
+        physicsWorld.gravity = CGVector(dx: 0.0, dy: -10)
+        makeGradientBackground()
         
         // setup world
         world = SKNode()
@@ -130,8 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             waitTimer?.update(NSTimeInterval(currentTime))
             if waitTimer!.seconds > waitingTime {
-                thinkGear?.Disconnect()
-                appDel!.loadLevelLibrary()
+                //appDel!.loadLevelLibrary()
             }
             return;
         }
@@ -143,10 +119,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         time?.update(NSTimeInterval(currentTime))
         info?.setTime(time!.seconds)
         
-        // update data
-        if let data = thinkGear {
-            info?.setMeditation(Int(data.eSenseMeditation))
-            info?.setAttention(Int(data.eSenseAttention))
+        // update meditation and attention
+        if thinkGear != nil {
+            var meditation = thinkGear!.eSenseMeditation
+            var attention = thinkGear!.eSenseAttention
+            physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
+            if meditation > 50 {
+                physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8 +  (12.0 / 50.0) * (Double(meditation) - 50.0))
+            }
+            info?.setAttention(attention)
+            info?.setMeditation(meditation)
         }
         
         if unit != nil {
@@ -216,20 +198,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 break
             }
         }
-        
-        /*
-        self.position.x = 100
-        var obj1 = createSpringBlock(CGPoint(x: 30.0, y: 30.0))
-        obj1.position = CGPoint(x: 200, y: 200)
-        self.addChild(obj1)
-        var obj2 = createSpringBlock(CGPoint(x: 30.0, y: 30.0))
-        obj2.position = CGPoint(x: 200, y: 300)
-        self.addChild(obj2)
-        var spring = SKPhysicsJointSpring.jointWithBodyA(obj1.physicsBody!, bodyB: obj2.physicsBody!, anchorA: obj1.position, anchorB: obj2.position)
-        scene?.physicsWorld.addJoint(spring)
-    
-        world.physicsWorld.addJoint(spring)
-        */
     }
     
     func incColorCount(index: Int) {

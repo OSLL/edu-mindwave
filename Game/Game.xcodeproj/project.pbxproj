@@ -11,7 +11,6 @@
 		880BE21D1AFA7A3D005E26F4 /* ThinkGear.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21B1AFA7A3D005E26F4 /* ThinkGear.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		880BE2201AFA7A46005E26F4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BE21F1AFA7A46005E26F4 /* Cocoa.framework */; };
 		880BE2251AFA7A76005E26F4 /* ThinkGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880BE2241AFA7A76005E26F4 /* ThinkGear.swift */; };
-		88170A181B06C84E00BD77B4 /* TheShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88170A171B06C84E00BD77B4 /* TheShader.fsh */; };
 		882658761B053BF5007DA190 /* InfoDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658751B053BF5007DA190 /* InfoDisplay.swift */; };
 		882658781B0542E2007DA190 /* BlackHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658771B0542E2007DA190 /* BlackHole.swift */; };
 		8826587A1B05430F007DA190 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882658791B05430F007DA190 /* Unit.swift */; };
@@ -30,6 +29,9 @@
 		88D211401B056E2D00F05F77 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2113F1B056E2D00F05F77 /* Reader.swift */; };
 		88D211421B061F0F00F05F77 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211411B061F0F00F05F77 /* Timer.swift */; };
 		88D211441B062B3900F05F77 /* LevelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211431B062B3900F05F77 /* LevelButton.swift */; };
+		88FC8E311B095C2400DC9FC4 /* Graphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FC8E301B095C2400DC9FC4 /* Graphics.swift */; };
+		88FC8E331B095C7C00DC9FC4 /* Blue.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88FC8E321B095C7C00DC9FC4 /* Blue.fsh */; };
+		88FC8E351B095CB200DC9FC4 /* Sky.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88FC8E341B095CB200DC9FC4 /* Sky.fsh */; };
 		88FE40441B063B8200E93C00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE40431B063B8200E93C00 /* AppDelegate.swift */; };
 		88FE40461B063BDB00E93C00 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88FE40451B063BDB00E93C00 /* Images.xcassets */; };
 		88FE40481B063C1200E93C00 /* ActiveBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE40471B063C1200E93C00 /* ActiveBlock.swift */; };
@@ -68,7 +70,6 @@
 		880BE21F1AFA7A46005E26F4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		880BE2241AFA7A76005E26F4 /* ThinkGear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinkGear.swift; sourceTree = "<group>"; };
 		880BE2261AFA7A7B005E26F4 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
-		88170A171B06C84E00BD77B4 /* TheShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TheShader.fsh; sourceTree = "<group>"; };
 		882658751B053BF5007DA190 /* InfoDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDisplay.swift; sourceTree = "<group>"; };
 		882658771B0542E2007DA190 /* BlackHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHole.swift; sourceTree = "<group>"; };
 		882658791B05430F007DA190 /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
@@ -91,6 +92,9 @@
 		88D2113F1B056E2D00F05F77 /* Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		88D211411B061F0F00F05F77 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		88D211431B062B3900F05F77 /* LevelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelButton.swift; sourceTree = "<group>"; };
+		88FC8E301B095C2400DC9FC4 /* Graphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphics.swift; sourceTree = "<group>"; };
+		88FC8E321B095C7C00DC9FC4 /* Blue.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Blue.fsh; sourceTree = "<group>"; };
+		88FC8E341B095CB200DC9FC4 /* Sky.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Sky.fsh; sourceTree = "<group>"; };
 		88FE40431B063B8200E93C00 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88FE40451B063BDB00E93C00 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88FE40471B063C1200E93C00 /* ActiveBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBlock.swift; sourceTree = "<group>"; };
@@ -120,6 +124,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8801F3821B0950AF0083D017 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				88FC8E301B095C2400DC9FC4 /* Graphics.swift */,
+				8801F3831B0950B90083D017 /* Shaders */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		8801F3831B0950B90083D017 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				88FC8E321B095C7C00DC9FC4 /* Blue.fsh */,
+				88FC8E341B095CB200DC9FC4 /* Sky.fsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
 		8826587D1B054361007DA190 /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +192,7 @@
 				8826587D1B054361007DA190 /* Game Objects */,
 				882E55831AD2EEA40026EFEC /* MainMenu.xib */,
 				882E55791AD2EEA40026EFEC /* Supporting Files */,
-				88170A171B06C84E00BD77B4 /* TheShader.fsh */,
+				8801F3821B0950AF0083D017 /* Graphics */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -315,11 +337,12 @@
 			files = (
 				882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */,
 				EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */,
-				88170A181B06C84E00BD77B4 /* TheShader.fsh in Resources */,
 				88D2113E1B056D4D00F05F77 /* Levels in Resources */,
 				88FE40461B063BDB00E93C00 /* Images.xcassets in Resources */,
+				88FC8E351B095CB200DC9FC4 /* Sky.fsh in Resources */,
 				EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */,
 				882E55851AD2EEA40026EFEC /* MainMenu.xib in Resources */,
+				88FC8E331B095C7C00DC9FC4 /* Blue.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +363,7 @@
 				882658761B053BF5007DA190 /* InfoDisplay.swift in Sources */,
 				882E557E1AD2EEA40026EFEC /* GameScene.swift in Sources */,
 				882E559D1AD2FC350026EFEC /* Structures.swift in Sources */,
+				88FC8E311B095C2400DC9FC4 /* Graphics.swift in Sources */,
 				8826587F1B05438E007DA190 /* Protocols.swift in Sources */,
 				880BE2251AFA7A76005E26F4 /* ThinkGear.swift in Sources */,
 				88FE40481B063C1200E93C00 /* ActiveBlock.swift in Sources */,

@@ -33,13 +33,13 @@
          contextName = "Game.Menu.didMoveToView (Game.Menu)(ObjectiveC.SKView) -&gt; ():Menu.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self.view">
+            </PersistentString>
+            <PersistentString
                value = "background.frame">
             </PersistentString>
             <PersistentString
                value = "startButton.frame.width">
-            </PersistentString>
-            <PersistentString
-               value = "self.view!.layer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

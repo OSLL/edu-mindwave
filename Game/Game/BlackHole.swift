@@ -16,7 +16,7 @@ class BlackSquare: SKShapeNode, Object {
     init(size: Int, position: CGPoint, action: SKAction? = nil) {
         super.init()
         
-        path = SKShapeNode(rect: CGRect(origin: CGPoint(x: -size / 2, y: -size / 2), size: CGSize(width: size, height: size)), cornerRadius: 3).path
+        path = SKShapeNode(rect: CGRect(origin: CGPoint(x: -size / 2, y: -size / 2), size: CGSize(width: size, height: size)), cornerRadius: 0).path
         fillColor = Colors.black
         strokeColor = Colors.black
         

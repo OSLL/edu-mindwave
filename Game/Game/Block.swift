@@ -19,6 +19,7 @@ class Block: SKShapeNode, Object, ColorObject {
         strokeColor = Colors.black
     }
     */
+    
     init(size: CGSize, position: CGPoint, colorIndex: Int) {
         super.init()
         self.colorIndex = colorIndex
