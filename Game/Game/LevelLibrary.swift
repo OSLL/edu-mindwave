@@ -21,7 +21,9 @@ class LevelLibrary: SKScene {
         
         files = Array<String>()
         while let fileName = enumerator?.nextObject() as? String {
-            files!.append(fileName)
+            if fileName.pathExtension == "level" {
+                files!.append(fileName)
+            }
         }
         files!.sort {($0.stringByDeletingPathExtension as NSString).integerValue < ($1.stringByDeletingPathExtension as NSString).integerValue}
         drawButtons(view, directoryPath: fileManager.currentDirectoryPath)

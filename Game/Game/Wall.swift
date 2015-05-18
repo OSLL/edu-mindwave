@@ -23,7 +23,7 @@ class Wall: SKShapeNode, Object {
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.categoryBitMask = CollisionCategoryBitmask.Wall
-            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
+            physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Block
             physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit
         }
     }

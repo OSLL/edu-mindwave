@@ -11,15 +11,14 @@ import Cocoa
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var appDel: AppDelegate?
+    var thinkGear: ThinkGear?
     
     var world: SKNode?
     
-    private var thinkGear: ThinkGear?
-    private var camera: Camera?
-    private var unit: Unit?
+    var camera: Camera?
+    var unit: Unit?
     private var info: InfoDisplay?
     
-    private let useMindWave = false
     private var time: Timer?
     private var waitTimer: Timer?
     private let waitingTime = 2.0
@@ -27,19 +26,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
     private var ended = false
     
-    override func didMoveToView(view: SKView) {
-        if useMindWave == true {
-            if thinkGear == nil {
-                thinkGear = ThinkGear()
-            }
-            thinkGear?.Connect()
-        }
+    func makeGradientBackground() {
+        var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
+        self.addChild(Graphics.makeGradient(background, shaderType: Shader.Sky))
+        /*let myShader = SKShader(fileNamed: "TheShader")
+        
+        let effectNode = SKEffectNode()
+        effectNode.shader = myShader
+        effectNode.shouldEnableEffects = true
+        effectNode.zPosition = -3
+        addChild(effectNode)
+        
+        var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
+        
+        effectNode.addChild(background)*/
+    }
     
+    override func didMoveToView(view: SKView) {
         // set anchorPoint
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         physicsWorld.contactDelegate = self
-        physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-        scene?.backgroundColor = Colors.white
+        physicsWorld.gravity = CGVector(dx: 0.0, dy: -10)
+        makeGradientBackground()
         
         // setup world
         world = SKNode()
@@ -99,8 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             waitTimer?.update(NSTimeInterval(currentTime))
             if waitTimer!.seconds > waitingTime {
-                thinkGear?.Disconnect()
-                appDel!.loadLevelLibrary()
+                //appDel!.loadLevelLibrary()
             }
             return;
         }
@@ -112,10 +119,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         time?.update(NSTimeInterval(currentTime))
         info?.setTime(time!.seconds)
         
-        // update data
-        if let data = thinkGear {
-            info?.setMeditation(Int(data.eSenseMeditation))
-            info?.setAttention(Int(data.eSenseAttention))
+        // update meditation and attention
+        if thinkGear != nil {
+            var meditation = thinkGear!.eSenseMeditation
+            var attention = thinkGear!.eSenseAttention
+            physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
+            if meditation > 50 {
+                physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8 +  (12.0 / 50.0) * (Double(meditation) - 50.0))
+            }
+            info?.setAttention(attention)
+            info?.setMeditation(meditation)
         }
         
         if unit != nil {
@@ -148,13 +161,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let size = reader.readSize()
                 camera?.worldSize = size
                 LevelBuilder.buildWalls(world!, size: size)
-            case "Block":
-                var block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
-                ++colorsCount[block.colorIndex]
-                while let action = reader.readAction() {
-                    block.runAction(action)
+            case "Fixed", "Dynamic":
+                var shape = reader.readWord()!
+                var block: Block? = nil
+                switch shape {
+                    case "Block":
+                        if type == "Fixed" {
+                            block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                        } else {
+                            block = ActiveBlock(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                        }
+                    case "Circle":
+                        if type == "Fixed" {
+                            block = Block(radius: CGFloat(reader.readDouble()), position: reader.readPosition(), colorIndex: reader.readInt())
+                        } else {
+                            block = ActiveBlock(radius: CGFloat(reader.readDouble()), position: reader.readPosition(), colorIndex: reader.readInt())
+                        }
+                    default:
+                        break
                 }
-                world?.addChild(block)
+                ++colorsCount[block!.colorIndex]
+                while let action = reader.readAction() {
+                    block!.runAction(action)
+                }
+                world?.addChild(block!)
             case "Camera":
                 camera = Camera(position: reader.readPosition())
                 world!.addChild(camera!)
@@ -165,23 +195,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var blackHole = BlackHole(size: reader.readInt(), position: reader.readPosition())
                 world!.addChild(blackHole)
             default :
-                var nothing = 0
+                break
             }
         }
-        
-        /*
-        self.position.x = 100
-        var obj1 = createSpringBlock(CGPoint(x: 30.0, y: 30.0))
-        obj1.position = CGPoint(x: 200, y: 200)
-        self.addChild(obj1)
-        var obj2 = createSpringBlock(CGPoint(x: 30.0, y: 30.0))
-        obj2.position = CGPoint(x: 200, y: 300)
-        self.addChild(obj2)
-        var spring = SKPhysicsJointSpring.jointWithBodyA(obj1.physicsBody!, bodyB: obj2.physicsBody!, anchorA: obj1.position, anchorB: obj2.position)
-        scene?.physicsWorld.addJoint(spring)
-    
-        world.physicsWorld.addJoint(spring)
-        */
     }
     
     func incColorCount(index: Int) {

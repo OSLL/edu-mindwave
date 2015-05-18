@@ -32,12 +32,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var skView: SKView!
     
+    var thinkGear: ThinkGear?
+    
+    let useMindWave = false
+    
+    func disconnectMindWave() {
+        thinkGear?.Disconnect()
+    }
+    
+    func tryToConnectMindWave() {
+        if useMindWave == true {
+            if thinkGear == nil {
+                thinkGear = ThinkGear()
+            }
+            thinkGear?.Connect()
+        }
+    }
+    
+    func enableFullScreen() {
+        self.skView.enterFullScreenMode(NSScreen.mainScreen()!, withOptions: nil)
+    }
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        tryToConnectMindWave()
+        //enableFullScreen()
+        self.skView!.ignoresSiblingOrder = true
         loadMenu()
     }
     
     func loadMenu() {
         if let menu = Menu.unarchiveFromFile("Menu") as? Menu {
+            menu.size = CGSize(width: 1440.0, height: 900.0)
             menu.scaleMode = SKSceneScaleMode.ResizeFill
             menu.appDel = self
             self.skView!.presentScene(menu)
@@ -57,14 +82,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func loadLevel(path: NSString) {
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             /* Set the scale mode to scale to fit the window */
+            self.skView.showsFPS = true
             scene.scaleMode = SKSceneScaleMode.ResizeFill
             scene.appDel = self
+            scene.thinkGear = thinkGear
             self.skView!.presentScene(scene)
             scene.createLevel(path as String)
-            
-        
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            self.skView!.ignoresSiblingOrder = true
         }
     }
     

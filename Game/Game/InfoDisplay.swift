@@ -18,7 +18,10 @@ class InfoDisplay: SKNode {
     private var attentionValue: SKLabelNode?
     private var time: SKLabelNode?
     private var timeValue: SKLabelNode?
+    
     private var textValue: SKLabelNode?
+    private var _textValue: SKLabelNode?
+    
     
     private let meditationPosition: CGPoint
     private let meditationValuePosition: CGPoint
@@ -47,7 +50,7 @@ class InfoDisplay: SKNode {
     private func setStyle(label: SKLabelNode?) {
         label?.fontSize = 28
         label?.fontName = "Chalkboard"
-        label?.fontColor = NSColor(red: 200/255, green: 70/255, blue: 70/255, alpha: 255/255)
+        label?.fontColor = NSColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 255/255)
         attention?.zPosition = 1
     }
     
@@ -86,9 +89,17 @@ class InfoDisplay: SKNode {
     private func setupText() {
         textValue = SKLabelNode(fontNamed: "Chalkboard")
         textValue?.fontSize = 130
-        textValue?.fontColor = NSColor(red: 240/255, green: 30/255, blue: 30/255, alpha: 255/255)
-        textValue?.position = CGPoint(x: 0, y: 0)
+        textValue?.fontColor = NSColor(red: 244.0/255.0, green: 238.0/255.0, blue: 40.0/255.0, alpha: 1.0)
+        textValue?.position = CGPoint(x: 0, y: -textValue!.frame.size.height / 2.0)
         textValue?.zPosition = 1
+        
+        _textValue = SKLabelNode(fontNamed: "Chalkboard")
+        _textValue?.fontSize = 130
+        _textValue?.fontColor = NSColor.blackColor()
+        _textValue?.position = CGPoint(x: 4, y: -_textValue!.frame.size.height / 2.0 - 4)
+        _textValue?.zPosition = -1
+        textValue!.addChild(_textValue!)
+        
     }
     
     func setLabelPosition(labelNode: SKLabelNode?, position: CGPoint, left: Bool = true) {
@@ -118,6 +129,7 @@ class InfoDisplay: SKNode {
     
     func setText(text: String) {
         textValue?.text = text
+        _textValue?.text = text
     }
     
     init(size: CGSize) {

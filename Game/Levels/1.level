@@ -1,0 +1,7 @@
+World size: 1440 900
+Camera position: 720 450
+Unit position: 100 5
+Dynamic Block size: 70 70 position: 670 650 color: 1 action: nil
+Dynamic Circle radius: 30 position: 720 550 color: 0 action: nil
+Dynamic Block size: 70 70 position: 770 650 color: 1 action: nil
+BlackHole size: 100 position: 300 300 action: nil

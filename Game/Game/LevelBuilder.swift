@@ -19,4 +19,57 @@ class LevelBuilder {
         world.addChild(Wall(size: CGSize(width: wallThickness, height: size.height), position: CGPoint(x: 0, y: 0)))
         world.addChild(Wall(size: CGSize(width: wallThickness, height: size.height), position: CGPoint(x: size.width - wallThickness, y: 0)))
     }
+    
+    static func loadObjects(path: String, level: GameScene) {
+        var world = level.world
+        var camera = level.camera
+        var unit = level.unit
+        
+        let reader = Reader(path: path)
+        
+        while let type = reader.readWord() {
+            switch type {
+            case "World":
+                let size = reader.readSize()
+                camera?.worldSize = size
+                LevelBuilder.buildWalls(world!, size: size)
+            case "Fixed", "Dynamic":
+                var shape = reader.readWord()!
+                var block: Block? = nil
+                switch shape {
+                case "Block":
+                    if type == "Fixed" {
+                        block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                    } else {
+                        block = ActiveBlock(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                    }
+                case "Circle":
+                    if type == "Fixed" {
+                        block = Block(radius: CGFloat(reader.readDouble()), position: reader.readPosition(), colorIndex: reader.readInt())
+                    } else {
+                        block = ActiveBlock(radius: CGFloat(reader.readDouble()), position: reader.readPosition(), colorIndex: reader.readInt())
+                    }
+                default:
+                    break
+                }
+                level.incColorCount(block!.colorIndex)
+                while let action = reader.readAction() {
+                    block!.runAction(action)
+                }
+                world?.addChild(block!)
+            case "Camera":
+                camera = Camera(position: reader.readPosition())
+                world!.addChild(camera!)
+            case "Unit":
+                unit = Unit(position: reader.readPosition())
+                world!.addChild(unit!)
+            case "BlackHole":
+                var blackHole = BlackHole(size: reader.readInt(), position: reader.readPosition())
+                world!.addChild(blackHole)
+            default :
+                break
+            }
+        }
+
+    }
 }
