@@ -15,9 +15,11 @@ class LevelButton: SKNode {
     var background: SKShapeNode
     var numLabel: SKLabelNode
     var scoreLabel: SKLabelNode
+    var isAvailable: Bool
     var action: () -> ()
     
-    init(text: String, score: String, buttonAction: ()->()) {
+    init(text: String, score: String, aval: Bool, buttonAction: ()->()) {
+        isAvailable = aval
         numLabel = SKLabelNode(fontNamed: "Chalkboard")
         numLabel.text = text
         numLabel.fontSize = 60
@@ -29,7 +31,12 @@ class LevelButton: SKNode {
         scoreLabel.fontColor = NSColor.blackColor()
         scoreLabel.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height - 100 - scoreLabel.frame.height) / 2 + 2)
         background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelButton.size.width, height: LevelButton.size.height), cornerRadius: 5)
-        background.fillColor = SKColor.whiteColor()
+        if (isAvailable) {
+            background.fillColor = SKColor.whiteColor()
+        }
+        else {
+            background.fillColor = SKColor.grayColor()
+        }
         background.strokeColor = NSColor.blackColor()
         background.addChild(numLabel)
         background.addChild(scoreLabel)
@@ -47,11 +54,15 @@ class LevelButton: SKNode {
     }
     
     override func mouseDown(theEvent: NSEvent) {
-        background.fillColor = Colors.lightGreenColor
+        if (isAvailable) {
+            background.fillColor = Colors.lightGreenColor
+        }
     }
     
     override func mouseUp(theEvent: NSEvent) {
-        action()
-        background.fillColor = Colors.white
+        if (isAvailable) {
+            action()
+            background.fillColor = Colors.white
+        }
     }
 }

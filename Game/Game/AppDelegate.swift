@@ -61,6 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         while let name = reader.readWord() {
             highScores![name] = reader.readDouble(gap: false)
         }
+        
     }
     
     func disconnectMindWave() {
