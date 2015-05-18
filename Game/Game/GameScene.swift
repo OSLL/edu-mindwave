@@ -29,17 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func makeGradientBackground() {
         var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
         self.addChild(Graphics.makeGradient(background, shaderType: Shader.Sky))
-        /*let myShader = SKShader(fileNamed: "TheShader")
-        
-        let effectNode = SKEffectNode()
-        effectNode.shader = myShader
-        effectNode.shouldEnableEffects = true
-        effectNode.zPosition = -3
-        addChild(effectNode)
-        
-        var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
-        
-        effectNode.addChild(background)*/
     }
     
     override func didMoveToView(view: SKView) {

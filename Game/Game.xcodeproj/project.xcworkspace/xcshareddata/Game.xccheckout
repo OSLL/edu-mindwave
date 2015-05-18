@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A02FC981-A7DE-42B7-B10B-C2EAA8CC733A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Game</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A21099702ACB8378DE14F7EB95362946F4E0ECB5</key>
 		<string>https://github.com/OSLL/edu-mindwave.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Game/Game.xcodeproj/project.xcworkspace</string>
+	<string>Game/Game.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A21099702ACB8378DE14F7EB95362946F4E0ECB5</key>
