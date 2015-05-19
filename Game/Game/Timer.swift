@@ -39,3 +39,18 @@ class Timer {
         return timer
     }
 }
+
+func toLen2(string: String) -> String {
+    if count(string) < 2 {
+        return "0" + string
+    }
+    return string
+}
+
+func timeToString(time: Double) -> String {
+    var minutes = floor(time / 60)
+    var seconds = floor(time - 60 * minutes)
+    var milliseconds = round(100 * (time - 60.0 * minutes - seconds))
+    return toString(Int(minutes)) + ":" + toLen2(toString(Int(seconds))) + ":"
+        + toLen2(toString(Int(milliseconds)))
+}

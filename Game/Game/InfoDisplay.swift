@@ -33,23 +33,6 @@ class InfoDisplay: SKNode {
     private var restartButton: Button
     private var menuButton: Button
     
-    private func timeToString(time: Double) -> String {
-        var minutes = floor(time / 60)
-        var seconds = round(time - 60 * minutes)
-        
-        var minutesStr = toString(Int(minutes))
-        if count(minutesStr) < 2 {
-            minutesStr = "0" + minutesStr;
-        }
-        
-        var secondsStr = toString(Int(seconds))
-        if count(secondsStr) < 2 {
-            secondsStr = "0" + secondsStr;
-        }
-        
-        return minutesStr + ":" + secondsStr
-    }
-    
     private func setStyle(label: SKLabelNode?) {
         label?.fontSize = 28
         label?.fontName = "Chalkboard"
@@ -151,8 +134,8 @@ class InfoDisplay: SKNode {
         attentionValuePosition = CGPoint(x: -size.width / 2 + 170, y: size.height / 2 - 40)
         meditationPosition = CGPoint(x: -size.width / 2 + 15, y: size.height / 2 - 75)
         meditationValuePosition = CGPoint(x: -size.width / 2 + 170, y: size.height / 2 - 75)
-        timePosition = CGPoint(x: size.width / 2 - 285, y: size.height / 2 - 57)
-        timeValuePosition = CGPoint(x: size.width / 2 - 150, y: size.height / 2 - 57)
+        timePosition = CGPoint(x: size.width / 2 - 325, y: size.height / 2 - 57)
+        timeValuePosition = CGPoint(x: size.width / 2 - 190, y: size.height / 2 - 57)
         
         
         // setup buttons

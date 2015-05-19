@@ -35,6 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var thinkGear: ThinkGear?
     
     let useMindWave = false
+    let useScreen = false
     
     var files: Array<String>?
     var highScores: Dictionary<String, Double>?
@@ -87,7 +88,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.skView!.ignoresSiblingOrder = true
         loadLevels()
         loadHightScores()
-        loadMenu()
+        if useScreen {
+            showScreen()
+        } else {
+            loadMenu()
+        }
     }
     
     func loadMenu() {
@@ -105,6 +110,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             library.scaleMode = SKSceneScaleMode.ResizeFill
             library.appDel = self
             self.skView!.presentScene(library)
+            self.skView!.ignoresSiblingOrder = true
+        }
+    }
+    
+    func showScreen() {
+        if let screen = Screen.unarchiveFromFile("Screen") as? Screen {
+            screen.scaleMode = SKSceneScaleMode.ResizeFill
+            screen.appDel = self
+            self.skView!.presentScene(screen)
             self.skView!.ignoresSiblingOrder = true
         }
     }

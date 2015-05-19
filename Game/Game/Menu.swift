@@ -10,7 +10,7 @@ import SpriteKit
 
 class Menu: SKScene {
     var appDel: AppDelegate?
-   
+    
     func makeGradientBackground() {
         var background = SKSpriteNode(color: NSColor.whiteColor(), size: appDel!.skView!.frame.size)
         background.position = CGPoint(x: background.size.width / 2, y: background.size.height / 2)
@@ -25,6 +25,7 @@ class Menu: SKScene {
         self.appDel!.loadLevelLibrary()
     }
     
+    // WARNING
     func addButtons() {
         // button "New Game"
         let x = (1440 -  280) / 2

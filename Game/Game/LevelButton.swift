@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class LevelButton: SKNode {
-    static let size = CGSize(width: 100, height: 150)
+    static let size = CGSize(width: 120, height: 120)
     
     var background: SKShapeNode
     var numLabel: SKLabelNode
@@ -18,18 +18,18 @@ class LevelButton: SKNode {
     var isAvailable: Bool
     var action: () -> ()
     
-    init(text: String, score: String, aval: Bool, buttonAction: ()->()) {
-        isAvailable = aval
+    init(text: String, score: String, available: Bool, buttonAction: ()->()) {
+        isAvailable = available
         numLabel = SKLabelNode(fontNamed: "Chalkboard")
         numLabel.text = text
         numLabel.fontSize = 60
         numLabel.fontColor = NSColor.blackColor()
-        numLabel.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height + 50 - numLabel.frame.height) / 2 + 2)
+        numLabel.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height + 30 - numLabel.frame.height) / 2 + 2)
         scoreLabel = SKLabelNode(fontNamed: "Chalkboard")
         scoreLabel.text = score
         scoreLabel.fontSize = 20
         scoreLabel.fontColor = NSColor.blackColor()
-        scoreLabel.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height - 100 - scoreLabel.frame.height) / 2 + 2)
+        scoreLabel.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height - 70 - scoreLabel.frame.height) / 2 + 2)
         background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelButton.size.width, height: LevelButton.size.height), cornerRadius: 5)
 
         if (isAvailable) {

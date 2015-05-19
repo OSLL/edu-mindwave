@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "function signature specialization &lt;Arg[0] = Dead, Arg[1] = Value Promoted from InOut&gt; of Game.Screen.(didMoveToView (Game.Screen) -&gt; (ObjectiveC.SKView) -&gt; ()).(closure #1):Screen.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "image.position">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Game.GameScene.didMoveToView (Game.GameScene)(ObjectiveC.SKView) -&gt; ():GameScene.swift">
       </ContextState>
       <ContextState
@@ -55,10 +63,10 @@
          contextName = "Game.Button.init (Game.Button.Type)(text : Swift.String, size : C.CGSize, fontName : Swift.String, fontSize : CoreGraphics.CGFloat, fontColor : ObjectiveC.NSColor, buttonAction : () -&gt; ()) -&gt; Game.Button:Button.swift">
          <PersistentStrings>
             <PersistentString
-               value = "background.shadowShape.fillColor">
+               value = "background">
             </PersistentString>
             <PersistentString
-               value = "background">
+               value = "background.shadowShape.fillColor">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -85,10 +93,10 @@
                value = "fillColor">
             </PersistentString>
             <PersistentString
-               value = "settings">
+               value = "self.fillColor">
             </PersistentString>
             <PersistentString
-               value = "self.fillColor">
+               value = "settings">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -96,13 +104,13 @@
          contextName = "Game.Menu.didMoveToView (Game.Menu)(ObjectiveC.SKView) -&gt; ():Menu.swift">
          <PersistentStrings>
             <PersistentString
+               value = "startButton.frame.width">
+            </PersistentString>
+            <PersistentString
                value = "self.view">
             </PersistentString>
             <PersistentString
                value = "background.frame">
-            </PersistentString>
-            <PersistentString
-               value = "startButton.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
