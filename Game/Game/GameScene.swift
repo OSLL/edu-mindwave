@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var camera: Camera?
     var unit: Unit?
+    private var levelName: String?
     private var info: InfoDisplay?
     
     private var time: Timer?
@@ -26,11 +27,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
     private var ended = false
     
-    private var path: String?
-    
     func restart() {
-        if path != nil {
-            self.appDel!.loadLevel(path!)
+        if levelName != nil {
+            self.appDel!.loadLevel(levelName!)
         }
     }
     
@@ -108,6 +107,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func updateResult() {
+        if (appDel!.highScores![levelName!] == nil || appDel!.highScores![levelName!] > time!.seconds) {
+            appDel!.highScores![levelName!] = time!.seconds
+        }
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         // move camera
         camera?.apply()
@@ -115,6 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // check win/lose
         if checkColors() && ended == false {
             info?.showText("YOU WIN", fontColor: Colors.yellow)
+            updateResult()
             ended = true
         } else if unit?.killed == true {
             if ended == false {
@@ -171,15 +177,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         return zeroCount == count(colorsCount) - 1 ? true : false
     }
+   
     
-    func createLevel(path: String) {
-        self.path = path
-        
+    func createLevel(name: String) {
+        levelName = name
+
         ended = false
         info = InfoDisplay(size: CGSize(width: 1440, height: 900))
         addChild(info!)
         
-        let reader = Reader(path: path)
+        let reader = Reader(path: appDel!.fileManager!.currentDirectoryPath + "/Levels/" + levelName!)
     
         while let type = reader.readWord() {
             switch type {

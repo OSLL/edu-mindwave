@@ -21,7 +21,11 @@ class Reader {
             let lines = text!.componentsSeparatedByString("\n")
             for line in lines {
                 let words = line.componentsSeparatedByString(" ")
-                data += words
+                for word in words {
+                    if count(word) > 0 {
+                        data += [word]
+                    }
+                }
             }
         }
         wordsCount = count(data)
@@ -107,7 +111,7 @@ class Reader {
             // example: action: circle radius: 300 asOffset: false orientToPath: true duration: 3 count: 1
             case "circle":
                 var radius = readInt()
-                var path = CGPathCreateWithEllipseInRect(CGRect(x: 0, y: 0, width: 2 * radius, height: 2 * radius), nil)
+                var path = CGPathCreateWithEllipseInRect(CGRect(x: readInt(), y: readInt(), width: 2 * radius, height: 2 * radius), nil)
                 action = SKAction.followPath(path, asOffset: readBool(), orientToPath: readBool(), duration: readDouble())
                 var actionsCount = readInt()
                 if actionsCount == -1 {

@@ -17,13 +17,12 @@ class Menu: SKScene {
         addChild(Graphics.makeGradient(background, shaderType: Shader.Sky))
     }
     
-    func loadLevelLibrary() {
-        self.appDel!.loadLevelLibrary()
+    func terminate() {
+        self.appDel!.terminate()
     }
     
-    func terminate() {
-        self.appDel!.disconnectMindWave()
-        NSApplication.sharedApplication().terminate(self)
+    func loadLevelLibrary() {
+        self.appDel!.loadLevelLibrary()
     }
     
     func addButtons() {

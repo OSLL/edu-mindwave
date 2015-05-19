@@ -36,6 +36,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let useMindWave = false
     
+    var files: Array<String>?
+    var highScores: Dictionary<String, Double>?
+    var fileManager: NSFileManager?
+    
+    func loadLevels() {
+        fileManager = NSFileManager.defaultManager()
+        let enumerator = fileManager!.enumeratorAtPath(fileManager!.currentDirectoryPath + "/Levels/")
+        
+        files = Array<String>()
+        while let fileName = enumerator?.nextObject() as? String {
+            if fileName.pathExtension == "level" {
+                files!.append(fileName)
+            }
+        }
+        files!.sort {($0.stringByDeletingPathExtension as NSString).integerValue < ($1.stringByDeletingPathExtension as NSString).integerValue}
+    }
+    
+    func loadHightScores() {
+        highScores = Dictionary<String, Double>()
+        
+        let reader = Reader(path: fileManager!.currentDirectoryPath + "/Levels/high.scores")
+        
+        while let name = reader.readWord() {
+            highScores![name] = reader.readDouble(gap: false)
+        }
+        
+    }
+    
     func disconnectMindWave() {
         thinkGear?.Disconnect()
     }
@@ -57,6 +85,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         tryToConnectMindWave()
         //enableFullScreen()
         self.skView!.ignoresSiblingOrder = true
+        loadLevels()
+        loadHightScores()
         loadMenu()
     }
     
@@ -79,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func loadLevel(path: NSString) {
+    func loadLevel(fileName: NSString) {
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             /* Set the scale mode to scale to fit the window */
             self.skView.showsFPS = true
@@ -87,8 +117,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             scene.appDel = self
             scene.thinkGear = thinkGear
             self.skView!.presentScene(scene)
-            scene.createLevel(path as String)
+            scene.createLevel(fileName as String)
         }
+    }
+    
+    func terminate() {
+        self.disconnectMindWave()
+        var outFile = ""
+        for (name, score) in highScores! {
+            outFile = outFile + name + " " + toString(score) + "\n"
+        }
+        outFile.writeToFile(fileManager!.currentDirectoryPath + "/Levels/high.scores", atomically: true, encoding: NSUTF8StringEncoding, error: nil)
+        NSApplication.sharedApplication().terminate(self)
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
