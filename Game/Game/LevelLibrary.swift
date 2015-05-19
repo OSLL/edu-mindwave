@@ -15,6 +15,18 @@ class LevelLibrary: SKScene {
     let offset: CGFloat = 70
     var files: Array<String>?
     
+    func makeGradientBackground() {
+        var background = SKSpriteNode(color: NSColor.whiteColor(), size: appDel!.skView!.frame.size)
+        background.position = CGPoint(x: background.size.width / 2, y: background.size.height / 2)
+        addChild(Graphics.makeGradient(background, shaderType: Shader.Sky))
+    }
+
+    override func keyDown(theEvent: NSEvent) {
+        if theEvent.keyCode == 53 {
+            self.appDel!.loadMenu()
+        }
+    }
+    
     func loadLevels(view: SKView) {
         let fileManager = NSFileManager.defaultManager()
         let enumerator = fileManager.enumeratorAtPath(fileManager.currentDirectoryPath + "/Levels/")
@@ -45,7 +57,7 @@ class LevelLibrary: SKScene {
             }
         }
         
-        let button = Button(text: "Back", size: CGSize(width: 150, height: 60), fontSize: 25) {
+        let button = Button(text: "Back", settings: Buttons.Level) {
             self.appDel!.loadMenu()
         }
         button.position = CGPoint(x: offset, y: view.bounds.height - (40 + button.size.height))
@@ -53,7 +65,7 @@ class LevelLibrary: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
-        scene?.backgroundColor = Colors.gray
+        makeGradientBackground()
         loadLevels(view)
     }
 };

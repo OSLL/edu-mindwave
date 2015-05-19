@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Game.GameScene.didMoveToView (Game.GameScene)(ObjectiveC.SKView) -&gt; ():GameScene.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Game.ShadowLabelNode.changeStyle (Game.ShadowLabelNode)() -&gt; ():ShadowLabelNode.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fontColor">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Game.Menu.makeGradientBackground (Game.Menu)() -&gt; ():Menu.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,13 +22,51 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Game.LevelLibrary.didMoveToView (Game.LevelLibrary)(ObjectiveC.SKView) -&gt; ():LevelLibrary.swift">
+         contextName = "Game.Reader.readAction (Game.Reader)() -&gt; Swift.Optional&lt;ObjectiveC.SKAction&gt;:Reader.swift">
          <PersistentStrings>
             <PersistentString
-               value = "fileManager.currentDirectoryPath">
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.LevelLibrary.makeGradientBackground (Game.LevelLibrary)() -&gt; ():LevelLibrary.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.anchorPoint">
             </PersistentString>
             <PersistentString
-               value = "button.frame.width">
+               value = "self.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.YGCamera.move (Game.YGCamera)(C.CGPoint) -&gt; ():Camera.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.position">
+            </PersistentString>
+            <PersistentString
+               value = "position.x - 0.75 * sceneSize.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.Button.init (Game.Button.Type)(text : Swift.String, size : C.CGSize, fontName : Swift.String, fontSize : CoreGraphics.CGFloat, fontColor : ObjectiveC.NSColor, buttonAction : () -&gt; ()) -&gt; Game.Button:Button.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "background.shadowShape.fillColor">
+            </PersistentString>
+            <PersistentString
+               value = "background">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.GameScene.keyDown (Game.GameScene)(ObjectiveC.NSEvent) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "theEvent.keyCode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -26,6 +75,20 @@
          <PersistentStrings>
             <PersistentString
                value = "self.lastTime">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.ShadowShapeNode.changeStyle (Game.ShadowShapeNode)() -&gt; ():ShadowShapeNode.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fillColor">
+            </PersistentString>
+            <PersistentString
+               value = "settings">
+            </PersistentString>
+            <PersistentString
+               value = "self.fillColor">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -44,21 +107,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Game.Reader.readAction (Game.Reader)() -&gt; Swift.Optional&lt;ObjectiveC.SKAction&gt;:Reader.swift">
+         contextName = "Game.LevelLibrary.didMoveToView (Game.LevelLibrary)(ObjectiveC.SKView) -&gt; ():LevelLibrary.swift">
          <PersistentStrings>
             <PersistentString
-               value = "">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Game.YGCamera.move (Game.YGCamera)(C.CGPoint) -&gt; ():Camera.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.position">
+               value = "fileManager.currentDirectoryPath">
             </PersistentString>
             <PersistentString
-               value = "position.x - 0.75 * sceneSize.width">
+               value = "button.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -69,9 +124,6 @@
                value = "">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Game.GameScene.didMoveToView (Game.GameScene)(ObjectiveC.SKView) -&gt; ():GameScene.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

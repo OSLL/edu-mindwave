@@ -12,9 +12,9 @@ class Menu: SKScene {
     var appDel: AppDelegate?
    
     func makeGradientBackground() {
-        var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
-        background.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        addChild(Graphics.makeGradient(background, shaderType: Shader.Blue))
+        var background = SKSpriteNode(color: NSColor.whiteColor(), size: appDel!.skView!.frame.size)
+        background.position = CGPoint(x: background.size.width / 2, y: background.size.height / 2)
+        addChild(Graphics.makeGradient(background, shaderType: Shader.Sky))
     }
     
     func loadLevelLibrary() {
@@ -29,13 +29,12 @@ class Menu: SKScene {
     func addButtons() {
         // button "New Game"
         let x = (1440 -  280) / 2
-        
-        let startButton = Button(text: "New Game", size: CGSize(width: 280, height: 80), fontSize: 50, buttonAction: loadLevelLibrary)
+        let startButton = Button(text: "New Game", settings: Buttons.LargeWithShadow, buttonAction: loadLevelLibrary)
         startButton.position = CGPoint(x: x, y: 600)
         addChild(startButton)
         
         // button "Exit"
-        let exitButton = Button(text: "Exit", size: CGSize(width: 280, height: 80), fontSize: 50, buttonAction: terminate)
+        let exitButton = Button(text: "Exit", settings: Buttons.LargeWithShadow, buttonAction: terminate)
         exitButton.position = CGPoint(x: x, y: 500)
         addChild(exitButton)
     }

@@ -23,12 +23,14 @@ struct Colors {
     static let gray = NSColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
     static let lightGray = NSColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
     static let black = NSColor.blackColor()
-    static let lightGreen = NSColor(SRGBRed: 0.5, green: 1, blue: 0.5, alpha: 1)
-    static let green = NSColor(SRGBRed: 0, green: 1, blue: 0, alpha: 1)
+    static let lightGreen = NSColor(red: 0.5, green: 1, blue: 0.5, alpha: 1)
+    static let green = NSColor.greenColor()
     static let blue = NSColor.blueColor()
     static let red = NSColor.redColor()
     static let orange = NSColor.orangeColor()
-    static let lightGreenColor = NSColor(red: 0.5, green: 0.9, blue: 0.5, alpha: 1)
+    static let darkYellow = NSColor(red: 110/255, green: 110/255, blue: 10/255, alpha: 1)
+    static let yellow = NSColor(red: 244/255, green: 238/255, blue: 40/255, alpha: 1)
+    static let transparent = NSColor(red: 0, green: 0, blue: 0, alpha: 0)
 }
 
 struct ColorData {

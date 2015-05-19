@@ -11,19 +11,31 @@ import SpriteKit
 import Cocoa
 
 class Timer {
+    private var timer: NSTimeInterval
     private var startTime: NSTimeInterval
-    private var lastTime: NSTimeInterval
+    private var paused = false
     
     init(startTime: NSTimeInterval) {
         self.startTime = startTime
-        lastTime = startTime
+        timer = NSTimeInterval(0)
+    }
+    
+    func pause() {
+        paused = true
+    }
+    
+    func start() {
+        paused = false
     }
     
     func update(time: NSTimeInterval) {
-        lastTime = time
+        if paused == false {
+            timer += time - startTime
+        }
+        startTime = time
     }
     
     var seconds: Double {
-        return lastTime - startTime
+        return timer
     }
 }
