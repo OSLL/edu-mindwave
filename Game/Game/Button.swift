@@ -10,26 +10,22 @@ import Foundation
 import SpriteKit
 
 class Button: SKNode {
-    var background: SKShapeNode
-    var label: SKLabelNode
+    var background: ShadowShapeNode
+    var label: ShadowLabelNode
     var action: () -> ()
     var size: CGSize
     
-    init(text: String, size: CGSize, fontSize: CGFloat, buttonAction: ()->()) {
-        self.size = size
+    init(text: String, settings: ButtonViewSettings, buttonAction: ()->()){
+        self.size = settings.size
         
-        label = SKLabelNode(fontNamed: "Chalkboard")
+        label = ShadowLabelNode(settings: settings.labelSettings)
         label.text = text
-        label.fontSize = fontSize
-        label.fontColor = Colors.black
+        label.zPosition = 1
         label.position = CGPoint(x: size.width / 2, y: (size.height - label.frame.height) / 2 + 2)
         
-        background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: 5)
-        background.fillColor = Colors.white
-        background.strokeColor = Colors.black
-        background.addChild(label)
-        
         action = buttonAction
+        background = ShadowShapeNode(settings: settings.shapeSettings, rect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: CGFloat(5.0))
+        background.addChild(label)
         
         super.init()
         
@@ -42,11 +38,13 @@ class Button: SKNode {
     }
     
     override func mouseDown(theEvent: NSEvent) {
-        background.fillColor = Colors.lightGreen
+        background.setSecondView()
+        label.setSecondView()
     }
 
     override func mouseUp(theEvent: NSEvent) {
+        background.setFirstView()
+        label.setFirstView()
         action()
-        background.fillColor = Colors.white
     }
 }

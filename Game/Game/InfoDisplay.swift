@@ -9,7 +9,10 @@
 import Foundation
 import SpriteKit
 
+
+
 class InfoDisplay: SKNode {
+    var appDel: AppDelegate?
     private let size: CGSize
     
     private var meditation: SKLabelNode?
@@ -18,10 +21,7 @@ class InfoDisplay: SKNode {
     private var attentionValue: SKLabelNode?
     private var time: SKLabelNode?
     private var timeValue: SKLabelNode?
-    
-    private var textValue: SKLabelNode?
-    private var _textValue: SKLabelNode?
-    
+    private var textValue: ShadowLabelNode?
     
     private let meditationPosition: CGPoint
     private let meditationValuePosition: CGPoint
@@ -29,6 +29,9 @@ class InfoDisplay: SKNode {
     private let attentionValuePosition: CGPoint
     private let timePosition: CGPoint
     private let timeValuePosition: CGPoint
+    
+    private var restartButton: Button
+    private var menuButton: Button
     
     private func timeToString(time: Double) -> String {
         var minutes = floor(time / 60)
@@ -87,19 +90,10 @@ class InfoDisplay: SKNode {
     }
     
     private func setupText() {
-        textValue = SKLabelNode(fontNamed: "Chalkboard")
-        textValue?.fontSize = 130
-        textValue?.fontColor = NSColor(red: 244.0/255.0, green: 238.0/255.0, blue: 40.0/255.0, alpha: 1.0)
+        textValue = ShadowLabelNode(settings: Labels.LargeWithShadow)
         textValue?.position = CGPoint(x: 0, y: -textValue!.frame.size.height / 2.0)
         textValue?.zPosition = 1
-        
-        _textValue = SKLabelNode(fontNamed: "Chalkboard")
-        _textValue?.fontSize = 130
-        _textValue?.fontColor = NSColor.blackColor()
-        _textValue?.position = CGPoint(x: 4, y: -_textValue!.frame.size.height / 2.0 - 4)
-        _textValue?.zPosition = -1
-        textValue!.addChild(_textValue!)
-        
+        textValue?.hidden = true
     }
     
     func setLabelPosition(labelNode: SKLabelNode?, position: CGPoint, left: Bool = true) {
@@ -127,13 +121,32 @@ class InfoDisplay: SKNode {
         setLabelPosition(timeValue, position: timeValuePosition)
     }
     
-    func setText(text: String) {
+    func showText(text: String, fontColor: NSColor = NSColor.whiteColor()) {
+        textValue?.fontColor = fontColor
         textValue?.text = text
-        _textValue?.text = text
+        textValue?.hidden = false
+    }
+    
+    func hideText() {
+        textValue?.hidden = true
+    }
+    
+    func showPauseFrame() {
+        showText("PAUSE", fontColor: Colors.yellow)
+        restartButton.hidden = false
+        menuButton.hidden = false
+    }
+    
+    func hidePauseFrame() {
+        hideText()
+        restartButton.hidden = true
+        menuButton.hidden = true
     }
     
     init(size: CGSize) {
         self.size = size
+        
+        // set cnostant positions
         attentionPosition = CGPoint(x: -size.width / 2 + 15, y: size.height / 2 - 40)
         attentionValuePosition = CGPoint(x: -size.width / 2 + 170, y: size.height / 2 - 40)
         meditationPosition = CGPoint(x: -size.width / 2 + 15, y: size.height / 2 - 75)
@@ -141,13 +154,28 @@ class InfoDisplay: SKNode {
         timePosition = CGPoint(x: size.width / 2 - 285, y: size.height / 2 - 57)
         timeValuePosition = CGPoint(x: size.width / 2 - 150, y: size.height / 2 - 57)
         
+        
+        // setup buttons
+        restartButton = Button(text: "Restart", settings: Buttons.WithShadow) {}
+        restartButton.hidden = true
+        restartButton.position = CGPoint(x: -restartButton.size.width - 10, y: -restartButton.size.height - 40)
+        
+        menuButton = Button(text: "Menu", settings: Buttons.WithShadow) {}
+        menuButton.hidden = true
+        menuButton.position = CGPoint(x: 10, y: -menuButton.size.height - 40)
+        
         super.init()
         
+        restartButton.action = { (self.scene as! GameScene).restart() }
+        menuButton.action = { (self.scene as! GameScene).loadLevels() }
+        
+        // setup labels
         setupMeditation()
         setupAttention()
         setupTime()
         setupText()
         
+        // add children
         addChild(meditation!)
         addChild(meditationValue!)
         addChild(attention!)
@@ -155,6 +183,8 @@ class InfoDisplay: SKNode {
         addChild(time!)
         addChild(timeValue!)
         addChild(textValue!)
+        addChild(restartButton)
+        addChild(menuButton)
     }
     
     required init?(coder aDecoder: NSCoder) {

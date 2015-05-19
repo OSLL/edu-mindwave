@@ -24,7 +24,7 @@ class LevelButton: SKNode {
         label.position = CGPoint(x: LevelButton.size.width / 2, y: (LevelButton.size.height - label.frame.height) / 2 + 2)
         
         background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelButton.size.width, height: LevelButton.size.height), cornerRadius: 5)
-        background.fillColor = SKColor.whiteColor()
+        background.fillColor = NSColor.whiteColor()
         background.strokeColor = NSColor.blackColor()
         background.addChild(label)
         
@@ -41,7 +41,7 @@ class LevelButton: SKNode {
     }
     
     override func mouseDown(theEvent: NSEvent) {
-        background.fillColor = Colors.lightGreenColor
+        background.fillColor = Colors.lightGreen
     }
     
     override func mouseUp(theEvent: NSEvent) {

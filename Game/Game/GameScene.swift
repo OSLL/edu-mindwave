@@ -26,8 +26,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
     private var ended = false
     
+    private var path: String?
+    
+    func restart() {
+        if path != nil {
+            self.appDel!.loadLevel(path!)
+        }
+    }
+    
+    func loadLevels() {
+        self.appDel!.loadLevelLibrary()
+    }
+    
     func makeGradientBackground() {
-        var background = SKSpriteNode(color: Colors.blue, size: appDel!.skView!.frame.size)
+        var background = SKSpriteNode(color: NSColor.whiteColor(), size: appDel!.skView!.frame.size)
         self.addChild(Graphics.makeGradient(background, shaderType: Shader.Sky))
     }
     
@@ -49,27 +61,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func pause() {
+        if ended == true {
+            return
+        }
+        if paused == false {
+            paused = true
+            info?.showPauseFrame()
+            time?.pause()
+        } else {
+            paused = false
+            info?.hidePauseFrame()
+            time?.start()
+        }
+    }
+    
     override func keyDown(theEvent: NSEvent) {
-        if theEvent.keyCode == 126 {
-            unit?.jump = true
-        }
-        
-        if theEvent.keyCode == 123 {
-            unit?.moveLeft = true
-        }
-        
-        if theEvent.keyCode == 124 {
-            unit?.moveRight = true
+        switch (theEvent.keyCode) {
+            // Esc
+            case 53:
+                pause()
+            // arrow up
+            case 126:
+                unit?.jump = true
+            // arrow left
+            case 123:
+                unit?.moveLeft = true
+            // arrow right
+            case 124:
+                unit?.moveRight = true
+            default:
+                break
         }
     }
     
     override func keyUp(theEvent: NSEvent) {
-        if theEvent.keyCode == 123 {
-            unit?.moveLeft = false
-        }
-        
-        if theEvent.keyCode == 124 {
-            unit?.moveRight = false
+        switch (theEvent.keyCode) {
+            // arrow left
+            case 123:
+                unit?.moveLeft = false
+            // arrow right
+            case 124:
+                unit?.moveRight = false
+            default:
+                break
         }
     }
     
@@ -79,11 +114,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // check win/lose
         if checkColors() && ended == false {
-            info?.setText("YOU WIN")
+            info?.showText("YOU WIN", fontColor: Colors.yellow)
             ended = true
         } else if unit?.killed == true {
             if ended == false {
-                info?.setText("YOU LOSE")
+                info?.showText("YOU LOSE", fontColor: Colors.yellow)
                 ended = true
             }
             unit?.hidden = true
@@ -138,6 +173,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createLevel(path: String) {
+        self.path = path
+        
         ended = false
         info = InfoDisplay(size: CGSize(width: 1440, height: 900))
         addChild(info!)
