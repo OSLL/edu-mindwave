@@ -13,8 +13,11 @@ class LevelLibrary: SKScene {
     
     let columnsCount: Int = 9
     let offset: CGFloat = 70
-
+    
     var files: Array<String>?
+    var buttons: Array<Array<Button>>?
+    
+    var focus: Focus?
     
     func makeGradientBackground() {
         var background = SKSpriteNode(color: NSColor.whiteColor(), size: appDel!.skView!.frame.size)
@@ -23,8 +26,27 @@ class LevelLibrary: SKScene {
     }
 
     override func keyDown(theEvent: NSEvent) {
-        if theEvent.keyCode == 53 {
-            self.appDel!.loadMenu()
+        switch (theEvent.keyCode) {
+            // Esc
+            case 53:
+                self.appDel!.loadMenu()
+            // arrow up
+            case 126:
+                focus?.moveUp()
+            // arrow down
+            case 125:
+                focus?.moveDown()
+            // arrow left
+            case 123:
+                focus?.moveLeft()
+            // arrow right
+            case 124:
+                focus?.moveRight()
+            // enter
+            case 36:
+                focus?.activate()
+            default:
+                break
         }
     }
     
@@ -43,8 +65,17 @@ class LevelLibrary: SKScene {
     }
     
     func drawButtons(view: SKView, directoryPath: String) {
-        var i = 0, j = 0
-        var delta = (view.bounds.width - 2 * offset - LevelButton.size.width * CGFloat(columnsCount)) / CGFloat(columnsCount - 1)
+        buttons = Array<Array<Button>>()
+        
+        let button = Button(text: "Back", settings: Buttons.WithShadow) {
+            self.appDel!.loadMenu()
+        }
+        button.position = CGPoint(x: offset, y: view.bounds.height - (40 + button.size.height))
+        addChild(button)
+        buttons!.append([button])
+        
+        var col = 0, row = 0
+        var delta = (view.bounds.width - 2 * offset - Buttons.Level.size.width * CGFloat(columnsCount)) / CGFloat(columnsCount - 1)
         var available = true
         for fileName in appDel!.files! {
             var score: String
@@ -60,24 +91,25 @@ class LevelLibrary: SKScene {
             if (appDel!.highScores![fileName]) == nil {
                 available = false
             }
-            button.position = CGPoint(x: offset + (LevelButton.size.width + delta) * CGFloat(i), y: view.bounds.height - (250 + (100 + delta) * CGFloat(j)))
+            button.position = CGPoint(x: offset + (Buttons.Level.size.width + delta) * CGFloat(col),
+                y: view.bounds.height - 260 - (Buttons.Level.size.height + delta) * CGFloat(row))
             addChild(button)
-            if ++i == columnsCount {
-                ++j
-                i = 0
+            
+            if count(buttons!) <= row + 1 {
+                buttons!.append(Array<Button>())
+            }
+            buttons![row + 1].append(button)
+            if ++col == columnsCount {
+                ++row
+                col = 0
             }
         }
-        
-        let button = Button(text: "Back", settings: Buttons.Level) {
-            self.appDel!.loadMenu()
-        }
-        button.position = CGPoint(x: offset, y: view.bounds.height - (40 + button.size.height))
-        addChild(button)
     }
-        
+    
     override func didMoveToView(view: SKView) {
         makeGradientBackground()
         loadLevels(view)
         drawButtons(view, directoryPath: appDel!.fileManager!.currentDirectoryPath)
+        focus = Focus(buttons: buttons!, row: 1, col: 0)
     }
 };

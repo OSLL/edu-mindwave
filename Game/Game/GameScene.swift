@@ -80,19 +80,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func keyDown(theEvent: NSEvent) {
+        var menu = (ended || paused ? true : false)
         switch (theEvent.keyCode) {
             // Esc
             case 53:
                 pause()
             // arrow up
             case 126:
-                unit?.jump = true
+                if menu {
+                    info?.focus?.moveUp()
+                } else {
+                    unit?.jump = true
+                }
+            // arrow down
+            case 125:
+                if menu {
+                    info?.focus?.moveDown()
+                }
             // arrow left
             case 123:
-                unit?.moveLeft = true
+                if menu {
+                    info?.focus?.moveLeft()
+                } else {
+                    unit?.moveLeft = true
+                }
             // arrow right
             case 124:
-                unit?.moveRight = true
+                if menu {
+                    info?.focus?.moveRight()
+                } else {
+                    unit?.moveRight = true
+                }
+            // enter
+            case 36:
+                if menu {
+                    info?.focus?.activate()
+                }
             default:
                 break
         }

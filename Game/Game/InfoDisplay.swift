@@ -39,6 +39,8 @@ class InfoDisplay: SKNode {
     
     private var shadow: SKShapeNode
     
+    var focus: Focus?
+    
     private func setStyle(label: SKLabelNode?) {
         label?.fontSize = 28
         label?.fontName = "Chalkboard"
@@ -151,16 +153,19 @@ class InfoDisplay: SKNode {
     
     func showYouWin() {
         showText("YOU WIN", fontColor: Colors.yellow)
+        focus?.reset()
         showButtons()
     }
     
     func showYouLose() {
         showText("YOU LOSE", fontColor: Colors.yellow)
+        focus?.reset()
         showButtons()
     }
     
     func showPauseFrame() {
         showText("PAUSE", fontColor: Colors.yellow)
+        focus?.reset()
         showButtons()
     }
     
@@ -204,6 +209,8 @@ class InfoDisplay: SKNode {
         nextLevelButton.hidden = true
         nextLevelButton.position = CGPoint(x: -nextLevelButton.size.width / 2.0, y: -nextLevelButton.size.height - 100)
         nextLevelButton.zPosition = 1
+        
+        focus = Focus(buttons: [[restartButton, menuButton], [nextLevelButton, nextLevelButton]], row: 0, col: 0)
         
         super.init()
         

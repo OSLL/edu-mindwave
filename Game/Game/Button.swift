@@ -37,18 +37,17 @@ class Button: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func mouseDown(theEvent: NSEvent) {
-        if hidden == false {
-            background.setSecondView()
-            label.setSecondView()
-        }
+    func activate() {
+        action()
     }
-
-    override func mouseUp(theEvent: NSEvent) {
-        if hidden == false {
-            background.setFirstView()
-            label.setFirstView()
-            action()
-        }
+    
+    func mark() {
+        background.setSecondView()
+        label.setSecondView()
+    }
+    
+    func unmark() {
+        background.setFirstView()
+        label.setFirstView()
     }
 }

@@ -76,10 +76,28 @@ struct Labels {
     
     static let SmallWitoutShadow = ShadowLabelViewSettings(fontName: "Chalkboard", fontSize: 30.0, fontFirstColor: Colors.black, fontSecondColor: Colors.black,
         shadowFontFirstColor: Colors.transparent, shadowFontSecondColor: Colors.transparent)
+    
+    static let CompletedLevel = ShadowLabelViewSettings(fontName: "Chalkboard", fontSize: 45.0, fontFirstColor: Colors.lightGreen, fontSecondColor: Colors.black,
+        shadowFontFirstColor: Colors.black, shadowFontSecondColor: Colors.darkGreen, offsetX: 3, offsetY: -2)
+    
+    static let Level = ShadowLabelViewSettings(fontName: "Chalkboard", fontSize: 45.0, fontFirstColor: Colors.yellow, fontSecondColor: Colors.black,
+        shadowFontFirstColor: Colors.black, shadowFontSecondColor: Colors.darkYellow, offsetX: 3, offsetY: -2)
+    
+    static let LockedLevel = ShadowLabelViewSettings(fontName: "Chalkboard", fontSize: 45.0, fontFirstColor: Colors.lightGray, fontSecondColor: Colors.black,
+        shadowFontFirstColor: Colors.black, shadowFontSecondColor: Colors.darkGray, offsetX: 3, offsetY: -2)
 }
 
 struct Shapes {
-    static let WithShadow = ShadowShapeViewSettings(fillFirstColor: Colors.transparent, fillSecondColor: Colors.yellow,
+    static let CompletedLevel = ShadowShapeViewSettings(fillFirstColor: Colors.transparentLightGreen, fillSecondColor: Colors.lightGreen,
+        strokeFirstColor: Colors.lightGreen, strokeSecondColor: Colors.lightGreen, shadowStrokeFirstColor: Colors.black, shadowStrokeSecondColor: Colors.darkGreen, offsetX: 1, offsetY: -1)
+    
+    static let Level = ShadowShapeViewSettings(fillFirstColor: Colors.transparentYellow, fillSecondColor: Colors.yellow,
+        strokeFirstColor: Colors.yellow, strokeSecondColor: Colors.yellow, shadowStrokeFirstColor: Colors.black, shadowStrokeSecondColor: Colors.darkYellow, offsetX: 1, offsetY: -1)
+    
+    static let LockedLevel = ShadowShapeViewSettings(fillFirstColor: Colors.transparentLightGray, fillSecondColor: Colors.lightGray,
+        strokeFirstColor: Colors.lightGray, strokeSecondColor: Colors.lightGray, shadowStrokeFirstColor: Colors.black, shadowStrokeSecondColor: Colors.darkGray, offsetX: 1, offsetY: -1)
+    
+    static let WithShadow = ShadowShapeViewSettings(fillFirstColor: Colors.transparentYellow, fillSecondColor: Colors.yellow,
         strokeFirstColor: Colors.yellow, strokeSecondColor: Colors.yellow, shadowStrokeFirstColor: Colors.black, shadowStrokeSecondColor: Colors.black, offsetX: 1, offsetY: -1)
     
     static let WithoutShadow = ShadowShapeViewSettings(fillFirstColor: Colors.white, fillSecondColor: Colors.lightGreen,
@@ -95,5 +113,9 @@ struct Buttons {
     
     static let WithoutShadow = ButtonViewSettings(size: CGSize(width: 280, height: 80), shapeSettings: Shapes.WithoutShadow, labelSettings: Labels.SmallWitoutShadow)
     
-    static let Level = ButtonViewSettings(size: CGSize(width: 150, height: 60), shapeSettings: Shapes.WithoutShadow, labelSettings: Labels.SmallWitoutShadow)
+    static let CompletedLevel = ButtonViewSettings(size: CGSize(width: 120, height: 120), shapeSettings: Shapes.CompletedLevel, labelSettings: Labels.CompletedLevel)
+    
+    static let Level = ButtonViewSettings(size: CGSize(width: 120, height: 120), shapeSettings: Shapes.Level, labelSettings: Labels.Level)
+    
+    static let LockedLevel = ButtonViewSettings(size: CGSize(width: 120, height: 120), shapeSettings: Shapes.LockedLevel, labelSettings: Labels.LockedLevel)
 }

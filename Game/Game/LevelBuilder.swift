@@ -11,7 +11,7 @@ import SpriteKit
 import Cocoa
 
 class LevelBuilder {
-    private static let wallThickness: CGFloat = 5
+    private static let wallThickness: CGFloat = 1
     
     static func buildWalls(world: SKNode, size: CGSize) {
         world.addChild(Wall(size: CGSize(width: size.width, height: wallThickness), position: CGPoint(x: 0, y: 0)))
