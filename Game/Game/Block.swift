@@ -39,7 +39,6 @@ class Block: SKShapeNode, Object, ColorObject {
         fillColor = ColorData.colors[colorIndex]
         strokeColor = Colors.black
         
-        //self.init(colorIndex: colorIndex)
         self.position = position
         path = SKShapeNode(ellipseInRect: CGRect(x: -radius, y: -radius, width: 2 * radius, height: 2 * radius)).path
         physicsBody = SKPhysicsBody(circleOfRadius: radius)
@@ -48,6 +47,9 @@ class Block: SKShapeNode, Object, ColorObject {
     
      func setPhyscicsBody() {
         if var physics = physicsBody {
+            physics.linearDamping = 1.0
+            physics.angularDamping = 1.0
+            physics.restitution = 0.0
             physics.dynamic = false
             physics.affectedByGravity = false
             physics.allowsRotation = false

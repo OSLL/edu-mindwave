@@ -15,7 +15,7 @@ class Unit: SKShapeNode, Object {
     var jump = false
     var killed = false
     
-    let force = 60.0
+    let force = 1.2 //60.0
     let size = 60
     
     init(position: CGPoint) {
@@ -28,11 +28,14 @@ class Unit: SKShapeNode, Object {
         
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: size, height: size), center: CGPoint(x: size / 2, y: size / 2))
         if let physics = physicsBody {
+            physics.mass = 0.1
+            physics.friction = 0.15
+            //physics.linearDamping = 0.2
+            //physics.angularDamping = 0.2
+            physics.restitution = 0.0
             physics.affectedByGravity = true
             physics.allowsRotation = false
             physics.dynamic = true
-            physics.mass = 0.1
-            physics.friction = 0.15
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
             physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Block
             physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Trap | CollisionCategoryBitmask.Block
@@ -45,10 +48,12 @@ class Unit: SKShapeNode, Object {
     
     func move() {
         if moveLeft == true {
-            physicsBody?.applyForce(CGVector(dx: -force, dy: 0))
+            physicsBody?.applyImpulse(CGVector(dx: -force, dy: 0))
+            //physicsBody?.applyForce(CGVector(dx: -force, dy: 0))
         }
         if moveRight == true {
-            physicsBody?.applyForce(CGVector(dx: force, dy: 0))
+            physicsBody?.applyImpulse(CGVector(dx: force, dy: 0))
+            //physicsBody?.applyForce(CGVector(dx: force, dy: 0))
         }
         if jump == true {
             if physicsBody?.velocity.dy < 5 && physicsBody?.velocity.dy > -5 {

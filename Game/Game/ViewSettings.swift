@@ -81,13 +81,15 @@ struct Labels {
 struct Shapes {
     static let WithShadow = ShadowShapeViewSettings(fillFirstColor: Colors.transparent, fillSecondColor: Colors.yellow,
         strokeFirstColor: Colors.yellow, strokeSecondColor: Colors.yellow, shadowStrokeFirstColor: Colors.black, shadowStrokeSecondColor: Colors.black, offsetX: 1, offsetY: -1)
-
+    
     static let WithoutShadow = ShadowShapeViewSettings(fillFirstColor: Colors.white, fillSecondColor: Colors.lightGreen,
         strokeFirstColor: Colors.black, strokeSecondColor: Colors.black, shadowStrokeFirstColor: Colors.transparent, shadowStrokeSecondColor: Colors.transparent)
 }
 
 struct Buttons {
     static let WithShadow = ButtonViewSettings(size: CGSize(width: 200, height: 70), shapeSettings: Shapes.WithShadow, labelSettings: Labels.SmallWithShadow)
+    
+    static let WideWithShadow = ButtonViewSettings(size: CGSize(width: 420, height: 70), shapeSettings: Shapes.WithShadow, labelSettings: Labels.SmallWithShadow)
     
     static let LargeWithShadow = ButtonViewSettings(size: CGSize(width: 280, height: 80), shapeSettings: Shapes.WithShadow, labelSettings: Labels.SmallWithShadow)
     

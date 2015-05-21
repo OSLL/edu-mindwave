@@ -19,6 +19,9 @@ class Wall: SKShapeNode, Object {
             center: CGPoint(x: size.width / 2, y: size.height / 2))
         self.position = position
         if var physics = self.physicsBody {
+            physics.linearDamping = 1.0
+            physics.angularDamping = 1.0
+            physics.restitution = 0
             physics.dynamic = false
             physics.affectedByGravity = false
             physics.allowsRotation = false

@@ -21,8 +21,10 @@ class ActiveBlock: Block {
     internal override func setPhyscicsBody() {
         if var physics = physicsBody {
             physics.mass = 0.02
-            physics.linearDamping = 0.2
+            physics.linearDamping = 1.0
+            physics.angularDamping = 1.0
             physics.friction = 0.6
+            physics.restitution = 0.2
             physics.dynamic = true
             physics.affectedByGravity = true
             physics.allowsRotation = true

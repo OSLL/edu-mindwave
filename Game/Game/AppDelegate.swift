@@ -34,8 +34,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var thinkGear: ThinkGear?
     
+    // Extra variables
+    
     let useMindWave = false
     let useScreen = false
+    let fullScreen = false
+    
+    //
     
     var files: Array<String>?
     var highScores: Dictionary<String, Double>?
@@ -84,7 +89,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         tryToConnectMindWave()
-        //enableFullScreen()
+        if fullScreen {
+            enableFullScreen()
+        }
         self.skView!.ignoresSiblingOrder = true
         loadLevels()
         loadHightScores()
@@ -123,9 +130,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func findLevel(levelName: String) -> Int? {
+        for var i = 0; i < count(files!); ++i {
+            if files![i] == levelName {
+                return i
+            }
+        }
+        return nil
+    }
+    
+    func isNextLevelEnable(curLevelName: String) -> Bool {
+        if let index = findLevel(curLevelName) {
+            if highScores![curLevelName] != nil && index != count(files!) - 1 {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func loadNextLevel(curLevelName: String) {
+        if let index = findLevel(curLevelName) {
+            loadLevel(files![index + 1])
+        }
+    }
+    
     func loadLevel(fileName: NSString) {
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-            /* Set the scale mode to scale to fit the window */
             self.skView.showsFPS = true
             scene.scaleMode = SKSceneScaleMode.ResizeFill
             scene.appDel = self

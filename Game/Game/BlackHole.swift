@@ -24,6 +24,9 @@ class BlackSquare: SKShapeNode, Object {
         physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(size / 4))
     
         if let physics = self.physicsBody {
+            physics.linearDamping = 1.0
+            physics.angularDamping = 1.0
+            physics.restitution = 1.0
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.dynamic = false

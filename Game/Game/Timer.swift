@@ -49,8 +49,9 @@ func toLen2(string: String) -> String {
 
 func timeToString(time: Double) -> String {
     var minutes = floor(time / 60)
-    var seconds = floor(time - 60 * minutes)
-    var milliseconds = round(100 * (time - 60.0 * minutes - seconds))
+    var seconds = floor(time % 60)
+    var milliseconds = floor(100 * (time % 1))
+    
     return toString(Int(minutes)) + ":" + toLen2(toString(Int(seconds))) + ":"
         + toLen2(toString(Int(milliseconds)))
 }

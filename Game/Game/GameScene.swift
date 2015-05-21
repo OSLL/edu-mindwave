@@ -21,16 +21,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var info: InfoDisplay?
     
     private var time: Timer?
-    private var waitTimer: Timer?
-    private let waitingTime = 2.0
     
     private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
     private var ended = false
     
     func restart() {
-        if levelName != nil {
-            self.appDel!.loadLevel(levelName!)
-        }
+        self.appDel!.loadLevel(levelName!)
     }
     
     func loadLevels() {
@@ -58,6 +54,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             camera?.apply()
         }
         
+    }
+    
+    func isNextLevelEnable() -> Bool {
+        return appDel!.isNextLevelEnable(levelName!)
+    }
+    
+    func loadNextLevel() {
+        appDel!.loadNextLevel(levelName!)
     }
     
     func pause() {
@@ -119,27 +123,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // check win/lose
         if checkColors() && ended == false {
-            info?.showText("YOU WIN", fontColor: Colors.yellow)
             updateResult()
+            info?.showYouWin()
             ended = true
         } else if unit?.killed == true {
             if ended == false {
-                info?.showText("YOU LOSE", fontColor: Colors.yellow)
+                info?.showYouLose()
                 ended = true
             }
             unit?.hidden = true
             unit?.physicsBody?.dynamic = false
         }
         
-        if ended == true {
-            if waitTimer == nil {
-                waitTimer = Timer(startTime: NSTimeInterval(currentTime))
-            }
-            waitTimer?.update(NSTimeInterval(currentTime))
-            if waitTimer!.seconds > waitingTime {
-                appDel!.loadLevelLibrary()
-            }
-            return;
+        info?.setBestTime(self.appDel!.highScores![levelName!])
+        if ended {
+            return
         }
         
         // update timer
@@ -179,14 +177,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
    
     
-    func createLevel(name: String) {
-        levelName = name
-
+    func createLevel(levelName: String) {
+        self.levelName = levelName
         ended = false
         info = InfoDisplay(size: CGSize(width: 1440, height: 900))
         addChild(info!)
         
-        let reader = Reader(path: appDel!.fileManager!.currentDirectoryPath + "/Levels/" + levelName!)
+        let reader = Reader(path: appDel!.fileManager!.currentDirectoryPath + "/Levels/" + levelName)
     
         while let type = reader.readWord() {
             switch type {

@@ -19,6 +19,7 @@ struct CollisionCategoryBitmask {
 }
 
 struct Colors {
+    static let transparentBlack = NSColor(red: 0, green: 0, blue: 0.2, alpha: 0.3)
     static let white = NSColor.whiteColor()
     static let gray = NSColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
     static let lightGray = NSColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)

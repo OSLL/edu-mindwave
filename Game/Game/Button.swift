@@ -38,13 +38,17 @@ class Button: SKNode {
     }
     
     override func mouseDown(theEvent: NSEvent) {
-        background.setSecondView()
-        label.setSecondView()
+        if hidden == false {
+            background.setSecondView()
+            label.setSecondView()
+        }
     }
 
     override func mouseUp(theEvent: NSEvent) {
-        background.setFirstView()
-        label.setFirstView()
-        action()
+        if hidden == false {
+            background.setFirstView()
+            label.setFirstView()
+            action()
+        }
     }
 }

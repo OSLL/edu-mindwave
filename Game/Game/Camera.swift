@@ -35,7 +35,6 @@ class Camera: SKNode {
         if worldSize == nil || scene == nil {
             return
         }
-        //self.position = position
         
         let sceneSize = scene!.size
         if position.y < self.position.y {
