@@ -55,7 +55,7 @@ class InfoDisplay: SKNode {
         
         meditationValue = SKLabelNode()
         setStyle(meditationValue)
-        setMeditation(83)
+        setMeditation(0)
     }
     
     private func setupAttention() {
@@ -65,7 +65,7 @@ class InfoDisplay: SKNode {
         
         attentionValue = SKLabelNode()
         setStyle(attentionValue)
-        setAttention(100)
+        setAttention(0)
     }
     
     private func setupTime() {
@@ -210,9 +210,9 @@ class InfoDisplay: SKNode {
         nextLevelButton.position = CGPoint(x: -nextLevelButton.size.width / 2.0, y: -nextLevelButton.size.height - 100)
         nextLevelButton.zPosition = 1
         
-        focus = Focus(buttons: [[restartButton, menuButton], [nextLevelButton, nextLevelButton]], row: 0, col: 0)
-        
         super.init()
+        
+        focus = Focus(buttons: [[restartButton, menuButton], [nextLevelButton, nextLevelButton]], row: 0, col: 0)
         
         restartButton.action = { (self.scene as! GameScene).restart() }
         menuButton.action = { (self.scene as! GameScene).loadLevels() }

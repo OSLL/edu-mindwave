@@ -1,3 +1,4 @@
+
 //
 //  Menu.swift
 //  Game
@@ -7,12 +8,15 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class Menu: SKScene {
     var appDel: AppDelegate?
     var focus: Focus?
     var startButton: Button?
     var exitButton: Button?
+    
+    var player: Player?
     
     func makeGradientBackground() {
         var background = SKSpriteNode(color: NSColor.whiteColor(), size: appDel!.skView!.frame.size)
@@ -24,12 +28,17 @@ class Menu: SKScene {
         switch (theEvent.keyCode) {
             // arrow up
             case 126:
-                focus?.moveUp()
+                if focus?.moveUp() == true {
+                    player?.switchButton()
+                }
             // arrow down
             case 125:
-                focus?.moveDown()
+                if focus?.moveDown() == true {
+                    player?.switchButton()
+                }
             // enter
             case 36:
+                Player.pushButton()
                 focus?.activate()
             default:
                 break
@@ -46,6 +55,10 @@ class Menu: SKScene {
     
     // WARNING
     func addButtons() {
+        // add player
+        player = Player()
+        addChild(player!)
+        
         // button "New Game"
         let x = (1440 -  280) / 2
         startButton = Button(text: "New Game", settings: Buttons.LargeWithShadow, buttonAction: loadLevelLibrary)

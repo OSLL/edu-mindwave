@@ -52,7 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func loadLevels() {
         fileManager = NSFileManager.defaultManager()
         let enumerator = fileManager!.enumeratorAtPath(fileManager!.currentDirectoryPath + "/Levels/")
-        
         files = Array<String>()
         while let fileName = enumerator?.nextObject() as? String {
             if fileName.pathExtension == "level" {
@@ -70,7 +69,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         while let name = reader.readWord() {
             highScores![name] = reader.readDouble(gap: false)
         }
-        
     }
     
     func disconnectMindWave() {

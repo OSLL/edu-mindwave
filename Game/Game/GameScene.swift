@@ -86,36 +86,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         switch (theEvent.keyCode) {
             // Esc
             case 53:
+                Player.pushButton()
                 pause()
             // arrow up
             case 126:
                 if menu {
-                    info?.focus?.moveUp()
+                    if info?.focus?.moveUp() == true {
+                        Player.switchButton()
+                    }
                 } else {
                     unit?.jump = true
                 }
             // arrow down
             case 125:
                 if menu {
-                    info?.focus?.moveDown()
+                    if info?.focus?.moveDown() == true {
+                        Player.switchButton()
+                    }
                 }
             // arrow left
             case 123:
                 if menu {
-                    info?.focus?.moveLeft()
+                    if info?.focus?.moveLeft() == true {
+                        Player.switchButton()
+                    }
                 } else {
                     unit?.moveLeft = true
                 }
             // arrow right
             case 124:
                 if menu {
-                    info?.focus?.moveRight()
+                    if info?.focus?.moveRight() == true {
+                        Player.switchButton()
+                    }
                 } else {
                     unit?.moveRight = true
                 }
             // enter
             case 36:
                 if menu {
+                    Player.pushButton()
                     info?.focus?.activate()
                 }
             default:
@@ -178,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var attention = thinkGear!.eSenseAttention
             physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
             if meditation > 50 {
-                physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8 +  (12.0 / 50.0) * (Double(meditation) - 50.0))
+                physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8 +  (15.0 / 50.0) * (Double(meditation) - 50.0))
             }
             info?.setAttention(attention)
             info?.setMeditation(meditation)

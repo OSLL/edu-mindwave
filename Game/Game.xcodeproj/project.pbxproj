@@ -25,8 +25,11 @@
 		88680F6F1B0B6C7E006EC5BB /* Screen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88680F6E1B0B6C7E006EC5BB /* Screen.sks */; };
 		88680F711B0B6CCC006EC5BB /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88680F701B0B6CCC006EC5BB /* Screen.swift */; };
 		886B3F381B0A8AEA005592BE /* ViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886B3F371B0A8AEA005592BE /* ViewSettings.swift */; };
+		886F147E1B0E42DF00237B6E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886F147D1B0E42DF00237B6E /* Player.swift */; };
 		88776A081B054AFE009BB35B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88776A071B054AFE009BB35B /* Button.swift */; };
 		888E226E1B0D73BE001D1545 /* Focus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E226D1B0D73BE001D1545 /* Focus.swift */; };
+		889AA4EC1B0E96C500F664D7 /* pushButton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4EA1B0E96C500F664D7 /* pushButton.mp3 */; };
+		889AA4ED1B0E96C500F664D7 /* switchButton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4EB1B0E96C500F664D7 /* switchButton.mp3 */; };
 		88CD58A11B0A1D920048CA6C /* ShadowLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CD58A01B0A1D920048CA6C /* ShadowLabelNode.swift */; };
 		88CD58A51B0A36850048CA6C /* ShadowShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CD58A41B0A36850048CA6C /* ShadowShapeNode.swift */; };
 		88D2113A1B055F8700F05F77 /* LevelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211391B055F8700F05F77 /* LevelBuilder.swift */; };
@@ -95,8 +98,11 @@
 		88680F6E1B0B6C7E006EC5BB /* Screen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Screen.sks; sourceTree = "<group>"; };
 		88680F701B0B6CCC006EC5BB /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		886B3F371B0A8AEA005592BE /* ViewSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSettings.swift; sourceTree = "<group>"; };
+		886F147D1B0E42DF00237B6E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		88776A071B054AFE009BB35B /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		888E226D1B0D73BE001D1545 /* Focus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
+		889AA4EA1B0E96C500F664D7 /* pushButton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pushButton.mp3; sourceTree = "<group>"; };
+		889AA4EB1B0E96C500F664D7 /* switchButton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = switchButton.mp3; sourceTree = "<group>"; };
 		88CD58A01B0A1D920048CA6C /* ShadowLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowLabelNode.swift; sourceTree = "<group>"; };
 		88CD58A41B0A36850048CA6C /* ShadowShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowShapeNode.swift; sourceTree = "<group>"; };
 		88D211391B055F8700F05F77 /* LevelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBuilder.swift; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				88FE40451B063BDB00E93C00 /* Images.xcassets */,
+				886F147A1B0E3BFB00237B6E /* Sounds */,
 				88FE40431B063B8200E93C00 /* AppDelegate.swift */,
 				88D2113D1B056D4D00F05F77 /* Levels */,
 				88776A061B054AEA009BB35B /* Menu Objects */,
@@ -237,6 +244,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		886F147A1B0E3BFB00237B6E /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				889AA4EA1B0E96C500F664D7 /* pushButton.mp3 */,
+				889AA4EB1B0E96C500F664D7 /* switchButton.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		88776A041B054752009BB35B /* ThinkGear */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +287,7 @@
 				88CD58A01B0A1D920048CA6C /* ShadowLabelNode.swift */,
 				88CD58A41B0A36850048CA6C /* ShadowShapeNode.swift */,
 				888E226D1B0D73BE001D1545 /* Focus.swift */,
+				886F147D1B0E42DF00237B6E /* Player.swift */,
 			);
 			name = "Menu Objects";
 			sourceTree = "<group>";
@@ -360,10 +377,12 @@
 				EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */,
 				88D2113E1B056D4D00F05F77 /* Levels in Resources */,
 				88FE40461B063BDB00E93C00 /* Images.xcassets in Resources */,
+				889AA4ED1B0E96C500F664D7 /* switchButton.mp3 in Resources */,
 				88FC8E351B095CB200DC9FC4 /* Sky.fsh in Resources */,
 				EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */,
 				882E55851AD2EEA40026EFEC /* MainMenu.xib in Resources */,
 				88FC8E331B095C7C00DC9FC4 /* Blue.fsh in Resources */,
+				889AA4EC1B0E96C500F664D7 /* pushButton.mp3 in Resources */,
 				88680F6F1B0B6C7E006EC5BB /* Screen.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +419,7 @@
 				888E226E1B0D73BE001D1545 /* Focus.swift in Sources */,
 				EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */,
 				8826587C1B05433F007DA190 /* Block.swift in Sources */,
+				886F147E1B0E42DF00237B6E /* Player.swift in Sources */,
 				88FE40441B063B8200E93C00 /* AppDelegate.swift in Sources */,
 				EB51574A1B05548F004A6CC0 /* LevelLibrary.swift in Sources */,
 				882658781B0542E2007DA190 /* BlackHole.swift in Sources */,

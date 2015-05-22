@@ -19,6 +19,8 @@ class LevelLibrary: SKScene {
     
     var focus: Focus?
     
+    var player: Player?
+    
     func makeGradientBackground() {
         var background = SKSpriteNode(color: NSColor.whiteColor(), size: appDel!.skView!.frame.size)
         background.position = CGPoint(x: background.size.width / 2, y: background.size.height / 2)
@@ -29,21 +31,31 @@ class LevelLibrary: SKScene {
         switch (theEvent.keyCode) {
             // Esc
             case 53:
+                Player.pushButton()
                 self.appDel!.loadMenu()
             // arrow up
             case 126:
-                focus?.moveUp()
+                if focus?.moveUp() == true {
+                    player?.switchButton()
+                }
             // arrow down
             case 125:
-                focus?.moveDown()
+                if focus?.moveDown() == true {
+                    player?.switchButton()
+                }
             // arrow left
             case 123:
-                focus?.moveLeft()
+                if focus?.moveLeft() == true {
+                    player?.switchButton()
+                }
             // arrow right
             case 124:
-                focus?.moveRight()
+                if focus?.moveRight() == true {
+                    player?.switchButton()
+                }
             // enter
             case 36:
+                Player.pushButton()
                 focus?.activate()
             default:
                 break
@@ -65,6 +77,10 @@ class LevelLibrary: SKScene {
     }
     
     func drawButtons(view: SKView, directoryPath: String) {
+        // add player
+        player = Player()
+        addChild(player!)
+        
         buttons = Array<Array<Button>>()
         
         let button = Button(text: "Back", settings: Buttons.WithShadow) {

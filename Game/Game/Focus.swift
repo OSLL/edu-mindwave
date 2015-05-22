@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Focus {
     var row: Int
@@ -24,36 +25,44 @@ class Focus {
         buttons[row][col].activate()
     }
     
-    func moveUp() {
+    func moveUp() -> Bool {
+        let oldRow = row
         buttons[row][col].unmark()
         let rowsCount = count(buttons)
         do {
             row = (row + rowsCount - 1) % rowsCount
         } while count(buttons[row]) <= col || buttons[row][col].hidden
         buttons[row][col].mark()
+        return row != oldRow
     }
     
-    func moveDown() {
+    func moveDown() -> Bool {
+        let oldRow = row
         buttons[row][col].unmark()
         let rowsCount = count(buttons)
         do {
             row = (row + 1) % rowsCount
         } while count(buttons[row]) <= col || buttons[row][col].hidden
         buttons[row][col].mark()
+        return row != oldRow
     }
     
-    func moveLeft() {
+    func moveLeft() -> Bool {
+        let oldCol = col
         buttons[row][col].unmark()
         let colsCount = count(buttons[row])
         col = (col + colsCount - 1) % colsCount
         buttons[row][col].mark()
+        return col != oldCol
     }
     
-    func moveRight() {
+    func moveRight() -> Bool {
+        let oldCol = col
         buttons[row][col].unmark()
         let colsCount = count(buttons[row])
         col = (col + 1) % colsCount
         buttons[row][col].mark()
+        return col != oldCol
     }
     
     func reset() {
