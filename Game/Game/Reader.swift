@@ -46,6 +46,13 @@ class Reader {
         return data[cursor++]
     }
     
+    func readMessage(gap: Bool = true) -> String {
+        if gap {
+            ++cursor
+        }
+        return data[cursor++]
+    }
+    
     func readInt(gap: Bool = true) -> Int {
         if gap {
             ++cursor

@@ -25,6 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var colorsCount = Array<Int>(count: count(ColorData.colors), repeatedValue: 0)
     private var ended = false
     
+    var challenges = Array<Challenge?>()
+    
     func restart() {
         self.appDel!.loadLevel(levelName!)
     }
@@ -180,8 +182,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             info?.setAttention(attention)
             info?.setMeditation(meditation)
+            for challenge in challenges {
+                challenge!.check(attention)
+            }
         }
-        
+        else {
+            for challenge in challenges {
+                challenge!.check(50)
+            }
+        }
+        for challenge in challenges {
+            challenge!.check(0)
+        }
         if unit != nil {
             unit!.move()
             camera?.move(unit!.position)
@@ -238,6 +250,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     block!.runAction(action)
                 }
                 world?.addChild(block!)
+            case "Challenge":
+                var block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                var challenge = Challenge(size: reader.readSize(), position: reader.readPosition(), attention: reader.readInt(), message: reader.readMessage(), object: block as SKNode, action: reader.readAction()!)
+                challenge.scen = self
+                world!.addChild(block)
+                world!.addChild(challenge)
+                challenges.append(challenge)
             case "Camera":
                 camera = Camera(position: reader.readPosition())
                 world!.addChild(camera!)

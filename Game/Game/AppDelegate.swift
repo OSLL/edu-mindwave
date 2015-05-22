@@ -9,6 +9,7 @@
 
 import Cocoa
 import SpriteKit
+import AVFoundation
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -36,15 +37,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Extra variables
     
-    let useMindWave = false
-    let useScreen = false
+    let useMindWave = true
+    let useScreen = true
     let fullScreen = false
+    
     
     //
     
     var files: Array<String>?
     var highScores: Dictionary<String, Double>?
     var fileManager: NSFileManager?
+    var player: AVAudioPlayer?
     
     func loadLevels() {
         fileManager = NSFileManager.defaultManager()

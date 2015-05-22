@@ -57,6 +57,12 @@ class LevelBuilder {
                     block!.runAction(action)
                 }
                 world?.addChild(block!)
+            case "Challenge":
+                var block = Block(size: reader.readSize(), position: reader.readPosition(), colorIndex: reader.readInt())
+                var challenge = Challenge(size: reader.readSize(), position: reader.readPosition(), attention: reader.readInt(), message: reader.readMessage(), object: block as SKNode, action: reader.readAction()!)
+                challenge.scen = level
+                world!.addChild(block)
+                world!.addChild(challenge)
             case "Camera":
                 camera = Camera(position: reader.readPosition())
                 world!.addChild(camera!)

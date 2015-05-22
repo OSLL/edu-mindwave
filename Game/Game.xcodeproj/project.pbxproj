@@ -45,6 +45,7 @@
 		EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB51574B1B055508004A6CC0 /* LevelLibrary.sks */; };
 		EBCF78C01AFA75EA0063C8F0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */; };
 		EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */; };
+		EBE2DA071B0E38E8005726FC /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2DA061B0E38E8005726FC /* Challenge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		EB51574B1B055508004A6CC0 /* LevelLibrary.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelLibrary.sks; sourceTree = "<group>"; };
 		EBCF78BF1AFA75EA0063C8F0 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		EBCF78C11AFA7CCC0063C8F0 /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
+		EBE2DA061B0E38E8005726FC /* Challenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				882658771B0542E2007DA190 /* BlackHole.swift */,
+				EBE2DA061B0E38E8005726FC /* Challenge.swift */,
 				882658791B05430F007DA190 /* Unit.swift */,
 				8826587B1B05433F007DA190 /* Block.swift */,
 				882658751B053BF5007DA190 /* InfoDisplay.swift */,
@@ -402,6 +405,7 @@
 				882658781B0542E2007DA190 /* BlackHole.swift in Sources */,
 				8826587A1B05430F007DA190 /* Unit.swift in Sources */,
 				88D211441B062B3900F05F77 /* LevelButton.swift in Sources */,
+				EBE2DA071B0E38E8005726FC /* Challenge.swift in Sources */,
 				88D211421B061F0F00F05F77 /* Timer.swift in Sources */,
 				88680F711B0B6CCC006EC5BB /* Screen.swift in Sources */,
 			);
@@ -455,7 +459,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
-				CONFIGURATION_BUILD_DIR = /Users/rebryk/RGB/Debug/;
+				CONFIGURATION_BUILD_DIR = /Users/urijkravcenko/RGB/Debug/;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -500,7 +504,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
-				CONFIGURATION_BUILD_DIR = /Users/rebryk/RGB/Release/;
+				CONFIGURATION_BUILD_DIR = /Users/urijkravcenko/RGB/Release/;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
