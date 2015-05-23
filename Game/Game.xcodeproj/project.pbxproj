@@ -28,8 +28,8 @@
 		886F147E1B0E42DF00237B6E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886F147D1B0E42DF00237B6E /* Player.swift */; };
 		88776A081B054AFE009BB35B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88776A071B054AFE009BB35B /* Button.swift */; };
 		888E226E1B0D73BE001D1545 /* Focus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E226D1B0D73BE001D1545 /* Focus.swift */; };
-		889AA4EC1B0E96C500F664D7 /* pushButton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4EA1B0E96C500F664D7 /* pushButton.mp3 */; };
-		889AA4ED1B0E96C500F664D7 /* switchButton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4EB1B0E96C500F664D7 /* switchButton.mp3 */; };
+		889AA4EC1B0E96C500F664D7 /* PushButton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4EA1B0E96C500F664D7 /* PushButton.mp3 */; };
+		889AA4ED1B0E96C500F664D7 /* SwitchButton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 889AA4EB1B0E96C500F664D7 /* SwitchButton.mp3 */; };
 		88CD58A11B0A1D920048CA6C /* ShadowLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CD58A01B0A1D920048CA6C /* ShadowLabelNode.swift */; };
 		88CD58A51B0A36850048CA6C /* ShadowShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CD58A41B0A36850048CA6C /* ShadowShapeNode.swift */; };
 		88D2113A1B055F8700F05F77 /* LevelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211391B055F8700F05F77 /* LevelBuilder.swift */; };
@@ -38,6 +38,8 @@
 		88D211401B056E2D00F05F77 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2113F1B056E2D00F05F77 /* Reader.swift */; };
 		88D211421B061F0F00F05F77 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211411B061F0F00F05F77 /* Timer.swift */; };
 		88D211441B062B3900F05F77 /* LevelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D211431B062B3900F05F77 /* LevelButton.swift */; };
+		88EFA2291B0FEB80008D2876 /* PurpleGamecube.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88EFA2281B0FEB80008D2876 /* PurpleGamecube.mp3 */; };
+		88EFA22D1B100449008D2876 /* Jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88EFA22C1B100449008D2876 /* Jump.mp3 */; };
 		88FC8E311B095C2400DC9FC4 /* Graphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FC8E301B095C2400DC9FC4 /* Graphics.swift */; };
 		88FC8E331B095C7C00DC9FC4 /* Blue.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88FC8E321B095C7C00DC9FC4 /* Blue.fsh */; };
 		88FC8E351B095CB200DC9FC4 /* Sky.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88FC8E341B095CB200DC9FC4 /* Sky.fsh */; };
@@ -101,8 +103,8 @@
 		886F147D1B0E42DF00237B6E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		88776A071B054AFE009BB35B /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		888E226D1B0D73BE001D1545 /* Focus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
-		889AA4EA1B0E96C500F664D7 /* pushButton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pushButton.mp3; sourceTree = "<group>"; };
-		889AA4EB1B0E96C500F664D7 /* switchButton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = switchButton.mp3; sourceTree = "<group>"; };
+		889AA4EA1B0E96C500F664D7 /* PushButton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PushButton.mp3; sourceTree = "<group>"; };
+		889AA4EB1B0E96C500F664D7 /* SwitchButton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SwitchButton.mp3; sourceTree = "<group>"; };
 		88CD58A01B0A1D920048CA6C /* ShadowLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowLabelNode.swift; sourceTree = "<group>"; };
 		88CD58A41B0A36850048CA6C /* ShadowShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowShapeNode.swift; sourceTree = "<group>"; };
 		88D211391B055F8700F05F77 /* LevelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBuilder.swift; sourceTree = "<group>"; };
@@ -111,6 +113,8 @@
 		88D2113F1B056E2D00F05F77 /* Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		88D211411B061F0F00F05F77 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		88D211431B062B3900F05F77 /* LevelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelButton.swift; sourceTree = "<group>"; };
+		88EFA2281B0FEB80008D2876 /* PurpleGamecube.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PurpleGamecube.mp3; sourceTree = "<group>"; };
+		88EFA22C1B100449008D2876 /* Jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jump.mp3; sourceTree = "<group>"; };
 		88FC8E301B095C2400DC9FC4 /* Graphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphics.swift; sourceTree = "<group>"; };
 		88FC8E321B095C7C00DC9FC4 /* Blue.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Blue.fsh; sourceTree = "<group>"; };
 		88FC8E341B095CB200DC9FC4 /* Sky.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Sky.fsh; sourceTree = "<group>"; };
@@ -205,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				88FE40451B063BDB00E93C00 /* Images.xcassets */,
-				886F147A1B0E3BFB00237B6E /* Sounds */,
+				886F147A1B0E3BFB00237B6E /* Music */,
 				88FE40431B063B8200E93C00 /* AppDelegate.swift */,
 				88D2113D1B056D4D00F05F77 /* Levels */,
 				88776A061B054AEA009BB35B /* Menu Objects */,
@@ -244,13 +248,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		886F147A1B0E3BFB00237B6E /* Sounds */ = {
+		886F147A1B0E3BFB00237B6E /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				889AA4EA1B0E96C500F664D7 /* pushButton.mp3 */,
-				889AA4EB1B0E96C500F664D7 /* switchButton.mp3 */,
+				88EFA22C1B100449008D2876 /* Jump.mp3 */,
+				88EFA2281B0FEB80008D2876 /* PurpleGamecube.mp3 */,
+				889AA4EA1B0E96C500F664D7 /* PushButton.mp3 */,
+				889AA4EB1B0E96C500F664D7 /* SwitchButton.mp3 */,
 			);
-			name = Sounds;
+			name = Music;
 			sourceTree = "<group>";
 		};
 		88776A041B054752009BB35B /* ThinkGear */ = {
@@ -374,15 +380,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				882E55801AD2EEA40026EFEC /* GameScene.sks in Resources */,
+				88EFA2291B0FEB80008D2876 /* PurpleGamecube.mp3 in Resources */,
 				EBCF78C21AFA7CCC0063C8F0 /* Menu.sks in Resources */,
 				88D2113E1B056D4D00F05F77 /* Levels in Resources */,
 				88FE40461B063BDB00E93C00 /* Images.xcassets in Resources */,
-				889AA4ED1B0E96C500F664D7 /* switchButton.mp3 in Resources */,
+				889AA4ED1B0E96C500F664D7 /* SwitchButton.mp3 in Resources */,
 				88FC8E351B095CB200DC9FC4 /* Sky.fsh in Resources */,
+				88EFA22D1B100449008D2876 /* Jump.mp3 in Resources */,
 				EB51574C1B055508004A6CC0 /* LevelLibrary.sks in Resources */,
 				882E55851AD2EEA40026EFEC /* MainMenu.xib in Resources */,
 				88FC8E331B095C7C00DC9FC4 /* Blue.fsh in Resources */,
-				889AA4EC1B0E96C500F664D7 /* pushButton.mp3 in Resources */,
+				889AA4EC1B0E96C500F664D7 /* PushButton.mp3 in Resources */,
 				88680F6F1B0B6C7E006EC5BB /* Screen.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,7 +487,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
-				CONFIGURATION_BUILD_DIR = /Users/urijkravcenko/RGB/Debug/;
+				CONFIGURATION_BUILD_DIR = /Users/rebryk/RGB/Debug/;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -524,7 +532,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
-				CONFIGURATION_BUILD_DIR = /Users/urijkravcenko/RGB/Release/;
+				CONFIGURATION_BUILD_DIR = /Users/rebryk/RGB/Release/;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

@@ -44,10 +44,10 @@
                value = "fillColor">
             </PersistentString>
             <PersistentString
-               value = "self.fillColor">
+               value = "settings">
             </PersistentString>
             <PersistentString
-               value = "settings">
+               value = "self.fillColor">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -55,13 +55,24 @@
          contextName = "Game.Menu.didMoveToView (Game.Menu)(ObjectiveC.SKView) -&gt; ():Menu.swift">
          <PersistentStrings>
             <PersistentString
+               value = "startButton.frame.width">
+            </PersistentString>
+            <PersistentString
                value = "self.view">
             </PersistentString>
             <PersistentString
                value = "background.frame">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Game.Menu.addButtons (Game.Menu)() -&gt; ():Menu.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "startButton.frame.width">
+               value = "self.scene!.frame.size.width">
+            </PersistentString>
+            <PersistentString
+               value = "exitButton!.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -99,18 +110,13 @@
          contextName = "Game.GameScene.didMoveToView (Game.GameScene)(ObjectiveC.SKView) -&gt; ():GameScene.swift">
       </ContextState>
       <ContextState
+         contextName = "Game.ThinkGear.Connect (Game.ThinkGear)() -&gt; Swift.Bool:ThinkGear.swift">
+      </ContextState>
+      <ContextState
          contextName = "Game.AppDelegate.tryToConnectMindWave (Game.AppDelegate)() -&gt; ():AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
                value = "thinkGear">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Game.Menu.keyDown (Game.Menu)(ObjectiveC.NSEvent) -&gt; ():Menu.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "theEvent.keyCode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -123,16 +129,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Game.ThinkGear.Connect (Game.ThinkGear)() -&gt; Swift.Bool:ThinkGear.swift">
+         contextName = "Game.Menu.keyDown (Game.Menu)(ObjectiveC.NSEvent) -&gt; ():Menu.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "theEvent.keyCode">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Game.Button.init (Game.Button.Type)(text : Swift.String, size : C.CGSize, fontName : Swift.String, fontSize : CoreGraphics.CGFloat, fontColor : ObjectiveC.NSColor, buttonAction : () -&gt; ()) -&gt; Game.Button:Button.swift">
          <PersistentStrings>
             <PersistentString
-               value = "background">
+               value = "background.shadowShape.fillColor">
             </PersistentString>
             <PersistentString
-               value = "background.shadowShape.fillColor">
+               value = "background">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

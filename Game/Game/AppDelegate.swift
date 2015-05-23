@@ -34,13 +34,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var skView: SKView!
     
     var thinkGear: ThinkGear?
+    var backgroundPlayer: BackgroundPlayer?
     
     // Extra variables
     
-    let useMindWave = true
-    let useScreen = true
+    let useMindWave = false
+    let useScreen = false
     let fullScreen = false
-    
     
     //
     
@@ -89,7 +89,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        tryToConnectMindWave()
+        backgroundPlayer = BackgroundPlayer()
+        //tryToConnectMindWave()
         if fullScreen {
             enableFullScreen()
         }

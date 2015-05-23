@@ -71,6 +71,9 @@ struct Labels {
     static let LargeWithShadow = ShadowLabelViewSettings(fontName: "Chalkboard", fontSize: 140.0, fontFirstColor: Colors.yellow, fontSecondColor: Colors.black,
         shadowFontFirstColor: Colors.black, shadowFontSecondColor: Colors.black, offsetX: 5, offsetY: -4)
     
+    static let MenuLargeWithShadow = ShadowLabelViewSettings(fontName: "Chalkboard", fontSize: 65.0, fontFirstColor: Colors.yellow, fontSecondColor: Colors.black,
+        shadowFontFirstColor: Colors.black, shadowFontSecondColor: Colors.darkYellow, offsetX: 5, offsetY: -4)
+    
     static let SmallWithShadow = ShadowLabelViewSettings(fontName: "Chalkboard", fontSize: 45.0, fontFirstColor: Colors.yellow, fontSecondColor: Colors.black,
         shadowFontFirstColor: Colors.black, shadowFontSecondColor: Colors.darkYellow, offsetX: 3, offsetY: -2)
     
@@ -109,7 +112,7 @@ struct Buttons {
     
     static let WideWithShadow = ButtonViewSettings(size: CGSize(width: 420, height: 70), shapeSettings: Shapes.WithShadow, labelSettings: Labels.SmallWithShadow)
     
-    static let LargeWithShadow = ButtonViewSettings(size: CGSize(width: 280, height: 80), shapeSettings: Shapes.WithShadow, labelSettings: Labels.SmallWithShadow)
+    static let LargeWithShadow = ButtonViewSettings(size: CGSize(width: 360, height: 110), shapeSettings: Shapes.WithShadow, labelSettings: Labels.MenuLargeWithShadow)
     
     static let WithoutShadow = ButtonViewSettings(size: CGSize(width: 280, height: 80), shapeSettings: Shapes.WithoutShadow, labelSettings: Labels.SmallWitoutShadow)
     

@@ -60,18 +60,22 @@ class Menu: SKScene {
         addChild(player!)
         
         // button "New Game"
-        let x = (1440 -  280) / 2
         startButton = Button(text: "New Game", settings: Buttons.LargeWithShadow, buttonAction: loadLevelLibrary)
-        startButton!.position = CGPoint(x: x, y: 600)
         addChild(startButton!)
         
         // button "Exit"
         exitButton = Button(text: "Exit", settings: Buttons.LargeWithShadow, buttonAction: terminate)
-        exitButton!.position = CGPoint(x: x, y: 500)
         addChild(exitButton!)
+        
+        let x = (self.scene!.frame.size.width -  startButton!.size.width) / 2
+        startButton!.position = CGPoint(x: x, y: 500)
+        exitButton!.position = CGPoint(x: x, y: 380)
     }
     
     override func didMoveToView(view: SKView) {
+        if appDel!.backgroundPlayer?.player?.playing == false {
+           appDel!.backgroundPlayer?.player?.play()
+        }
         makeGradientBackground()
         addButtons()
         focus = Focus(buttons: [[startButton!], [exitButton!]], row: 0, col: 0)

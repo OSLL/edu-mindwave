@@ -153,6 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: CFTimeInterval) {
+        
         // move camera
         camera?.apply()
         
@@ -171,9 +172,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         info?.setBestTime(self.appDel!.highScores![levelName!])
+        
         if ended {
             return
         }
+        
         
         // update timer
         if time == nil {
@@ -267,6 +270,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 world!.addChild(block)
                 world!.addChild(challenge)
                 challenges.append(challenge)
+                ++colorsCount[block.colorIndex]
             case "Camera":
                 camera = Camera(position: reader.readPosition())
                 world!.addChild(camera!)

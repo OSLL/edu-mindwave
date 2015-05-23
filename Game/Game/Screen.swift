@@ -49,5 +49,7 @@ class Screen: SKScene {
             SKAction.waitForDuration(slideYuriys),
             SKAction.runBlock() { self.appDel!.loadMenu() }
             ]))
+        
+        appDel!.tryToConnectMindWave()
     }
 };

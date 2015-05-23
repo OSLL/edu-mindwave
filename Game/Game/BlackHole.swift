@@ -51,8 +51,7 @@ class BlackSquare: SKShapeNode, Object {
 }
 
 class BlackHole: SKShapeNode {
-    let minCount = 2
-    let maxCount = 4
+    let holesCount = 3
     let minInterval = 4000
     let maxInterval = 6000
     
@@ -61,19 +60,19 @@ class BlackHole: SKShapeNode {
         
         self.position = position
         zPosition = -1
-        
-        var count = Int(minCount + rand() % (maxCount - minCount + 1))
-        for var i = 0; i < count; ++i {
-            var radius = size / 3
-            var interval = minInterval + rand() % (maxInterval - minInterval + 1)
-            
-            var track = CGPathCreateWithEllipseInRect(CGRect(x: -radius, y: -radius, width: 2 * radius, height: 2 * radius), nil)
-            //var track = CGPathCreateWithRect(CGRect(x: 0, y: 0, width: size / 2, height: size / 2), nil)
-            var action = SKAction.followPath(track, asOffset: false, orientToPath: false, duration: Double(interval) / 1000.0)
+        for var i = 0; i < holesCount; ++i {
+            var radius = size / 4
+            var time = minInterval + 250 * i
+            var track = CGPathCreateWithEllipseInRect(CGRect(x: -radius + 10 * i, y: -radius + 15 * (i % 2), width: 2 * radius, height: 2 * radius), nil)
+            var action = SKAction.followPath(track, asOffset: false, orientToPath: false, duration: Double(time) / 1000.0)
             action = SKAction.repeatActionForever(action)
             var square = BlackSquare(size: size, position: CGPoint(x: 0, y: 0), action: action)
             addChild(square)
         }
+        
+        var gravityNode = SKFieldNode.radialGravityField()
+        gravityNode.falloff = 3.0
+        self.addChild(gravityNode)
         
         if action != nil {
             self.runAction(action!)

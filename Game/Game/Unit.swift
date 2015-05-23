@@ -15,7 +15,7 @@ class Unit: SKShapeNode, Object {
     var jump = false
     var killed = false
     
-    let force = 1.2 //60.0
+    let force = 1.2
     let size = 60
     
     init(position: CGPoint) {
@@ -30,8 +30,6 @@ class Unit: SKShapeNode, Object {
         if let physics = physicsBody {
             physics.mass = 0.1
             physics.friction = 0.15
-            //physics.linearDamping = 0.2
-            //physics.angularDamping = 0.2
             physics.restitution = 0.0
             physics.affectedByGravity = true
             physics.allowsRotation = false
@@ -49,15 +47,14 @@ class Unit: SKShapeNode, Object {
     func move() {
         if moveLeft == true {
             physicsBody?.applyImpulse(CGVector(dx: -force, dy: 0))
-            //physicsBody?.applyForce(CGVector(dx: -force, dy: 0))
         }
         if moveRight == true {
             physicsBody?.applyImpulse(CGVector(dx: force, dy: 0))
-            //physicsBody?.applyForce(CGVector(dx: force, dy: 0))
         }
         if jump == true {
             if physicsBody?.velocity.dy < 5 && physicsBody?.velocity.dy > -5 {
                 physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
+                runAction(Player.jump())
             }
             jump = false
         }
