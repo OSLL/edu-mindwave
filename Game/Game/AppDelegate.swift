@@ -90,7 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         backgroundPlayer = BackgroundPlayer()
-        //tryToConnectMindWave()
+        tryToConnectMindWave()
         if fullScreen {
             enableFullScreen()
         }

@@ -50,6 +50,6 @@ class Screen: SKScene {
             SKAction.runBlock() { self.appDel!.loadMenu() }
             ]))
         
-        appDel!.tryToConnectMindWave()
+        //appDel!.tryToConnectMindWave()
     }
 };

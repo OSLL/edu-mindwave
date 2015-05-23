@@ -190,8 +190,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var meditation = thinkGear!.eSenseMeditation
             var attention = thinkGear!.eSenseAttention
             physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-            if meditation > 50 {
-                physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8 +  (15.0 / 50.0) * (Double(meditation) - 50.0))
+            if meditation > 40 {
+                physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8 +  (20.0 / 40.0) * (Double(meditation) - 40.0))
             }
             info?.setAttention(attention)
             info?.setMeditation(meditation)
