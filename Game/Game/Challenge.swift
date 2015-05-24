@@ -13,42 +13,94 @@ class Challenge: SKShapeNode, Object {
     var object: SKNode?
     var action: SKAction?
     var moved: Bool = false
-    var unitIn: Bool = false
+    var isActive: Bool = false
     var attention: Int = 0
     var label: SKLabelNode?
+    var background: SKShapeNode?
     var scen: SKScene?
+    var size: CGSize?
+    
     init(size: CGSize, position: CGPoint, attention: Int, message: String, object: SKNode, action: SKAction) {
         super.init()
+        self.size = size
+        self.position = position
+        var settings = Buttons.LockedLevel
         self.object = object
         self.action = action
-        self.position = position
         self.attention = attention
+        label = SKLabelNode()
+        //label = ShadowLabelNode(settings: settings.labelSettings)
+        label!.text = String(attention)
+        label!.zPosition = 1
+        label!.position = CGPoint(x: size.width / 2, y: (size.height - label!.frame.height) / 2 + 2)
 
-        path = SKShapeNode(rect: CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width, height: size.height), cornerRadius: 3).path
+        background = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: CGFloat(5.0))
+        //background.strokeColor = settings.shadowStrokeFirstColor
+        //background.position = CGPoint(x: offsetX, y: offsetY)
+        background!.addChild(label!)
+        
+        userInteractionEnabled = true
+        addChild(background!)
+        self.unactive()
+        path = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: 3).path
         physicsBody = SKPhysicsBody(polygonFromPath: path)
         if let physics = physicsBody {
             physics.dynamic = false
             physics.affectedByGravity = false
             physics.allowsRotation = false
-            physics.categoryBitMask = CollisionCategoryBitmask.Null
+            physics.categoryBitMask = CollisionCategoryBitmask.Challenge
             physics.collisionBitMask = CollisionCategoryBitmask.Null
             physics.contactTestBitMask = CollisionCategoryBitmask.Unit
         }
     }
     
+    func unactive() {
+        if !moved {
+            isActive = false
+            setSettings(Buttons.LockedLevel)
+        }
+    }
+    
+    func active() {
+        isActive = true
+        setSettings(Buttons.Level)
+    }
+    
+    func setSettings(settings: ButtonViewSettings) {
+        var labelSettings = settings.labelSettings
+        label!.fontSize = labelSettings.fontSize
+        label!.fontName = labelSettings.fontName
+        label!.fontColor = labelSettings.shadowFontFirstColor
+        label!.position = CGPoint(x: labelSettings.offsetX, y: labelSettings.offsetY)
+        label!.zPosition = -1
+        label!.fontSize = labelSettings.fontSize
+        label!.fontName = labelSettings.fontName
+        label!.fontColor = labelSettings.fontFirstColor
+        label!.text = String(attention)
+        label!.zPosition = 1
+        label!.position = CGPoint(x: size!.width / 2, y: (size!.height - label!.frame.height) / 2 + 2)
+        
+        var shapeSettings = settings.shapeSettings
+        
+        background!.strokeColor = shapeSettings.shadowStrokeFirstColor
+        background!.position = CGPoint(x: shapeSettings.offsetX, y: shapeSettings.offsetY)
+        background!.zPosition = -1
+        fillColor = shapeSettings.fillFirstColor
+        strokeColor = shapeSettings.strokeFirstColor
+    }
+    
     func check(attention: Int) {
-        if !moved && unitIn && attention > self.attention {
+        if !moved && isActive && attention > self.attention {
             object!.runAction(action!)
             moved = true
+            setSettings(Buttons.CompletedLevel)
         }
     }
     
     func beginContact(CollisionObject : UInt32) {
-        unitIn = true
     }
     
     func endContact(CollisionObject : UInt32) {
-        unitIn = false
     }
     
     required init?(coder aDecoder: NSCoder) {

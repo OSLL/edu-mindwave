@@ -14,6 +14,7 @@ class Unit: SKShapeNode, Object {
     var moveRight = false
     var jump = false
     var killed = false
+    var challenge = Challenge?()
     
     let force = 1.2
     let size = 60
@@ -36,7 +37,7 @@ class Unit: SKShapeNode, Object {
             physics.dynamic = true
             physics.categoryBitMask = CollisionCategoryBitmask.Unit
             physics.collisionBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Block
-            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Trap | CollisionCategoryBitmask.Block
+            physics.contactTestBitMask = CollisionCategoryBitmask.Wall | CollisionCategoryBitmask.Unit | CollisionCategoryBitmask.Trap | CollisionCategoryBitmask.Block | CollisionCategoryBitmask.Challenge
         }
     }
     
@@ -58,6 +59,15 @@ class Unit: SKShapeNode, Object {
             }
             jump = false
         }
+    }
+    
+    func challengeContact(challenge: Challenge) {
+        if !challenge.moved && !challenge.isActive {
+            self.challenge?.unactive()
+            self.challenge = challenge
+            challenge.active()
+        }
+        
     }
     
     func beginContact(CollisionObject : UInt32) {

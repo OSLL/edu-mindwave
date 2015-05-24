@@ -16,6 +16,7 @@ struct CollisionCategoryBitmask {
     static let Block: UInt32 = 0x1 << 2
     static let Trap: UInt32 = 0x1 << 3
     static let Wall: UInt32 = 0x1 << 4
+    static let Challenge: UInt32 = 0x1 << 5
 }
 
 struct Colors {

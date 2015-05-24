@@ -199,11 +199,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 challenge!.check(attention)
             }
         }
-        else {
+        /*else {
             for challenge in challenges {
-                challenge!.check(50)
+                challenge!.check(100)
             }
-        }
+        }*/
         for challenge in challenges {
             challenge!.check(0)
         }
@@ -305,6 +305,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let b = (((contact.bodyB.node) as? Object)) {
             b.beginContact(contact.bodyA.node!.physicsBody!.categoryBitMask)
         }
+        if let a = contact.bodyA.node as? Unit {
+            if let b = contact.bodyB.node as? Challenge {
+                a.challengeContact(b)
+            }
+        }
+        if let a = contact.bodyB.node as? Unit {
+            if let b = contact.bodyA.node as? Challenge {
+                a.challengeContact(b)
+            }
+        }
+        
     }
     
     func didEndContact(contact: SKPhysicsContact) {
