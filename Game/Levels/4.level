@@ -1,0 +1,42 @@
+World size: 1440 900
+Camera position: 720 450
+Unit position: 100 5
+
+
+Fixed Block size: 30 120 position: 290 839 color: 1
+action: nil
+
+Fixed Block size: 30 120 position: 430 839 color: 1 action: nil
+
+Challenge
+size: 108 30 position: 360 794 color: 0
+size: 60 60 position: 330 10 attention: 60 message: ConcentrateToMoveBlock 
+action: path points: 2 0 0 0 -700 asOffset: true orientToPath: false duration: 2 count: 1
+
+Dynamic Circle radius: 25 position: 360 835 color: 2 action: nil
+
+
+Fixed Block size: 30 120 position: 650 839 color: 1
+action: nil
+
+Fixed Block size: 30 120 position: 790 839 color: 1 action: nil
+
+Challenge
+size: 108 30 position: 720 794 color: 0
+size: 60 60 position: 690 10 attention: 75 message: ConcentrateToMoveBlock 
+action: path points: 2 0 0 0 -700 asOffset: true orientToPath: false duration: 2 count: 1
+
+Dynamic Circle radius: 25 position: 720 835 color: 2 action: nil
+
+
+Fixed Block size: 30 120 position: 1010 839 color: 1
+action: nil
+
+Fixed Block size: 30 120 position: 1150 839 color: 1 action: nil
+
+Challenge
+size: 108 30 position: 1080 794 color: 0
+size: 60 60 position: 1050 10 attention: 90 message: ConcentrateToMoveBlock 
+action: path points: 2 0 0 0 -700 asOffset: true orientToPath: false duration: 2 count: 1
+
+Dynamic Circle radius: 25 position: 1080 835 color: 2 action: nil

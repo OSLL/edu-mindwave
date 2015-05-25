@@ -1,0 +1,29 @@
+World size: 1440 900
+Camera position: 720 450
+Unit position: 100 5
+
+Fixed Block size: 20 120 position: 620 450 color: 1
+action: path points: 3 0 0 -300 0 0 0 asOffset: true orientToPath: false duration: 3 count: -1
+action: nil
+
+Fixed Block size: 20 120 position: 700 450 color: 1
+action: path points: 3 0 0 -300 0 0 0 asOffset: true orientToPath: false duration: 3 count: -1
+action: nil
+
+Fixed Block size: 55 20 position: 660 450 color: 0
+action: path points: 3 0 0 -300 0 0 0 asOffset: true orientToPath: false duration: 3 count: -1
+action: nil
+
+Fixed Block size: 20 120 position: 740 450 color: 1
+action: path points: 3 0 0 300 0 0 0 asOffset: true orientToPath: false duration: 3 count: -1
+action: nil
+
+Fixed Block size: 20 120 position: 820 450 color: 1
+action: path points: 3 0 0 300 0 0 0 asOffset: true orientToPath: false duration: 3 count: -1
+action: nil
+
+Fixed Block size: 55 20 position: 780 450 color: 2
+action: path points: 3 0 0 300 0 0 0 asOffset: true orientToPath: false duration: 3 count: -1
+action: nil
+
+Dynamic Circle radius: 25 position: 720 26 color: 0 action: nil

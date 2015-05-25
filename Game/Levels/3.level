@@ -1,0 +1,14 @@
+World size: 1440 900
+Camera position: 720 450
+Unit position: 100 5
+
+Fixed Block size: 30 898 position: 640 450 color: 1
+action: nil
+
+Fixed Block size: 30 898 position: 800 450 color: 1
+action: nil
+
+Fixed Block size: 60 60 position: 720 860 color: 0
+action: nil
+
+Dynamic Circle radius: 30 position: 720 26 color: 0 action: nil
