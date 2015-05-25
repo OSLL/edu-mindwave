@@ -1,7 +1,0 @@
-World size: 1440 900
-Camera position: 720 450
-Unit position: 100 5
-Fixed Block size: 150 30 position: 270 100 color: 0 action: nil
-Fixed Block size: 150 30 position: 570 200 color: 1 action: nil
-Fixed Block size: 150 30 position: 870 200 color: 2 action: nil
-Fixed Block size: 150 30 position: 1170 100 color: 0 action: nil
